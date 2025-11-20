@@ -1,2 +1,118 @@
 #!/bin/bash
 
+ssh-keygen -f daws-86s
+
+ssh -i <private-key> ec2-user@IP ( ssh-i devops ec2-user@)
+srika@S2R2I8S6R0I112 MINGW64 ~/devsecops/temp
+$ ssh -i keys ec2-user@34.228.167.123
+here connected to linux server by using git bash ane oka clinet server
+
+inbound -> SSH 22 0.0.0.0/0
+outbound -> All traffic -> 0.0.0.0/0
+
+C:\Users\siva
+
+GitBash -> Mini Linux
+
+cd /c/devops/daws-86s
+
+/c/devops/daws-86s -> absolute. starts from root directory
+daws-86s  --> relative. make sure you have that file exist file
+
+<command-name> <inputs> <options>
+
+inputs, options are sometime mandatory sometimes optional
+
+copy source destination
+
+uname -> command [ec2-user@ip-172-31-25-128 ~]$ uname
+Linux
+-a -> one of the option
+[ec2-user@ip-172-31-25-128 ~]$ uname -a
+Linux ip-172-31-25-128.ec2.internal 6.1.155-176.282.amzn2023.x86_64 #1 SMP PREEMPT_DYNAMIC Tue Oct  7 15:53:25 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux
+
+pwd -> print working directory
+$ -> normal user
+# -> root user sudo su -
+
+/root -> root user home directory
+[root@ip-172-31-25-128 ~]# pwd
+/root
+
+/home/<user-name> -> /home/ec2-user
+[ec2-user@ip-172-31-25-128 ~]$ pwd
+/home/ec2-user
+
+/ --> starting path. root path
+
+CRUD -> Create Read Update Delete
+
+touch <file-name> -> create the file
+
+ls -> list subdirectories
+
+cat > file-name
+
+enter the text... press enter and then ctrl+d
+
+>   ---> redirection
+>>   ----> don't replace, just add/append
+
+mkdir -> make directory
+rmdir -> deletes the directory
+
+rm -r -> delete recursively, means delete the contents also inside the directory
+
+cd .. -> one step back
+
+Cd != cd
+
+ls -l -> alphabetical order
+ls -lr -> reverse alphabetical order
+ls -lt -> latest on top
+ls -ltr -> oldest on top
+
+cp <source> <destination>
+
+mv <source> <destination> -> moves/cut the file
+. -> represents current directory
+
+grep -> search the text inside file
+
+grep <word-to-search> <file-name>
+
+if u want to exit from somewhere u nee to use  press CTRL+D
+
+grep -n -> line number
+grep -c -> count of lines the word occured
+grep -i -> ignore the case
+grep -v -> invert, non matching lines
+
+~/.ssh/config
+config should not have any file extensions
+
+Host *
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+
+wget <url> -> Downloads the file
+curl <url> -> print the information on the screen
+
+https://raw.githubusercontent.com/daws-86s/notes/refs/heads/main/session-02.txt
+
+printf Hello World
+
+echo "Hello World"
+
+cut command can delimit the text and give us the required fragment
+
+awk -F "/" '{print $1F}'
+
+Commands
+cat passwd | awk -F ":" '{print $1F}'
+ cat passwd | awk -F ":" '{print $1F , $3F}'
+
+sudo su -      -----> I will land into root user home directory
+sudo su       -------> land into same directory as root
+
+if u want come out from one step give cmd is shift+q

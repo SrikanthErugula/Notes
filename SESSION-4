@@ -1,1 +1,227 @@
 #!/bin/bash
+
+
+uname
+pwd
+touch
+cat
+cd
+mkdir
+rmdir
+rm -r
+cp
+mv
+grep
+cut
+awk
+piping
+echo
+ls
+curl
+wget
+
+vim editor
+============
+VIM is an interactive and human involvement  
+vi improved editor
+
+touch <file-name>
+cat >
+cat >>
+
+vim <file-name>
+1. if file already exists, it will open
+2. if file does not exists, then it will create and open
+
+Default mode is esc mode.
+
+
+Colon/Command Mode
+=================
+:wq -> write and quit
+:q! -> quit without saving
+:q -> just quit
+:set nu -> display line numbers
+:<line-number> -> cursor will go that line
+:/<word-to-search> -> search from top
+:?<word-to-search> -> search from bottom
+:<line-number>d -> deletes that line
+:noh -> no highlight
+:28s/root/ROOT -> line number 28, replace root with ROOT. It replaces the first occurence in that line
+
+:29s/root/ROOT/g -> g for global. means 29th line all root occurences should be replaced with ROOT
+
+:%s/root/ROOT/g -> all lines all occurences in the file
+
+Esc Mode
+============
+gg --> takes us to top of the file
+shift+g -> takes us to bottom of the file
+u -> undo
+ctrl+r -> redo
+dd -> deletes the line
+yy(yank) -> copies the line
+p -> paste below the line
+shift+p -> paste above the line
+
+head <file-name> -> displays top 10 lines of the file
+tail <file-name> -> displays bottom 10 lines
+
+head -n 8 | tail -n 3
+
+55-65
+
+head -n 65 | tail -n 11
+
+Linux Administration 
+======================
+User Management
+
+User Groups Roles Permissions
+
+User -> A human
+Group -> A team of humans
+Roles -> position
+Permissions -> Access to the roles
+
+1. create user
+2. create group
+3. add user to the group
+4. remove user from the group
+5. remove user
+6. remove group
+
+1. create devops group
+2. create suresh user
+3. add suresh to devops group
+4. remove suresh from devops group
+5. remove suresh user
+
+useradd suresh -> creates suresh user
+groupadd devops -> creaes devops group
+sudo su -  ( Super user)
+Sudo su ( just login at same position )
+id <user-name> to identify the user details for command
+id suresh
+uid=1001(suresh) gid=1001(suresh) { primary} groups=1001(suresh) { seconday grp}
+
+when you create user in Linux, by default it will create one group with same username
+
+/etc/passwd
+suresh:x:1001:1001::/home/suresh:/bin/bash
+
+/etc/group
+devops:x:1002:
+
+/etc/shadow -> encrypted password
+
+A user in Linux must have 1 primary group and atleast 1 secondary group
+
+usermod -g <group-name> <user-name> --> adding suresh to devops group
+mod means modification, -g mens primary grp here remove all defalut data.....
+
+usermod -aG <group-name> <user-name> --> adding suresh to secondary group
+mod means modifuaction -a mean append G mean seconday grp......
+ 
+[root@ip-172-31-22-159 ~]# id srikanth
+uid=1001(srikanth) gid=1002(devops) groups=1002(devops)
+[root@ip-172-31-22-159 ~]# usermod -g devops srikanth
+usermod: no changes
+[root@ip-172-31-22-159 ~]# groupadd oreddy
+[root@ip-172-31-22-159 ~]# id srikanth
+uid=1001(srikanth) gid=1002(devops) groups=1002(devops)
+[root@ip-172-31-22-159 ~]# usermod -aG oreddy srikanth
+[root@ip-172-31-22-159 ~]# id srikanth
+uid=1001(srikanth) gid=1002(devops) groups=1002(devops),1003(oreddy)
+now we need to set passwd for suresh so cmd is below
+passwd <user-name>
+[root@ip-172-31-22-159 ~]# passwd srikanth
+Changing password for user srikanth.
+New password:
+BAD PASSWORD: The password fails the dictionary check - it is too simplistic/systematic
+Retype new password:
+passwd: all authentication tokens updated successfully.
+now we need to enable pwd in ssh ( actually linux disabled the pwd for all so if u wnant enable then go for belwo cmd) so for that need to go vim cmd
+/etc/ssh/sshd_config --> SSH configuration
+
+PasswordAuthentication no
+
+vim /etc/ssh/sshd_config
+sshd -t -> checks the syntax of ssh
+
+systemctl restart sshd
+
+gpasswd -d <user-name> <group-name>
+
+id suresh
+here if u want remove suresh from grp  then u need to takes place it to first place or defalut state mean first create chesinappud ela vundho aa place ki tisukoni ravlali
+[root@ip-172-31-22-159 ~]# useradd sriakanth
+[root@ip-172-31-22-159 ~]# useradd srikanth
+useradd: group srikanth exists - if you want to add this user to that group, use -g.
+[root@ip-172-31-22-159 ~]# id srikanth
+id: ‘srikanth’: no such user
+[root@ip-172-31-22-159 ~]# groupdel srikanth
+[root@ip-172-31-22-159 ~]# id srikanth
+id: ‘srikanth’: no such user
+[root@ip-172-31-22-159 ~]# id srikanth
+id: ‘srikanth’: no such user
+[root@ip-172-31-22-159 ~]# useradd srikanth
+useradd: warning: the home directory /home/srikanth already exists.
+useradd: Not copying any file from skel directory into it.
+Creating mailbox file: File exists
+[root@ip-172-31-22-159 ~]# id srikanth
+uid=1002(srikanth) gid=1005(srikanth) groups=1005(srikanth)
+[root@ip-172-31-22-159 ~]#
+[root@ip-172-31-22-159 ~]# userdel srikanth
+[root@ip-172-31-22-159 ~]# id srikanth
+id: ‘srikanth’: no such user
+
+suresh suresh suresh
+
+files and permissions
+=====================
+Read    -> 4
+Write   -> 2
+Execute -> 1
+
+-	rw-			r--		r--
+	owner/user	group	others
+	u			   g		o
+	
+chmod g+w 
+chmod 744
+
+-rw-r--r--. 1 ec2-user ec2-user 154 Sep 30 10:46 sri.txt
+[ec2-user@ip-172-31-22-159 ~]$ touch reddy.txt
+[ec2-user@ip-172-31-22-159 ~]$ ls -l
+total 4
+-rw-r--r--. 1 ec2-user ec2-user   0 Sep 30 12:25 reddy.txt
+-rw-r--r--. 1 ec2-user ec2-user 154 Sep 30 10:46 sri.txt
+[ec2-user@ip-172-31-22-159 ~]$ chmod g+w sri.txt
+[ec2-user@ip-172-31-22-159 ~]$ ls -l
+total 4
+-rw-r--r--. 1 ec2-user ec2-user   0 Sep 30 12:25 reddy.txt
+-rw-rw-r--. 1 ec2-user ec2-user 154 Sep 30 10:46 sri.txt
+[ec2-user@ip-172-31-22-159 ~]$ chmod g+x sri.txt
+[ec2-user@ip-172-31-22-159 ~]$ l s-l
+-bash: l: command not found
+[ec2-user@ip-172-31-22-159 ~]$ ls -l
+total 4
+-rw-r--r--. 1 ec2-user ec2-user   0 Sep 30 12:25 reddy.txt
+-rw-rwxr--. 1 ec2-user ec2-user 154 Sep 30 10:46 sri.txt
+[ec2-user@ip-172-31-22-159 ~]$ chmod g-x sri.txt
+[ec2-user@ip-172-31-22-159 ~]$ ls -l
+total 4
+-rw-r--r--. 1 ec2-user ec2-user   0 Sep 30 12:25 reddy.txt
+-rw-rw-r--. 1 ec2-user ec2-user 154 Sep 30 10:46 sri.txt
+[ec2-user@ip-172-31-22-159 ~]$ chmod 42 sri.txt
+[ec2-user@ip-172-31-22-159 ~]$ ls -l
+total 4
+-rw-r--r--. 1 ec2-user ec2-user   0 Sep 30 12:25 reddy.txt
+----r---w-. 1 ec2-user ec2-user 154 Sep 30 10:46 sri.txt
+[ec2-user@ip-172-31-22-159 ~]$ chmod 744 sri.txt
+[ec2-user@ip-172-31-22-159 ~]$ ls -l
+total 4
+-rw-r--r--. 1 ec2-user ec2-user   0 Sep 30 12:25 reddy.txt
+-rwxr--r--. 1 ec2-user ec2-user 154 Sep 30 10:46 sri.txt
+[ec2-user@ip-172-31-22-159 ~]$
