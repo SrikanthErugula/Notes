@@ -17,3 +17,5 @@ https://tally.so/r/meV7Gk ---- Github URL
 https://hpanel.hostinger.com/domain/dsoaws.fun/domain-overview ------ DNS Hostinger
 
 https://app.diagrams.net/    -> for any drawing purpose 
+
+https://docs.google.com/document/d/1kheZdce9NzXA32071pPOidbeg0u01skBP9Jp_gOhoic/edit?tab=t.0 --> DAY WISE TOPICS
