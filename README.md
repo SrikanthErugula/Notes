@@ -10,3 +10,11 @@
 https://www.youtube.com/watch?v=F4jF88UkxV4
 
 https://portal.aws.amazon.com/billing/signup
+
+https://github.com/daws-86s/notes/blob/main/session-01.txt
+
+https://tally.so/r/meV7Gk
+
+https://hpanel.hostinger.com/domain/dsoaws.fun/domain-overview 
+
+https://app.diagrams.net/ for any drawing purpose
