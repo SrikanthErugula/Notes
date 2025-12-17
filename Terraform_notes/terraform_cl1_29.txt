@@ -1,0 +1,157 @@
+Configuration management
+
+=====================
+
+It is config management, it means that within the server( **here manam one Linux server iste**
+
+**),** Ansible can do everything, 
+
+
+Collections/Modules. these are main for ansibles.... It will have parameters it means officially modules or communities officially, if not these both are available we have shell and commands as well..
+
+Adv
+======
+By default, it has idempotent
+heterogeneous
+ ====================
+a
+
+Ansible can create infra, but it can't manage/update infra because of no state management feature available in ansible, originally created, created for configuration management not good for infra management.....
+
+-> so here 1 or more then 100 server u can give to ansible it will have been handled no issues will do any operation or perform upto here...... but it can't procced to do infra, so don't give infra to anisble......
+===========================
+
+
+**Use Terraform for better  infra creation. Once servers are created by Terraform, then hand over them to Ansible, so here Ansible completes the configuration in the server**
+
+
+--> So all-purpose ki same tool use avvdhu we need to use perspective for that.......
+
+===============================================================================================================================================			===================
+
+
+Terraform -> IaaC ( Infrastructure as a code )
+
+CM -> Configuration as a code
+
+---> So why do we write code? bcz manual ga one server loki logi ayyi emi emi configuration and properties vunnnai chudandi ante chala kastum and time consumed, so adhe code laga rasukunte it will be easy to track everything in that server....
+
+
+CRUD operations ni easy ga perform cheyachhu in code ( through code called as Automation) ,  but by manually it can't able to do it.
+
+Creation of configuration
+
+Reading the configuration
+
+Update the configuration
+
+Delete the configuration
+
+
+Infra as a code ---> some of adv here
+
+===============
+
+Version control --->Version control (**also known as source control or revision control**) is the practice of tracking and managing changes to files, primarily computer code, over time.
+
+
+Automatic CRUD ---> we can perform easily in our code 
+
+
+Consistent infra -> DEV,--> QA,--> UAT,--> PRE-PROD,--> PERF, -->PROD --> so here dev lo anni operations chesi next env ki move chestene last lo prod kuda success avuthundi..
+--> so finally infra kuda consistency laga vundali..
+
+
+Inventory -> What are the services we are using in cloud 
+
+
+Cost optimisation ----> so here manaki need vunnapudu create chesi and no need appudu easy ga delete chesukovachhu fast ga avuthundi proccess 
+
+
+Time saving and no human errors
+
+
+Dependency -> SG, EC2 and then R53 ----> ila code lo easy ga identify chesi easy ga modifiaction cheyachu 
+
+
+Modular reusable infra
+
+========================================================================================================           ==============================
+
+Terraform, Pulumi, Cloudformation, etc..  all are the same, but based on the latest version we can use here
+
+--> manam endhuku shell and ansible use chesam ante shell windows lo run avvdhu so,..... we need based on the support tool  
+
+--> so here we need to install the below 2 tools only 
+
+**1. Terraform**
+
+**2. AWS CLI V2**
+
+
+---> we have dig that is teraform.drawio
+
+=================================================
+https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+
+ls -> /usr/bin or /bin
+
+terraform -> We can give the PATH in Windows
+
+HCL -> HashiCorp Configuration Language
+
+name, image, sg, storage disk, key(no-key) ... --> for any instance certation 
+
+{
+	key = "value"
+}
+
+resource "aws_instance" "name-of-resource" 
+{
+	
+	ami = ""
+	name = ""
+	storage = ""
+	key = ""
+	instance_type = ""
+
+}
+
+---> so here in cloud everything is consider as resource like ec2 instance creation, route53 record, sg, so ala
+
+resource "type_of_resource" "name-of-resource"
+ {
+	
+	key = value
+	
+}
+so in every where key follows always via syntax only it doesn't zigzag
+
+--> so here type_of_resource is also follows syntax, we need to follow some authorized process
+
+"name-of-resource"--> this is our choice for naming convention 
+
+terraform aws provider --> https://registry.terraform.io/providers/hashicorp/aws/latest/docs
+terraform aws ec2 instance--> https://registry.terraform.io/modules/terraform-aws-modules/ec2-instance/aws/latest
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance
+
+terraform init -> downloads the provider, intialise terraform
+terraform plan -> It will give us a plan that what it is going to do
+terraform apply -> creates the infra as given in the plan
+
+---> Terraform cmds will have been worked at .tf folder only --> it means terraform cmds anevi ony .tf folder dhaggare work avuthai, avi leni dhaggra terraform cmds ani iste no excute 
+
+
+terraform apply -auto-approve --> if u provide like these it doesn't ask any permission like yes so its automatically procced 
+
+-->Ingress ( Data in )means entrance, or the right to enter, or the act of entering
+
+--> Egress (Data Out)
+Definition: Data leaving a network or system (e.g., downloading from the cloud, sending emails).
+
+-->
+terraform aws sg group ---> https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group
+
+terraform destroy -auto-approve  It means all data will be destroyed, sg and instance all
+
+VAR_NAME="VALUE"
