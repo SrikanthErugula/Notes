@@ -1,52 +1,68 @@
+Variables:-
+=============
 variable "var_name" {
 	default = "default_value"
 }
 
-1. command line
+--> SO inka varibales like as below laga kuda declare cheyachu
+
+1. Through command line
 2. terraform.tfvars
 3. ENV variable TF_VAR_var_name
 4. default value
-5. prompt
+5. prompt it means it is asking pls enter like that
 
-var.var_name
+var.var_name --> ila code lo variables ni declare cheyachu
 
-"${var.var_name}"
+"${var.var_name}" --> ila ekkuva vars ni declare cheyalante process like this
 
+types of variables
+================
 number
 string
 list
 map
 bool
 
+Condition:-
+==============
 expression ? "true" : "false"
 
 loops
 ======
-count based loop -> list iteration
+count based loop -> it is used to get list iteration, here aa process lo manaki count.index ani vastundi
 
 count = number
 
-count.index
+count.index --> so ikkasa loop ayina everytime manaki ila oka special variables istundhi   ---------------> these all are learn by class 30 
+=======================================================================================================
 
-for loop
+for loop --> we are using it, in set or map situation lo use chestam...
 
-for_each = toset(["bucket-alpha", "bucket-beta", "bucket-gamma"])
+for_each = toset(["bucket-alpha", "bucket-beta", "bucket-gamma"])  --> so ikkada map ki matrame chestam, don't use it in at count 
 
-list -> string values
-map -> key and values
+list -> string values --> in this situation we need to use count-based
+map -> key and values  --> in this situation we need to use for-loops
 
-frontend = "ip-address"
+frontend = "ip-address" 
+key       = " value "
 
-map iteration
+This is EX: of map iteration
 ==============
 {
 
-key = value
-key2 = value2
+key = value  ---> so here this one each.......each.key = each.value
+key2 = value2  --> and this one each
 
 }
 
+---> so here each anedhi oka reserved key word terraform manaki ichhe key word 
+
 every entry is considered as each. each.key and each.value
+================================================
+ for_each = var.instances --> so here each key ichham and each value kuda ichham ... var.instance anedhi variable lo instance lo nunchi vastudhi
+
+
 
 count -> list -> count.index
 for_each -> map -> each.key and each.value
@@ -57,6 +73,27 @@ for_each = toset(list)
 
 each.value
 
+EX:
+default = {
+    #     mongodb = "t3.micro"
+    #     redis = "t3.micro"
+    #     mysql = "t3.small"
+    # } 
+
+--> so here everytime ila t3.micro ani pettakudanda dhani list laga [] pettukoni,,, map{} loki covert chesi for_each ni run cheste done
+
+
+EX: 
+---> default = {
+    #     mongodb = {
+    #         instance_type = "t3.micro"
+    #         ami = "ami-id"
+    #     }
+    #     redis = "t3.micro"
+    #     mysql = "t3.small"
+    # }
+
+----> so here manaki eppdu okela ami id vundadhu so alanti situation lo manki separate ga above laga rasukoni for_each ni run cheyachu
 data sources
 ==============
 we are creating resources in provider

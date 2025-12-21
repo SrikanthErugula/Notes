@@ -81,6 +81,8 @@ Terraform, Pulumi, Cloudformation, etc..  all are the same, but based on the lat
 
 --> manam endhuku shell and ansible use chesam ante shell windows lo run avvdhu so,..... we need based on the support tool  
 
+--> in terraform everything is key value based like key = somevalue.....
+
 --> so here we need to install the below 2 tools only 
 
 **1. Terraform**
