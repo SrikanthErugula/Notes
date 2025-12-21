@@ -1,5 +1,4 @@
 Configuration management
-
 =====================
 
 It is configura management, it means that within the server( **here manam one Linux server iste**
