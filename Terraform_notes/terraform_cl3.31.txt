@@ -1,3 +1,5 @@
+cd /c/Users/srika/devsecops/shellscript/Notes/Terraform_notes/
+
 Variables:-
 =============
 variable "var_name" {
@@ -94,6 +96,10 @@ EX:
     # }
 
 ----> so here manaki eppdu okela ami id vundadhu so alanti situation lo manki separate ga above laga rasukoni for_each ni run cheyachu
+
+
+
+
 data sources
 ==============
 we are creating resources in provider
