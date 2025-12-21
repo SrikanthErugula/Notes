@@ -65,7 +65,6 @@ every entry is considered as each. each.key and each.value
  for_each = var.instances --> so here each key ichham and each value kuda ichham ... var.instance anedhi variable lo instance lo nunchi vastudhi
 
 
-
 count -> list -> count.index
 for_each -> map -> each.key and each.value
 
@@ -97,22 +96,57 @@ EX:
 
 ----> so here manaki eppdu okela ami id vundadhu so alanti situation lo manki separate ga above laga rasukoni for_each ni run cheyachu
 
-
-
-
+======================================================================= 	================	===============	================================	===================
 data sources
 ==============
-we are creating resources in provider
+we are creating resources in provider( provider means ...aws, azure.. anything) 
 
-we can query the existing information in the provider using data sources.
+---> sources means we can query the existing information in the provider using data sources.
 
+---> so here amiid lu change avuthai when we were changed the information inside
 
+---> resources means creating the instaces or servers
+
+Syntax is: 
+=========
 data "aws_ami" "joindevops" {
 	parameters to query
 }
 
-functions
+
+--> so here evaru ithe query chestaroo Valle owner avutharu ---> very IMP topic projects lo baga use chestaru ......
+
+---> terraform data sources ami -> https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami
+
+--> so here value = data.aws_ami.joindevops.id ---> here manaki dynamic ga ami id vastundhi oke vela change ayina kuda update ayyi manaki vastundi....
+
+functions : it means take i/p and give o/p
 ============
+
+--> More Examples on functions https://developer.hashicorp.com/terraform/language/functions/join 
+see in left side we have function name u can open and see all the operations
+
+EX: 
+====
+ max(5, 12, 9)
+12  --> max is a type function here it was given max value in that function
+
+--------> here u can use terraform console  ---> to check o/p 
+EX:- on length function
+=
+ length(["sjhdjshd", "skdjisjdsij", "skdjisfsdfsfdsfjdsifs", "kdjisjd",":"])
+5
+
+EX on join functions
+========================
+join(" " ,[ " Srikanth" , "Erugula" ])
+" Srikanth Erugula"
+
+EX 2
+-----
+> join("_",["Srikanth","Reddy","Erugula"])
+"Srikanth_Reddy_Erugula"
+
 
 merge function
 
@@ -127,12 +161,17 @@ merge function
 	c = e
 }
 
+--> so here we just assume the above 2 map are like 2 segments, then 2nd one segment is always ready to replace the values if it has assigned different....see the result as below
+result
+======
 a = b
 c = e
 x = y
 
-merge({a="b", c="d"}, {e="f", c="z"})
+--->merge({a="b", c="d"}, {e="f", c="z"})
 
+result:-
+=====
 a = b
 c = z
 e = f
@@ -140,7 +179,9 @@ e = f
 
 state
 =========
-whatever we give in .tf files, it should create those resources -> declarative way of creating infra
+whatever we give in .tf files, it should create those resources -> declarative way of creating infra( so here manam cheptunam naaku idhi kavali ani rasi istunam) 
+--> A "declarative way" means describing what you want as a result, not how to get it
+
 
 matching you declared infra with actual infra in AWS account
 
