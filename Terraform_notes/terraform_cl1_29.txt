@@ -1,7 +1,7 @@
 Configuration management
 =====================
 
-It is configura management, it means that within the server( **here manam one Linux server iste**
+It is configuration management, it means that within the server( **here manam one Linux server iste**
 
 **),** Ansible can do everything, 
 
