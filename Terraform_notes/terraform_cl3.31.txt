@@ -185,32 +185,37 @@ whatever we give in .tf files, it should create those resources -> declarative w
 
 matching you declared infra with actual infra in AWS account
 
-state file -> terraform uses this file to track what it created
+state file -> terraform uses this file to track what it created  ---> so here state file lo first time run chesinappudu store chesukunttadhi and next time run chestunte create avvadhu
 
-1. tf files -> expectation or desired or declared
+1. tf files -> expectation or desired or declared  ---> naaku idhi kavali ani ikkada cheptam
 2. actual infra -> reality or existing
 3. state -> for comparision
 
 first time
 ===============
 no state file -> new or first time
-created -> .tfstate
+created -> .tfstate  --> so here .tf file create cheste automatically adhi .tfstate create ayi store chesukunttadhi.....
 
 2nd time
 ===============
-aws_security_group.allow_all: Refreshing state...
+aws_security_group.allow_all: Refreshing state... 2nd time checking will happening that is called refreshing...
 
-it will compare actual infra vs state file
+--> so here it will compare actual infra vs state file
 
-nothing to change
+nothing to change  --> after checks all done we will get this msg like nothing to change....
 
-manually delete in the console
+
+
+manually delete in the console  --> here aws loki veli ec2 instance loki velli manual ga delete cheyatum that is manual delete
 =================
-refreshing state
+refreshing state   ---> it means there is checking operation will happen in the ec2 instance status here
 
-wahtever in state file, it is exist in AWS account or not?
+--> whatever in state file, it is exist in AWS account or not?
 
-then someone outside of terraform did something..
+=======================================================================
+need to listen 1:19:20
+
+then someone outside of terraform did something.......
 
 I changed in tf files
 ====================
