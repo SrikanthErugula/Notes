@@ -7,9 +7,15 @@ terraform plan
 terraform apply
 terraform destroy
 
+--> the syntax we called as 
+The HashiCorp Configuration Language (HCL) syntax is designed to be human-readable and machine-friendly, built primarily around arguments, blocks, and expressions. It is used in HashiCorp products like Terraform, Nomad, and Packer. 
+
 resource "type_of_resource" "resource_name_our_wish" {
 	key = "value"
 }
+
+** so the above syntax must be present to create or delete any resource........
+
 
 git -> repository to store only code.
 drive -> store files
@@ -25,6 +31,8 @@ git branch -M main
 git remote add origin <URL>
 git add . ; git commit ; git push
 
+
+
 variables
 ============
 DRY
@@ -33,17 +41,50 @@ x=1, y=2
 
 final substitution
 
+---> serach in google like tearraform variabels ---> https://developer.hashicorp.com/terraform/language/values/variables
+Syntax is
+---------
 variable "variable_name" {
 	default = "value-of-variable"
 }
 
-var.variable_name
 
-1. command line variable values have first prefernce
+var.variable_name
+ex:- var.ami_id and var.instance_type
+
++============================================================ +++=========		======================================			=====================
+
+serach in google like terraform data typeshttps://developer.hashicorp.com/terraform/language/expressions/types
+
+
+preference topic
+===========
+
+1. command line variable values have first preference
+syntax: terraform plan -var='instance_type=t2.micro'
+
+ 
 2. terraform.tfvars
+syntax:: terraform plan -var-file='my-vars.tfvars'   ---> another model
+
+
 3. env variable TF_VAR_<variable_name>
-4. default value
-5. finally prompt
+
+synrtax::;  export TF_VAR_instance_type="t3.reddy"
+
+export TF_VAR_instance_type="t3.large"
+export TF_VAR_db_password="aVerySecurePassword123"
+
+unset TF_VAR_instance_type ----> ila ivvatum valla adhi remove avuthundi
+
+
+4. default value 
+So actually ga user ni adugutham value ni provide chayamani, vallaki teliyali ga
+so manaki readability kosam manam type anedhi use chestam, like string or map or list or number ani...........
+
+5. finally prompt  --> it means manam value ni enter cheyali 
+
+
 
 conditions
 ==============
@@ -54,24 +95,35 @@ else{
 	this will run if expression is false
 }
 
+
+in terraform syntax is:
+------------------------
 expression ? "this will run if true" : "this will run if false"
+instance_type = var.environment == "dev" ? "t3.micro" : "t3.medium"
+
 
 count based loop
 ================
+--> SO here count 10 ani iste, 11 instance create avuthai with sg, so other 10 instance ki same name vunttadhi there is no difference in b/w them. so dhaniki to overcome this issue terraform lo oka syntax vundhi like as below
+
 count.index -> special variable
 count = 10
 count.index -> 0
 count.index -> 1
 count.index -> 9
 
-works with list items
 
-var.instances[count.index].var.domain_name
+Name = var.instances[count.index] # so here instance name anedhi variable lo ista so akkada numchi adhi tisukunttadhi next count.index lo index starts from 0 so first emi name vunte adhi instance create avuthundi, next 1 ki vachhi next emi vunte adhi create avtuhudhi
+
+so this called count based usually works with list items.....
+
+===================
+"${var.instances[count.index]}.${var.domain_name}"    # so ilanti situation lo confirm ga ${} use cheyali
+
+records = [aws_instance.terraform[count.index].private_ip] ----> so ikkada [aws_instance.terraform[count.index] ila ivvatum valla instances create ayyi index starts from 0, so next 1,2,3 so ala anni ec2 instance or servers create ayyi mankai o/p lo private ip print avuthundi....
+
 
 interpolation
 ============
-concatinating variable and other content
-
-vars: # equal to variables.tf file
-	name: value # equal to one variable block
+concatenating variable and other content
 	

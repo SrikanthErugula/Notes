@@ -2,7 +2,7 @@ Configuration management
 
 =====================
 
-It is config management, it means that within the server( **here manam one Linux server iste**
+It is configura management, it means that within the server( **here manam one Linux server iste**
 
 **),** Ansible can do everything, 
 
@@ -14,7 +14,7 @@ Adv
 By default, it has idempotent
 heterogeneous
  ====================
-a
+
 
 Ansible can create infra, but it can't manage/update infra because of no state management feature available in ansible, originally created, created for configuration management not good for infra management.....
 
@@ -89,12 +89,12 @@ Terraform, Pulumi, Cloudformation, etc..  all are the same, but based on the lat
 **2. AWS CLI V2**
 
 
----> we have dig that is teraform.drawio
+---> we have dig that is teraform.drawio that is snap in google sheet u can check it there 
 
 =================================================
 https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 
-ls -> /usr/bin or /bin
+ls -> /usr/bin or /bin ---> ila ekkado oka chota store avuthudi cloud lo 
 
 terraform -> We can give the PATH in Windows
 
