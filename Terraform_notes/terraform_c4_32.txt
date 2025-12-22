@@ -1,17 +1,33 @@
+cd /c/Users/srika/devsecops/shellscript/Notes/Terraform_notes/
+
 Remote state
 ==============
-state is used by terraform. usually we should not touch state file. 
+--> state is used by terraform. usually we should not touch state file. 
 
-We should secure state file from accidental changes.
+--> We should secure state file from accidental changes.  --> it means unfortunately keys press avavtum and delete avvatum with our interruption  .  
 
-1 person completed infra, state is in his local..
-2nd person want to do changes, he initialise terraform, he will plan and he will apply
-1. either duplicate resources
-2. error while creating resources saying that already exists
+1st person completed infra, state is in his local.. ---> state file anedhi 1st person laptop lone vunttadhi,
+2nd person want to do changes, so here 1st person emi chesadu ani 2nd person ki teliyadhu so in this case, he initialise terraform, he will plan and he will apply
 
-we must keep state file in remote location while working in colloboration environment for security and preventing duplicate resources and errors when multiple members are working together
+so here mainly 2 thigs will happen
+=================================
+1. either duplicate resources will be created
+2. error while creating resources or else we will get error like saying that already exists
 
-state file should be locked when terraform is doing something, so that other person can't apply the changes.
+--> so ec2 instaces enni ayina create cheyachu, but sg matram same vunte manaki error vastundhi like already exist ani
+---> what is the solution while mutliple person work chestunte
+--> here we have dig state.drwio..
+
+we must keep state file in remote location while working in collaboration environment for security and preventing duplicate resources and errors when multiple members( team members) are working together
+
+--> state file should be locked when terraform is doing something, so that other person can't apply the changes.
+
+--> everytool ki oka starage vunttadhi like aws ki s3 ani azure ki someedho... emi lekapothe terraform own ga storage create chestundhi..
+--> drive lo manam ela folder create chetamo ala aws lo s3 bucket create cheyali.. for starage purpose our state file....
+--> here entire aws s3 bucket name should be unique ga vundali...
+--> dsoaws-remote-state --> s3 bucket create chesam next aa file location or path access terraform ki ichhi state files ni akkada store chesuko ani cheppali...
+
+terrform aws s3 remote starge ---> https://developer.hashicorp.com/terraform/language/backend/s3 --> here we will get backen code for state file storing
 
 locals
 =======
