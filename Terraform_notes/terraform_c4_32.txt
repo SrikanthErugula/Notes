@@ -27,22 +27,40 @@ we must keep state file in remote location while working in collaboration enviro
 --> here entire aws s3 bucket name should be unique ga vundali...
 --> dsoaws-remote-state --> s3 bucket create chesam next aa file location or path access terraform ki ichhi state files ni akkada store chesuko ani cheppali...
 
-terrform aws s3 remote starge ---> https://developer.hashicorp.com/terraform/language/backend/s3 --> here we will get backen code for state file storing
+terrform aws s3 remote starge ---> https://developer.hashicorp.com/terraform/language/backend/s3 --> here we will get backend code for state file storing
+
+--> so ideally we have to use remote state files in real time projects........
 
 locals
 =======
+--> so here variable.tf file access andhariki ivvakudadhu or else small company run chestunte vallu as per the budget vallu t3.micro ni use chestaru manam variable.tf file ki access iste  team vallu dhani change chesi use chesukuntaru so we aren't give access to them.. for that we need to create local.tf for restrict purpose..
+
+--> local.tf introduced by  terraform so we can't do any changes.. inside file.
+
 locals are like variables but it has many extra capabilities
-1. variables can be overriden, locals can't be overriden
+
+1. variables can be overridden, locals can't be overridden ( re-write by someone)
 2. you can use variables inside locals. but we can't use one variable in another variable
+
+EX:-
+
+variable "common_name" {
+    default = "${var.project}-${var.environment}"
+}
+
+
 3. you can store expressions or functions inside locals block and reuse them whenever required
 
-mysql catalogue cart user
+mysql catalogue cart user --ila same names vunttai for different projects so we need to get unique while creating resources....... like as below we have to set names for creation of resoures....
 
-roboshop-catalogue
-roboshop-dev-catalogue
-roboshop-qa-catalogue
+roboshop-catalogue --------> naming conversion for unique kosam
+roboshop-dev-catalogue --------> naming conversion for unique kosam --> small company one aws account vunte like these need to create resources with unique name....
+roboshop-qa-catalogue --------> naming conversion for unique kosam
 
-dynamic block
+--> need to know what is the difference b/w local and variables
+
+
+dynamic block ----> not much use in real time we need to know basic matter
 ==============
 loops inside terraform
 	count based
@@ -51,11 +69,22 @@ loops inside terraform
 	
 22 8080 80 3306 27017 6379 5672
 
+--> oka block multiple times repeated avuthunte we need to use dynamic
+
+
+
 Provisoners
 =============
 terraform is creating instance, if we want to configure terraform is allowing to run few scripts
 
-1. local-exec
-2. remote-exec
+--> basically provisioning means it will change position to another position... 
+--> once incident create chesina tharivatha emi cheyali ante we have to options like as below
 
-ansible-playbook -i inventory playbook.yaml
+1. local-exec  ----> terraform cmd ekkada ithe vundho or run cheestunte  adi local
+EX: here terraform plan and apply anevi nenu ippudu windows lo run cheste... windows anedhi local avuthundhi....
+
+2. remote-exec ---> so here local tho server or ec2 instance crate chesi serve loki login ayyi akkada some cmds or actions perform excute chese dhani remote exce antam
+
+on_failure = continue  use is oka vela ip address inventory file lo rayalekapothe provisioner ila cheptundhi the above ec2 resource also failed ni.. so to overcome this issue u need to add on_fail ane option ni add cheste  then provision says like ec2 resources no fail...
+
+ansible-playbook -i inventory playbook.yaml ----> ila ansible ki connect cheyachu for server configuration ki
