@@ -1,3 +1,5 @@
+cd /c/Users/srika/devsecops/shellscript/Notes/Terraform_notes/
+
 1. installed terraform, setup the env variable in system path
 2. aws cli v2 install
 3. aws configure
@@ -123,18 +125,45 @@ instance_type = var.environment == "dev" ? "t3.micro" : "t3.medium"
 
 count based loop
 ================
+--> provider.tf is must be defined or presented in folder bcz terraform ki cheppali nenu AWS use chestuna ni, ledkapothe dhaniki ardhamkadhu AWS, azure use chestunamooo
 --> SO here count 10 ani iste, 11 instance create avuthai with sg, so other 10 instance ki same name vunttadhi there is no difference in b/w them. so dhaniki to overcome this issue terraform lo oka syntax vundhi like as below
 
-count.index -> special variable
-count = 10
+EX:-
+ # aws_instance.terraform[0] will be created
+ # aws_instance.terraform[1] will be created
+ tags                                 = {
+          + "Name"      = "terraform"
+          + "terraform" = "true"
+        }
+
+--> so ila same name tho servers will be create to over come this problem we have the below syntax.........
+
+count.index -> special variable --> terraform has given like this
+
+count = 10 --> ila iste process like as below laga servers create avuthai...... so adhi oka block anukunte so akkada 10 times loop chei ani cheppatunam count ani key tho
+
 count.index -> 0
 count.index -> 1
 count.index -> 9
+--> so variable.tf lo indicate chestam like this variable "instances" {}
+
+tags = {
+    Name = var.instances[count.index] # so here explanation see in notes
+    terraform = true 
+
+--> result like these
+=======================
+ tags                                
+          + "Name"      = "rabbitmq" or MySQL or mangodb ala servers create avuthai..
+          + "terraform" = "true"
 
 
 Name = var.instances[count.index] # so here instance name anedhi variable lo ista so akkada numchi adhi tisukunttadhi next count.index lo index starts from 0 so first emi name vunte adhi instance create avuthundi, next 1 ki vachhi next emi vunte adhi create avtuhudhi
 
 so this called count based usually works with list items.....
+
+-->if in case u wrote all tf files in single folder terraform will start the execution alphabetical order...abcde...
+
 
 ===================
 "${var.instances[count.index]}.${var.domain_name}"    # so ilanti situation lo confirm ga ${} use cheyali
@@ -144,5 +173,8 @@ records = [aws_instance.terraform[count.index].private_ip] ----> so ikkada [aws_
 
 interpolation
 ============
-concatenating variable and other content
+concatenating variable and other content--> it means add 2 variables
+
+upto here variable.tf and count.tf and condition.tf ---- learned upto this.... clear
+====================
 	
