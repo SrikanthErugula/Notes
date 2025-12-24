@@ -5,40 +5,54 @@ variables
 data types
 conditions -> expression ? "true-value": "false-value"
 loops
-	count based -> list
-	for each -> set/map
+	count based -> list ki use chestam
+	for each -> set/map ki use chestam
 	dynamic block
 functions -> in built functions
 
 data sources -> query the existing info from provider
 locals -> store expressions, functions. we can reuse them. cant override these values. we can variables inside locals
 state -> matching desired infra with actual infra using state
-remote state -> keep the state secure, for colloboration as well. locking it
+remote state -> keep the state secure, for collaboration as well. locking it
 provisioners -> when we create ec2 instances we can use provisioners to configure or perform next actions
 
 local-exec -> runs the commands in local i.e where terraform command is executed
 
 provisioner "local-exec" {
 	command = ""
-	on_failure = continue
-	when = destroy
+	on_failure = continue  --> it means continuing when we resources failed as well
+	when = destroy --> it means destroy time lo kuda run avuthundhi or else creation time lo kuda run avuthundhi....
 }
 
 remote-exec
 =============
 terraform can connect to ec2 instance and configure it using remote-exec. basically running commands inside the server
+--> resource "aws_instance" "terraform" {.....} so this is a block, after come out this block.. if u want private then u can call or access it like these aws.terraform.private_ip or public-ip.... or else if u are inside or same block lo vunte u can call or access it like ${self.private_ip}.... not pvt-ip u can call any item...
+
+--> remote exec.. here terraform local ante windows so from windows if u want connect instance u have to use pub-ip not a pvt ip
+----> before that u have to configure or take connection block
+
+--> destroy ani run chesinapudu first server stop ayyi next destroy ayipothadhi.....
+
+
 
 How to create multiple environments using terraform
 ===================================================
+--> in terraform one of the best example enti ante.. consistent the infrastructure across the environ.. it means if u are in dev or prod or QA lo vunna we can do to create same infrastructure bcz here code is same
+
 1. using .tfvars
 2. terraform workspaces
 3. individual repos
 
-tfvars
+tfvars   -----------------------need to listen for class 33 ---36:00 
 ========
-override the default values of the variables
+it is used to override the default values of the variables
+--> so in terraform keys are fixed here only changed the values only as per the env or DEV or PROD ... values ni control cheyatame inka
 
-DEV and PROD
+EX:-
+====
+DEV and PROD -- take 2 different env here
+--> then s3 buckets anevi separate ga create cheyatum best bcz dev lo daily edho oka work chestane vunyaru but in prod lo can't perform daily....
 
 tags
 =====
