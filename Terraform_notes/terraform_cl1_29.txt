@@ -183,6 +183,8 @@ Definition: Data leaving a network or system (e.g., downloading from the cloud, 
 -->
 terraform aws sg group ---> https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group
 
+--> vpc_security_group_ids --> it used to connect or tag sg to instance ... we can tag 2 more sg for a single instace so we need follow list[]..
+
 terraform destroy -auto-approve  It means all data will be destroyed, sg and instance all
 
 VAR_NAME="VALUE"
