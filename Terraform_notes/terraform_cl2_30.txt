@@ -14,7 +14,7 @@ resource "type_of_resource" "resource_name_our_wish" {
 	key = "value"
 }
 
-** so the above syntax must be present to create or delete any resource........
+** so the above syntax must be present to create or delete any resource..it is called as skelton syntax ......
 
 
 git -> repository to store only code.
@@ -49,8 +49,13 @@ variable "variable_name" {
 }
 
 
-var.variable_name
-ex:- var.ami_id and var.instance_type
+var.variable_name --- it is used to access or get value useing var
+ex:- var.ami_id and var.instance_type  like this u can refer in ec2.tf lo 
+
+
+variable folder ni create chesam...
+
+variable "ec2-tags" here ec2 instance server create ayina tharuvatha tags anvi manaki understand purpose ki use chestam adhe oka sepeate label in aws ...manula ga kuda add chesukovachhu in aws lo 
 
 +============================================================ +++=========		======================================			=====================
 
@@ -65,7 +70,12 @@ syntax: terraform plan -var='instance_type=t2.micro'
 
  
 2. terraform.tfvars
-syntax:: terraform plan -var-file='my-vars.tfvars'   ---> another model
+syntax:: terraform plan -var-file='my-vars.tfvars'   ---> another model ---> 
+
+EX:-
+#instance_type = "t3.sri" 
+
+# but here variable name like instance_type should be same in ec2.tf whatever here present value those must be same appude adi pickup chesukuntttadhi
 
 
 3. env variable TF_VAR_<variable_name>
@@ -75,19 +85,27 @@ synrtax::;  export TF_VAR_instance_type="t3.reddy"
 export TF_VAR_instance_type="t3.large"
 export TF_VAR_db_password="aVerySecurePassword123"
 
-unset TF_VAR_instance_type ----> ila ivvatum valla adhi remove avuthundi
+unset TF_VAR_instance_type ----> ila ivvatum valla adhi remove avuthundi ---> default state ki vastundhi
 
+4. default value so  emiana vundha ani..
 
-4. default value 
 So actually ga user ni adugutham value ni provide chayamani, vallaki teliyali ga
 so manaki readability kosam manam type anedhi use chestam, like string or map or list or number ani...........
 
 5. finally prompt  --> it means manam value ni enter cheyali 
 
+variable "instance_type" {
+  type =  string
+  default = "t3.micro" # so after this in ec2.tf lo var.variable ani iste access avuthumdi
+}
+
+---> so here the above values same use chyalisina avasarum ledhu bcz vere user vastdu valla application wise values change chestaru but akkada type string ani vundi so string type value only tisukovali ni cheptunam map use cheyakuadhu...
 
 
 conditions
 ==============
+SYNTAX
+===========
 if(expression){
 	this will run if expression is true
 }
@@ -99,6 +117,7 @@ else{
 in terraform syntax is:
 ------------------------
 expression ? "this will run if true" : "this will run if false"
+
 instance_type = var.environment == "dev" ? "t3.micro" : "t3.medium"
 
 
