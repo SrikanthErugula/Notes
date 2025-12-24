@@ -14,15 +14,20 @@ By default, it has idempotent
 heterogeneous
  ====================
 
+Why can't i use ansible creation for infrastructure?
+=================================================
 
 Ansible can create infra, but it can't manage/update infra because of no state management feature available in ansible, originally created, created for configuration management not good for infra management.....
 
 -> so here 1 or more then 100 server u can give to ansible it will be handling no issues. will do any operation or perform upto here...... but it can't procced to do infra, so don't give infra to anisble......
 ===========================
+EX:- if u want creating one server by using ansible, yes its allowed to create for example MySQL server created, unfortunately someone will come and change the name of server like mysqlsri, while that time if u run ansible again it will be create again MySQL serever.... it is not good for we don't want another server....
 
 
 **Use Terraform for better  infra creation. Once servers are created by Terraform, then hand over them to Ansible, so here Ansible completes the configuration in the server**
 
+--> So finally ansible can manage or owner of the server configuration
+--->  Terraform can manage or owner of the server infrastructure
 
 --> So all-purpose ki same tool use avvdhu we need to use perspective for that.......
 
@@ -35,37 +40,42 @@ CM -> Configuration as a code
 
 ---> So why do we write code? bcz manual ga one server loki logi ayyi emi emi configuration and properties vunnnai chudandi ante chala kastum and time consumed, so adhe code laga rasukunte it will be easy to track everything in that server....
 
+---> anisble playbook chuste manaki antha ardham avuthundiii what is what ani....
 
 CRUD operations ni easy ga perform cheyachhu in code ( through code called as Automation) ,  but by manually it can't able to do it.
 
-Creation of configuration
+Creation of configuration code lo easy ga create cheyachu 
 
-Reading the configuration
+Reading the configuration code ni easy ga read cheyachu 
 
-Update the configuration
+Update the configuration code ni easy ga update cheyachu
 
-Delete the configuration
+Delete the configuration .....................like as above
 
 
-Infra as a code ---> some of adv here
+Infra as a code ---> some of adv like as below points....
 
 ===============
 
-Version control --->Version control (**also known as source control or revision control**) is the practice of tracking and managing changes to files, primarily computer code, over time.
-
+--> once code will be created we need to store in git we called as Version control --->Version control (**also known as source control or revision control**) is the practice of tracking and managing changes to files, primarily computer code, over time.
+-----> one month back velli code lo changes emi chesaru ante we easily findout.. ala one year ayina kuda we can see ... that is main importance of code 
 
 Automatic CRUD ---> we can perform easily in our code 
 
 
 Consistent infra -> DEV,--> QA,--> UAT,--> PRE-PROD,--> PERF, -->PROD --> so here dev lo anni operations chesi next env ki move chestene last lo prod kuda success avuthundi..
+
+--> consistent means prod success ayyela manam first numci dev lo kuda prod  kosam changes ni add chestu prod ki release cheste appudu success avuthundhi so that is consistent
+
 --> so finally infra kuda consistency laga vundali..
 
 
-Inventory -> What are the services we are using in cloud 
+Inventory -> ikkada chuste manaki easy ga telustundhi  ..........What are the services we are using in cloud 
 
 
-Cost optimisation ----> so here manaki need vunnapudu create chesi and no need appudu easy ga delete chesukovachhu fast ga avuthundi proccess 
+Cost optimisation ----> so here manaki need vunnapudu create chesi and no need appudu easy ga delete chesukovachhu fast ga avuthundi proccess compare to ansible.... ansible take too much time to perform both create and delete
 
+--> very easy to know how much cost it, manam use chese configuration gpt ki iste adhi cheptundi/....
 
 Time saving and no human errors
 
@@ -74,20 +84,31 @@ Dependency -> SG, EC2 and then R53 ----> ila code lo easy ga identify chesi easy
 
 
 Modular reusable infra
+=========================
+Benefits of Modular, Reusable Infra
+Consistency: Same module/role ensures environments are identical.
+
+Maintainability: Easier to update one module than hundreds of duplicated scripts.
+
+Scalability: Teams can share modules across projects.
+
+Flexibility: Swap or extend modules without rewriting everything.
 
 ========================================================================================================           ==============================
 
 Terraform, Pulumi, Cloudformation, etc..  all are the same, but based on the latest version we can use here
 
 --> manam endhuku shell and ansible use chesam ante shell windows lo run avvdhu so,..... we need based on the support tool  
+--> terraform anedhi server run cheyamu 
+--> terraform tho rasina code tho aws lo server ni create cheyachu that is infrasture so aws ni connect or access cheyanlante we need to install terraform in our windows
 
 --> in terraform everything is key value based like key = somevalue.....
 
 --> so here we need to install the below 2 tools only 
 
-**1. Terraform**
+**1. Terraform 
 
-**2. AWS CLI V2**
+**2. AWS CLI V2 
 
 
 ---> we have dig that is teraform.drawio that is snap in google sheet u can check it there 
@@ -99,15 +120,19 @@ ls -> /usr/bin or /bin ---> ila ekkado oka chota store avuthudi cloud lo
 
 terraform -> We can give the PATH in Windows
 
-HCL -> HashiCorp Configuration Language
+--> aws configure ni run cheyali
+
+HCL -> HashiCorp Configuration Language .. terraform introduced this company
 
 name, image, sg, storage disk, key(no-key) ... --> for any instance certation 
+
+--> terraform always follow this syntax...as below
 
 {
 	key = "value"
 }
 
-resource "aws_instance" "name-of-resource" 
+resource "aws_instance" "name-of-resource" .. ikkada ec2 instance creation ki aws_instance ani terraform manaki ala ichhindi.. so ala anni valle istaru see in google
 {
 	
 	ami = ""
@@ -128,7 +153,7 @@ resource "type_of_resource" "name-of-resource"
 }
 so in every where key follows always via syntax only it doesn't zigzag
 
---> so here type_of_resource is also follows syntax, we need to follow some authorized process
+--> so here type_of_resource is also follows syntax, it means ec2 instance or r53 record or s3 bucket ...  we need to follow some authorized process.. mana istum kadhu
 
 "name-of-resource"--> this is our choice for naming convention 
 
