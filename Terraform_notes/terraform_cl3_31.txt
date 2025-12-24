@@ -39,6 +39,13 @@ count = number
 count.index --> so ikkasa loop ayina everytime manaki ila oka special variables istundhi   ---------------> these all are learn by class 30 
 =======================================================================================================
 
+resource "aws_instance" "terraform" {} --> so ikkada ee block varaku output kavalante u need to ask like these ..so ala dhenikaina kuda we can get........
+
+output "instances_output" 
+{
+#   value = aws_instance.terraform # so idhi ec2.tf lo name vuntthdi so akkada numchi tisukovali
+# }
+======			===========			==========				======
 for loop --> we are using it, in set or map situation lo use chestam...
 
 for_each = toset(["bucket-alpha", "bucket-beta", "bucket-gamma"])  --> so ikkada map ki matrame chestam, don't use it in at count 
@@ -51,19 +58,24 @@ key       = " value "
 
 This is EX: of map iteration
 ==============
+---> so here while running iteration process entries execute like these below 
 {
 
-key = value  ---> so here this one each.......each.key = each.value
-key2 = value2  --> and this one each
+key = value  ---> so here we need to use word is each.......each.key = each.value .......idhi antha oka entry 
+key2 = value2  --> and this one each ..each.key2 = each.value2  ------- idhi antha oka entry.... so ala
 
 }
+every entry is considered as each. each.key and each.value
 
 ---> so here each anedhi oka reserved key word terraform manaki ichhe key word 
+=========		=========			==============		========		========
+--> for-loop folder has been created in VSCODE
 
-every entry is considered as each. each.key and each.value
-================================================
- for_each = var.instances --> so here each key ichham and each value kuda ichham ... var.instance anedhi variable lo instance lo nunchi vastudhi
+--> for_each ichham ante iteration start avuthundi.. and instace_type each.value vatundhi... and in ec2 tags lo name ki each.key vastudhi...these data comes from variable.tf
 
+--->for_each = var.instances --> so here each key ichham and each value kuda ichham ... var.instance anedhi variable.tf file var_instances lo nunchi vastudhi
+----> see in VSCODE output_check file for detailed info..
+---> so map details levvu anukunte list deatails ni map loki convert cheyalante we need toset syntax appudu list nuchi map convert ayyi key = value avuthundhi
 
 count -> list -> count.index
 for_each -> map -> each.key and each.value
