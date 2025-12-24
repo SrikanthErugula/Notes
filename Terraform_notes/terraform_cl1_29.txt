@@ -161,12 +161,17 @@ terraform aws provider --> https://registry.terraform.io/providers/hashicorp/aws
 terraform aws ec2 instance--> https://registry.terraform.io/modules/terraform-aws-modules/ec2-instance/aws/latest
 https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance
 
-terraform init -> downloads the provider, intialise terraform
-terraform plan -> It will give us a plan that what it is going to do
-terraform apply -> creates the infra as given in the plan
+---> provider.tf --- so here manam cheptunam dheniki connect avvali ani, its mandatory for terraform
+
+--> ec2 folder create chesam ee class lo
+
+1. terraform init -> downloads the provider, intialise terraform
+2. terraform plan -> It will give us a plan that what it is going to do
+3. terraform apply -> creates the infra as given in the plan
 
 ---> Terraform cmds will have been worked at .tf folder only --> it means terraform cmds anevi ony .tf folder dhaggare work avuthai, avi leni dhaggra terraform cmds ani iste no excute 
 
+-->so here terraform tho oka server create chesinapudu next evro vachhi server loki login ayyi servr name change cheste, .. manam next day terraform plan run cheste adhi cheptundi like server name change chesaru but nenu matram as per code lo emi vunte adhe name create chesta duplicate ga inko server ni create cheyanu ani.. ansible  duplicate server create chestudhi .......
 
 terraform apply -auto-approve --> if u provide like these it doesn't ask any permission like yes so its automatically procced 
 
