@@ -1,12 +1,12 @@
 Configuration management
 =====================
 
-It is configuration      management, it means that within the server( **here manam one Linux server iste**
+It is configuration management, it means that within the server( **here manam one Linux server iste**
 
 **),** Ansible can do everything, 
 
 
-Collections/Modules. these are main for ansibles.... It will have parameters it means officially modules or communities officially, if not these both are available we have shell and commands as well..
+Collections/Modules. these are main for ansibles.... It will have parameters or arguments.. it means officially modules or communities officially, if not these both are available we have shell and commands as well..
 
 Adv ansible
 ======
