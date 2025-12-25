@@ -10,7 +10,7 @@ Remote state
 2nd person want to do changes, so here 1st person emi chesadu ani 2nd person ki teliyadhu so in this case, he initialise terraform, he will plan and he will apply
 
 so here mainly 2 thigs will happen
-=================================
+================
 1. either duplicate resources will be created
 2. error while creating resources or else we will get error like saying that already exists
 
@@ -88,6 +88,7 @@ roboshop-qa-catalogue --------> naming conversion for uniqueness kosam
 
 Result
 ========
+"Name"      = "sriroboshop-dev-local-demo"
 
  ---> name   = "${local.common_name}-sg-terraform-allow" ... ikkada cheptunam roboshop kosam create chesina sg ani...
 
@@ -100,25 +101,38 @@ loops inside terraform
 	count based
 	for_each
 	dynamic
+
+---> dynamic folder has been created
 	
 22 8080 80 3306 27017 6379 5672
+--> Here multiple ports ni servers ki add chese time lo we need write more ingress blocks like 22 oka block and 80 ki inkokati so ala repeated ithe code length increase
 
---> oka block multiple times repeated avuthunte we need to use dynamic
+--> https://developer.hashicorp.com/terraform/language/expressions/dynamic-blocks ---> for detailed syntax.....
+--> oka block multiple times repeated avuthunte we need to use dynamic......
 
 
 
-Provisoners
-=============
+Provisioners
+============
+
+---> Provison folder has been created.... 
+
 terraform is creating instance, if we want to configure terraform is allowing to run few scripts
 
 --> basically provisioning means it will change position to another position... 
 --> once incident create chesina tharivatha emi cheyali ante we have to options like as below
 
 1. local-exec  ----> terraform cmd ekkada ithe vundho or run cheestunte  adi local
-EX: here terraform plan and apply anevi nenu ippudu windows lo run cheste... windows anedhi local avuthundhi....
+EX: here terraform plan and apply cmds windows lo run cheste... windows is local avuthundhi....Linux lo run cheste then Linux is local of the terraform..
+
+---->Basically server creation done after server configuration ki ansible ni run cheyali so dhaniki private ip ivvali
+
+--> command = " echo instances created " .... for this output is 
+# aws_instance.terraform (local-exec): instances created
+
 
 2. remote-exec ---> so here local tho server or ec2 instance crate chesi serve loki login ayyi akkada some cmds or actions perform excute chese dhani remote exce antam
 
-on_failure = continue  use is oka vela ip address inventory file lo rayalekapothe provisioner ila cheptundhi the above ec2 resource also failed ni.. so to overcome this issue u need to add on_fail ane option ni add cheste  then provision says like ec2 resources no fail...
+on_failure = continue  it is use like oka vela ip address inventory file lo rayalekapothe provisioner ila cheptundhi the above ec2 resource also failed ni.. so to overcome this issue u need to add on_fail ane option ni add cheste  then provision says like ec2 resources no fail.......
 
 ansible-playbook -i inventory playbook.yaml ----> ila ansible ki connect cheyachu for server configuration ki
