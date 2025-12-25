@@ -127,6 +127,8 @@ count based loop
 ================
 --> provider.tf is must be defined or presented in folder bcz terraform ki cheppali nenu AWS use chestuna ni, ledkapothe dhaniki ardhamkadhu AWS, azure use chestunamooo
 --> SO here count 10 ani iste, 11 instance create avuthai with sg, so other 10 instance ki same name vunttadhi there is no difference in b/w them. so dhaniki to overcome this issue terraform lo oka syntax vundhi like as below
+or else give like as below
+---> count 10.........ila ivvakunda evrytime value chusi change chayakunda instead of this.....count = length(var.instances) so here var.intance anedhi input so then length anedhi function so we will get output variable.tf lo instances enni iste anni times loop avuthundi......
 
 EX:-
  # aws_instance.terraform[0] will be created

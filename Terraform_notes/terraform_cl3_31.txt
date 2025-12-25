@@ -77,24 +77,21 @@ every entry is considered as each. each.key and each.value
 ----> see in VSCODE output_check file for detailed info..
 ---> so map details levvu anukunte list deatails ni map loki convert cheyalante we need toset syntax appudu list nuchi map convert ayyi key = value avuthundhi
 
-count -> list -> count.index
-for_each -> map -> each.key and each.value
 
 I want to iterate list through for_each
 
-for_each = toset(list)
+for_each = toset(list) ---> here list convert into set or map ---> after done iteration we will get each.value.... in this toset both are same like each.key or each.value
 
-each.value
 
 EX:
 default = {
-    #     mongodb = "t3.micro"
-    #     redis = "t3.micro"
-    #     mysql = "t3.small"
+    #     mongodb = "t3.micro" ---> Entry 1
+    #     redis = "t3.micro" ---> Entry 2
+    #     mysql = "t3.small" ---> Entry 3
     # } 
 
 --> so here everytime ila t3.micro ani pettakudanda dhani list laga [] pettukoni,,, map{} loki covert chesi for_each ni run cheste done
-
+--> so in this situation every Entry is consider as each.value..................... not each.key like that
 
 EX: 
 ---> default = {
@@ -107,40 +104,61 @@ EX:
     # }
 
 ----> so here manaki eppdu okela ami id vundadhu so alanti situation lo manki separate ga above laga rasukoni for_each ni run cheyachu
+---> so here ec2.tf file lo ela acess cheyalante like ${each.value.instance_type} and ${each.value.ami}
+
+count -> list -> count.index
+for_each -> map -> each.key and each.value
 
 ======================================================================= 	================	===============	================================	===================
 data sources
 ==============
 we are creating resources in provider( provider means ...aws, azure.. anything) 
+---> in aws after created servers or instances, values ni query or pickup chesukovatame data sources...
 
 ---> sources means we can query the existing information in the provider using data sources.
 
----> so here amiid lu change avuthai when we were changed the information inside
+---> so here amiid lu change avuthai when we have been  changed the information or done some patch work inside server in aws....
+--> so then ami id change ayyaka again terraform plan nd apply iste it doesn't work it has been failed...
+--> variable.tf lo ekkada emi use chesamo manaki telisindhi kabbatti, aws server lo chages cheste manam vachhi variable.tf lo values change cheyachu easy ga.. this is one way to find out the changes and easy to update...
+----> so ala kakunda data query chesi easy ga findout cheyachu..  like as below file
 
----> resources means creating the instaces or servers
+--->data sources folder has been created in VSCODE u can check it there 
+
+
+---> resources means creating the instances or servers
 
 Syntax is: 
 =========
-data "aws_ami" "joindevops" {
+data "aws_ami" "joindevops" {  ---> "aws_ami" here edhi ithe query cheyalanukuntunaro aa name ivvali..  "joindevops" this name is our choice
 	parameters to query
 }
 
 
---> so here evaru ithe query chestaroo Valle owner avutharu ---> very IMP topic projects lo baga use chestaru ......
+--> so here evaru ithe ami id create chesi push chestaro  Valle owner avutharu ---> very IMP topic projects lo baga use chestaru ......
 
 ---> terraform data sources ami -> https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami
 
 --> so here value = data.aws_ami.joindevops.id ---> here manaki dynamic ga ami id vastundhi oke vela change ayina kuda update ayyi manaki vastundi....
 
+final output
+===========
+Changes to Outputs:
+  + ami_id = "ami-09c813fb71547fc4f"
+
+---->So finally manual ga ayina or terraform tho ayina create chesina server lo numchi manam akkada vuna data ni qury cheyachu means bayatiki tisukoni save chesukovachhu
+
+***********	********	**********	********		********	***********	*****			*******	****	*******	******
 functions : it means take i/p and give o/p
 ============
+---> Here we can't develop new functions, we need take exsiting functions only... all are built-in....
 
 --> More Examples on functions https://developer.hashicorp.com/terraform/language/functions/join 
 see in left side we have function name u can open and see all the operations
 
 EX: 
 ====
- max(5, 12, 9)
+here u can use terraform console  ---> to check o/p
+ give like this max(5, 12, 9)
 12  --> max is a type function here it was given max value in that function
 
 --------> here u can use terraform console  ---> to check o/p 
@@ -158,7 +176,10 @@ EX 2
 -----
 > join("_",["Srikanth","Reddy","Erugula"])
 "Srikanth_Reddy_Erugula"
-
+===============================================	================================	=============================================================================
+Tags
+====
+-->Basically aws have many projects like roboshop, expensive, flipcart, in these situation we might be struggle to find out if those has same servers, then to over come this issue we have been indroduced TAGS.. while very is easy to find out EX as below
 
 merge function
 
@@ -179,8 +200,11 @@ result
 a = b
 c = e
 x = y
+--> Finally oka union laga form ayyi replace ayyevi replace avuthai, and access ayyevi or emi vunte avi print avuthai...
 
 --->merge({a="b", c="d"}, {e="f", c="z"})
+          ({map1}       , { map2})
+--> Finally map1 and map2 iste.. always map2 anedhi map1 vunna contenct replace cheyadaki chustadi..
 
 result:-
 =====
@@ -188,56 +212,69 @@ a = b
 c = z
 e = f
 
-
+--->The Terraform merge function combines multiple maps or objects into a single map or object.
+--> Finally map1 and map2 iste.. always map2 anedhi map1 vunna contenct replace cheyadaki chustadi..
+		
+**************************		************	*************	************	***	***********************		********
 state
 =========
-whatever we give in .tf files, it should create those resources -> declarative way of creating infra( so here manam cheptunam naaku idhi kavali ani rasi istunam) 
+Terraform responsibility is whatever we give in .tf files, it should create those resources ->is called declarative way of creating infra( so here manam cheptunam naaku idhi kavali ani nuvvu ichina syntx follow avvuthu rasi istunam) 
+
 --> A "declarative way" means describing what you want as a result, not how to get it
 
 
 matching you declared infra with actual infra in AWS account
 
-state file -> terraform uses this file to track what it created  ---> so here state file lo first time run chesinappudu store chesukunttadhi and next time run chestunte create avvadhu
+state file -> terraform uses this file to track what it created  ---> so here state file lo first time run chesinappudu store chesukunttadhi and next time run chestunte create cheyakunda it will give a message like... no changes are needed or else already created ....
 
 1. tf files -> expectation or desired or declared  ---> naaku idhi kavali ani ikkada cheptam
-2. actual infra -> reality or existing ---> so ikkkada data ni chusukoni antha ok anukoni terraform will create the resources
-3. state -> for comparision
+2. actual infra -> reality or existing ---> --> it means AWS account lo as per code tho server or instances creation avvatum ............
+------------> we mean the real, live resources that exist in your AWS account right now 
 
-first time
-===============
+3. state -> for comparison ---> ...so ikkada kuda automatic ga server code store avuthundi.....
+
+Terraform plan and apply first time run 
+====================================
 no state file -> new or first time
-created -> .tfstate  --> so here .tf file create cheste automatically adhi .tfstate create ayi store chesukunttadhi.....
+created .tfstate  --> so here automatically adhi .tfstate create ayi code ni store chesukunttadhi.....
 
-2nd time
-===============
+Terraform plan and apply 2nd time run
+=====================================
 aws_security_group.allow_all: Refreshing state... 2nd time checking will happening that is called refreshing...
 
---> so here it will compare actual infra vs state file
+--> so here it will compare actual infra( aws lo servers exist or not ani checking) vs state file ( server creation code exist or not)
 
-nothing to change  --> after checks all done we will get this msg like nothing to change....
+---> after then  terraform will start the comparison both actual infra and .tf files and state file.....
 
+-->Terraform has compared your real infrastructure against your configuration and found no differences, so no changes are needed.
 
 
 manually delete in the console  --> here aws loki veli ec2 instance loki velli manual ga delete cheyatum that is manual delete
 =================
+--> terraform cmds run cheste...
+
 refreshing state   ---> it means there is checking operation will happen in the ec2 instance status here
 
---> whatever in state file, it is exist in AWS account or not?
+--> whatever in state file, it is exist in AWS account or not? ani check chesukunttadhi then there is no matching records...
 
 then someone outside of terraform did something....... evaro edho changes chesaru, then terraform need to re create again, that is terraform job
 =====================================================================
+--> ec2 lo instances delete chesi appudu terraform apply ani iste then state terraform will start to search the state file as per that again instances will be ceated..
+
+--> Terraform responsibility is   manam ichhina desired infra tho actual infra ni match cheyatum.... so then state file tho comparison chesukoni then will start re create if not present
+
 
 I changed in tf files
 ====================
 refreshing state --> terraform plan run cheste adi refresh avuthundi
 
-state == actual infra  --> refresh ayyi tfstate tho comparison chesukoni both same ani cheptundi
+state == actual infra  --> it means tfstate file and aws lo vunna instance both are same
 
 desired infra != actual infra --> but here manaki idi kavali ani cheppi code rasam kani adi actual infra tho match avvatum ledhu, so then terraform plan run cheste desired code tho actual infra or code tho match chesukoni malli tfstate file change chesukoni akkda store chesukunttadhi... 
 
 
-when I removed something
-=====================
+when I removed something in .tf file lo it means comment cheyatum
+=====================================================
 refreshing state
 
 state == actual infra
@@ -256,3 +293,9 @@ terraform state is used to match the desired infra with actual infra, when creat
 
 ---> terraform locks the state file when terraform is running......>it means terraform apply ni run chestunte, so there tfstate file ni terraform lock chestundi, evvaru kuda disturb cheyakunda.>   process anthe run tharvatha unlock chestundi..appudu manaki visible avuthundi..
 
+--> so finaly state file anedhi terraform kosame vundi, adhe CRUD operation chesukoni adhe manage chesukunttadhi so terraform has full rights of state file..
+--> state file terraform kasame pani chestundhi....
+
+
+
+========================================
