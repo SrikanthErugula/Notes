@@ -14,25 +14,44 @@ so here mainly 2 thigs will happen
 1. either duplicate resources will be created
 2. error while creating resources or else we will get error like saying that already exists
 
---> so ec2 instaces enni ayina create cheyachu, but sg matram same vunte manaki error vastundhi like already exist ani
----> what is the solution while mutliple person work chestunte
---> here we have dig state.drwio..
+--> so ec2 instaces enni ayina create cheyachu, but sg matram same name tho malli create cheyalemu manaki error vastundhi like already exist ani
 
-we must keep state file in remote location while working in collaboration environment for security and preventing duplicate resources and errors when multiple members( team members) are working together
+---> what is the solution while mutliple persons are work chestunte ----> simple solu is centralised state or block or room
 
---> state file should be locked when terraform is doing something, so that other person can't apply the changes.
+--> here we have dig state.drwio..... for detailed dig matter will be available in my own doc can u see there
 
---> everytool ki oka starage vunttadhi like aws ki s3 ani azure ki someedho... emi lekapothe terraform own ga storage create chestundhi..
+
+we must keep state file in remote location while working in collaboration environment for security and preventing duplicate resources and errors, when multiple members( team members) are working together
+
+
+--> state file should be locked when terraform is doing something, so for that others can't apply the changes.
+
+--> everytool ki oka starage vunttadhi like aws ki s3 ani azure ki Blob... emi lekapothe terraform own ga storage create chestundhi..
+
 --> drive lo manam ela folder create chetamo ala aws lo s3 bucket create cheyali.. for starage purpose our state file....
 --> here entire aws s3 bucket name should be unique ga vundali...
+
 --> dsoaws-remote-state --> s3 bucket create chesam next aa file location or path access terraform ki ichhi state files ni akkada store chesuko ani cheppali...
 
 terrform aws s3 remote starge ---> https://developer.hashicorp.com/terraform/language/backend/s3 --> here we will get backend code for state file storing
 
 --> so ideally we have to use remote state files in real time projects........
 
+---> Here remote state folder has been created....
+Syntax
+-======
+
+backend "s3" { # backend ante remote store ani anukovali
+    bucket = "dsoaws-remote-state"
+    key    = "remote-state-demo" # so here keys must be not for the same for all, u have to set name as per the requirement like dev ithe dev name and prod ithe prod name 
+    region = "us-east-1"
+    use_lockfile = true
+    encrypt = true --> it means unauthorised person file tisukuna no use bcz data has been encrypt....
+
 locals
 =======
+--> here local folder has been created
+
 --> so here variable.tf file access andhariki ivvakudadhu or else small company run chestunte vallu as per the budget vallu t3.micro ni use chestaru manam variable.tf file ki access iste  team vallu dhani change chesi use chesukuntaru so we aren't give access to them.. for that we need to create local.tf for restrict purpose..
 
 --> local.tf introduced by  terraform so we can't do any changes.. inside file.
@@ -40,8 +59,9 @@ locals
 locals are like variables but it has many extra capabilities
 
 1. variables can be overridden, locals can't be overridden ( re-write by someone)
-2. you can use variables inside locals. but we can't use one variable in another variable
+2. we can use variables inside locals. but we can't use one variable in another variable
 
+--> ala use cheste error vastundhi u can see in own doc error page
 EX:-
 
 variable "common_name" {
@@ -51,16 +71,30 @@ variable "common_name" {
 
 3. you can store expressions or functions inside locals block and reuse them whenever required
 
-mysql catalogue cart user --ila same names vunttai for different projects so we need to get unique while creating resources....... like as below we have to set names for creation of resoures....
+mysql catalogue cart user --ila same names vunttai for different projects so we need to get unique while creating resources....... like as below we have to set names for creation of resoures.... or server names or instance names like as below
 
-roboshop-catalogue --------> naming conversion for unique kosam
-roboshop-dev-catalogue --------> naming conversion for unique kosam --> small company one aws account vunte like these need to create resources with unique name....
-roboshop-qa-catalogue --------> naming conversion for unique kosam
+roboshop-catalogue --------> naming conversion for uniqueness kosam
+roboshop-dev-catalogue --------> naming conversion for uniqueness kosam --> small company one aws account vunte like these need to create resources with unique name....
+roboshop-qa-catalogue --------> naming conversion for uniqueness kosam
+
+
+ ec2_tags = merge(
+      var.common_tags,
+      {
+        Name = "${local.common_name}-local-demo"
+      }
+    )
+# so here var.common_tags anedhi oka map1 and  Name = "${local.common_name}-local-demo" anedhi map2 so merge fun use chesinappudu antha union ayyipothadhi...
+
+Result
+========
+
+ ---> name   = "${local.common_name}-sg-terraform-allow" ... ikkada cheptunam roboshop kosam create chesina sg ani...
 
 --> need to know what is the difference b/w local and variables
 
 
-dynamic block ----> not much use in real time we need to know basic matter
+dynamic block ----> not much use in real time we need to know basic matter about that
 ==============
 loops inside terraform
 	count based
