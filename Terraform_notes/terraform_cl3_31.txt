@@ -37,8 +37,7 @@ count based loop -> it is used to get list iteration, here aa process lo manaki 
 count = number
 
 count.index --> so ikkasa loop ayina everytime manaki ila oka special variables istundhi   ---------------> these all are learn by class 30 
-=======================================================================================================
-
+==============
 resource "aws_instance" "terraform" {} --> so ikkada ee block varaku output kavalante u need to ask like these ..so ala dhenikaina kuda we can get........
 
 output "instances_output" 
@@ -109,7 +108,7 @@ EX:
 count -> list -> count.index
 for_each -> map -> each.key and each.value
 
-======================================================================= 	================	===============	================================	===================
+========	===================
 data sources
 ==============
 we are creating resources in provider( provider means ...aws, azure.. anything) 
@@ -133,7 +132,6 @@ data "aws_ami" "joindevops" {  ---> "aws_ami" here edhi ithe query cheyalanukunt
 	parameters to query
 }
 
-
 --> so here evaru ithe ami id create chesi push chestaro  Valle owner avutharu ---> very IMP topic projects lo baga use chestaru ......
 
 ---> terraform data sources ami -> https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami
@@ -147,9 +145,11 @@ Changes to Outputs:
 
 ---->So finally manual ga ayina or terraform tho ayina create chesina server lo numchi manam akkada vuna data ni qury cheyachu means bayatiki tisukoni save chesukovachhu
 
-***********	********	**********	********		********	***********	*****			*******	****	*******	******
+***********	*********
 functions : it means take i/p and give o/p
 ============
+--> function folder has been created....
+
 ---> Here we can't develop new functions, we need take exsiting functions only... all are built-in....
 
 --> More Examples on functions https://developer.hashicorp.com/terraform/language/functions/join 
@@ -176,7 +176,7 @@ EX 2
 -----
 > join("_",["Srikanth","Reddy","Erugula"])
 "Srikanth_Reddy_Erugula"
-===============================================	================================	=============================================================================
+=============================================
 Tags
 ====
 -->Basically aws have many projects like roboshop, expensive, flipcart, in these situation we might be struggle to find out if those has same servers, then to over come this issue we have been indroduced TAGS.. while very is easy to find out EX as below
