@@ -37,7 +37,10 @@ git add . ; git commit ; git push
 
 variables
 ============
+
 DRY
+
+variable folder has been created
 
 x=1, y=2
 
@@ -54,15 +57,10 @@ variable "variable_name" {
 var.variable_name --- it is used to access or get value useing var
 ex:- var.ami_id and var.instance_type  like this u can refer in ec2.tf lo 
 
-
-variable folder ni create chesam...
-
 variable "ec2-tags" here ec2 instance server create ayina tharuvatha tags anvi manaki understand purpose ki use chestam adhe oka sepeate label in aws ...manula ga kuda add chesukovachhu in aws lo 
 
-+============================================================ +++=========		======================================			=====================
-
++====================== +++======
 serach in google like terraform data typeshttps://developer.hashicorp.com/terraform/language/expressions/types
-
 
 preference topic
 ===========
@@ -106,6 +104,9 @@ variable "instance_type" {
 
 conditions
 ==============
+
+Condition folder has been created..
+
 SYNTAX
 ===========
 if(expression){
@@ -159,8 +160,7 @@ tags = {
           + "Name"      = "rabbitmq" or MySQL or mangodb ala servers create avuthai..
           + "terraform" = "true"
 
-
-Name = var.instances[count.index] # so here instance name anedhi variable lo ista so akkada numchi adhi tisukunttadhi next count.index lo index starts from 0 so first emi name vunte adhi instance create avuthundi, next 1 ki vachhi next emi vunte adhi create avtuhudhi
+Name = var.instances[count.index] # so here instance name anedhi variable lo ista so akkada numchi adhi tisukunttadhi next count.index lo index starts from 0 so first emi name vunte adhi instance create avuthundi and name will has been crated like mangodb,mysql,resi ala.., next 1 ki vachhi next emi vunte adhi create avtuhudhi
 
 so this called count based usually works with list items.....
 
