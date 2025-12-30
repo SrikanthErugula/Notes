@@ -1,3 +1,6 @@
+cd /c/Users/srika/devsecops/shellscript/Notes/Terraform_notes/
+
+
 Terraform
 ===========
 setup
