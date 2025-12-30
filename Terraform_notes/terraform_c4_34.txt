@@ -1,0 +1,83 @@
+cd /c/Users/srika/devsecops/shellscript/Notes/Terraform_notes/
+
+
+1. Tfvars
+2. Workspaces
+3. Different repos
+
+same code for all environments, code re use --- these are adv
+whatever code is written it may be accidentally applied into PROD ---> these are dis-adv
+
+uses for different repos
+=====
+clear isloation b/w environments, no accidental changes
+code should be duplicated -> disadvantage
+
+*** Modules development ***
+========
+-->Here everything is DRY
+-->module.diag prsentted
+--> common code antha oka chota vunttadhi, that is called MODULES
+if separate code for each component, there is no single point of control
+
+scb -> top level project
+savings banking  --> this is a component
+current banking --> this is a component so ala same for below
+mobile banking --> 
+whatsapp banking --> 
+demat 
+loans 
+
+
+1. if there is version need to change so then, we need to update in all components ..assume like that we have 10000 components so here difficult to change for all 10000
+2. there are no common standards for all the projects, means same code use cheyaru ..
+3. maintanance and update is very tough
+
+--> see in google doc 
+
+module advantages
+=================
+1. changes at single place cascade to all components using that module -> centralised approach--> also called platform engineering..
+--> oka org ki rase code ni called as platform engineering..
+2. we can implement industry best standards in the module, all other components are forced to use. better for governance, compliance and auditing
+3. code reuse
+
+module developers --> whoever developing module we will called as 
+module users
+
+--> parameterised cheyatum ante variables laga create cheyatame...users ki chance ivvali values ni update cheyadaniki.
+
+terraform naming convention time is 26:30 min
+===========================
+sivakumar_reddy_m -> for programs understand --> whichever could see for program or computer we need to use _(underscore)
+
+sivakumar-reddy-m -> for humans understand --> whichever could see for humans we need to use -(iphen)
+
+human Srikanth --> no need to call like these
+Srikanth --> ila kuda call chesina fine 
+--> for EX: https://www.terraform-best-practices.com/naming --> here see in ex as well for better understand
+
+catalogue-instance -> resource type name should not be used in resource names lo 
+id -> string
+ids -> list
+--> so here terraform-aws lo vunna ec2.tf file reffer cheyali in roboshop-test file lo ec2.tf ani create chesi...
+
+--> syntax is below
+-------------------------
+module "module-name" {
+
+	source = ""
+	mandatory-variables
+}
+
+--> terraform init anedhi provider lo emaina changes chesina and ec2.tf lo changes chesina we have to re run
+
+---> instance_type ni manam control cheyali bcz if we use large t3 type we will loose many budget 
+validation {
+    condition     = contains(["t3.micro", "t3.small", "t3.medium"], var.instance_type)
+    error_message = "Please select either t3 micro or small or medium"
+  }
+
+--> terraform-aws-module code rasetappudu we assume like max values ni parameterised chese laga vundali and default value kuda pettali
+--> use chesetappudu u can see roboshop-ec2-test file vally rasina code ni source lo refer cheyali
+--> andhulo avi mandatory anni istam like ami_id and instance-type ala next output chusi manaki nachhina value tisukovadame
