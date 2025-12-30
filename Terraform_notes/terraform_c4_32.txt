@@ -131,8 +131,23 @@ EX: here terraform plan and apply cmds windows lo run cheste... windows is local
 # aws_instance.terraform (local-exec): instances created
 
 
-2. remote-exec ---> so here local tho server or ec2 instance crate chesi serve loki login ayyi akkada some cmds or actions perform excute chese dhani remote exce antam
+provisioner "local-exec"{
+      command = "echo ${self.private_ip} > inventory"
+      #command = " echo instances created "
+      #on_failure = continue # see notes
+    }
+---> so here provisions by default terraform apply chesina tharuvatha run avuthudiii, 
+------> on_failure = continue  it is use like oka vela ip address inventory file lo rayalekapothe provisioner ila cheptundhi the above ec2 resource also failed ni.. so to overcome this issue u need to add on_fail ane option ni add cheste  then provision says like ec2 resources no fail.......
 
-on_failure = continue  it is use like oka vela ip address inventory file lo rayalekapothe provisioner ila cheptundhi the above ec2 resource also failed ni.. so to overcome this issue u need to add on_fail ane option ni add cheste  then provision says like ec2 resources no fail.......
+
+---> destroy timem lo kuda run avvalante we have to write the below code
+
+   provisioner "local-exec"{
+      command = "echo Instance is destroyed"
+      when    = destroy
+    }
+--> Destroy ani ivvaka pothe adhi by default creation time anukoni manaki print avuthundhi....
+
+2. remote-exec ---> so here local tho server or ec2 instance crate chesi serve loki login ayyi akkada some cmds or actions perform excute chese dhani remote exce antam
 
 ansible-playbook -i inventory playbook.yaml ----> ila ansible ki connect cheyachu for server configuration ki

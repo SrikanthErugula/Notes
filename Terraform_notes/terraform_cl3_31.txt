@@ -44,7 +44,7 @@ output "instances_output"
 {
 #   value = aws_instance.terraform # so idhi ec2.tf lo name vuntthdi so akkada numchi tisukovali
 # }
-======			===========			==========				======
+======			===========			================
 for loop --> we are using it, in set or map situation lo use chestam...
 
 for_each = toset(["bucket-alpha", "bucket-beta", "bucket-gamma"])  --> so ikkada map ki matrame chestam, don't use it in at count 

@@ -30,7 +30,7 @@ terraform can connect to ec2 instance and configure it using remote-exec. basica
 --> resource "aws_instance" "terraform" {.....} so this is a block, after come out this block.. if u want private then u can call or access it like these aws.terraform.private_ip or public-ip.... or else if u are inside or same block lo vunte u can call or access it like ${self.private_ip}.... not pvt-ip u can call any item...
 
 --> remote exec.. here terraform local ante windows so from windows if u want connect instance u have to use pub-ip not a pvt ip
-----> before that u have to configure or take connection block
+----> before that u have to configure or take connection block {...} see in VSCODE
 
 --> destroy ani run chesinapudu first server stop ayyi next destroy ayipothadhi.....
 
@@ -59,14 +59,27 @@ tags
 common tags
 	Project = Roboshop
 	Terraform = true
+--> ivi dev and prod ki same ithe then we can us this common tags
 
 seperate tags
 	component = catalogue
 	Environment = dev/prod
+
+---> if not same for all in that case we have to use this separate tags
+--> Execution process antha see in google doc file
+
+--> ec2 server creation code antha same so we haven't go with separate folder.... we are using same configuration...
+--> main advtage is code reused
 	
 Terraform Workspace
 =====================
-terraform.workspace = dev
+--> Env is nothing but workspace
+--> terraform workspace will given like as terraform.workspace = dev ( manam which workspace lo vunte adhulo dhani value store avutundhi... like dev ite dev or else prod ite prod values will be stored
+
+--> go to vscode need to check the provider.tf and change the key and run terraform cmds..
+--> dev tisukoni 
+--> manam which values ni control cheyalanukuntunnaroo terraform workspace aa name tho vundali
+-- >how to get a key in a map in terraform........... https://developer.hashicorp.com/terraform/language/functions/lookup
 
 lookup(map, key, default)
 
