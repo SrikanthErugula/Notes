@@ -1,0 +1,203 @@
+cd /c/Users/srika/devsecops/shellscript/Notes/Terraform_notes/
+
+Buy a server in hostinger.in
+transfer the ownership to Route53
+Update NS records in hostinger.in
+
+Browser -> Cache -> OS -> Cache -> ISP DNS resolver -> Root Servers -> TLD -> Who is managing the servers NS
+
+High Availability -> --> vundali dowm avvakunda -->Same region multi AZ
+Disaster recovery -> --> vundali dowm avvakunda--> Multi Region --> entire region down avvatum 
+
+us-east-1 -> AWS control all global services are here
+
+Multi Cloud -> AWS, Azure, GCP --> ila multi cloud lo vundali aws down ithe gcp loki switch avvali so ala atleast 2 ayina vundali..
+--> but companies cloud loki ravadaniki reason cost reduce.. but 2 service tisukovali ante adhi shocking companies kii
+
+Module ->common code is here must provide inputs and outputs documentation. Module must provide outputs
+Infra code -> provider set here, so here it needs to be pass inputs to module. Must receive outputs from module
+
+module "module_name" {
+
+	source = ""
+	module_vars = "values"
+}
+
+VPC(Virtual private cloud) -> where we can our resources in isolated space. we have the full control over this. we are completely responsible to this
+=========================
+EX: house construction in village or city ..no need to do in forest or outcuts...
+-->like that server kuda ekkada padite akkda create cheste vatiki connection and communication radhu 
+
+pincode --> it means to find out.. is this village? or city? like that
+street name/number.. it means to find out.. is this which street?
+door number ..it means to find out.. is this whose house? or which house?
+ --> see in goggle doc name is terraform VPC 
+
+PINCODE-STREET_NUMBER-DOOR/APT_NUMBER-FLOOR_NUMBER-FLAT_NUMBER --> as per rules ila rayali ani chepparu anukundham
+
+534673-33-25-03-302
+
+534674-33 ila iste delhi nuchi maa vuriki vastundhi, but maa home ki radhi  534673-33-25-03-302 iste vastudhi maa home ki
+
+Zomato servers or big data servers run cheyalante 
+============
+one room
+power connection
+network connection
+AC
+physical security
+
+-->ivvani kalipi oke chota or at a time available vunte dhani called as VPC
+
+Subnets -> we create partitions ( separations or mukkalu mukkalu) in network for maintenance and security. 
+--> see in goggle doc name is terraform VPC 
+VPC -> Village
+Subnet -> Streets
+Route tables -> Roads
+Internet Gateway -> Modem/Arch
+
+IP Address
+
+Ex: 192.168.0.1 -> 32 bits it has here for separate ga 192 decimal and 168 is decimal all....
+
+0 1 2 3 . . . . 9 -> binary word for computer understand 
+0 1 2 3 . . . . 9 -> decimal word for human understand 
+0 1 -> Binary
+
+2       1       0 (place)
+=	=	=
+1(face)	2	4 = 4*10^0(4*1) + 2*10^1(2*10) + 1*10^2(1*100) = 4+20+100 --> decimal kabbati desi= 10 --> 124 is decimal
+
+
+--> here face and place ni batti value vunttadhi humans ki alane above EX 124 kuda 
+--> so computers lo decimal numchi binary ki ala change or conversion avuthai... 
+4 Octates -> here 1 octa is equals to 8 bits each(4*8) = 32 bits
+
+--> here below 149 decimal number converts into binary ...o/p is 10010101
+7	6	5	4	3	2	1	0
+=	=	=	=	=	=	=	=
+1	0	0	1	0	1	0	1 = 1*2^0 + 0*2^1 + 1*2^2 + 0*2^3 + 1*2^4 + 0*2^5 + 0*2^6 + 1*2^7
+							  = 1 + 0 + 4 + 0 + 16 + 0 + 0 + 128 = 149
+--> 124 decimal converts into binary .......o/p is 1111100							 
+							  
+00000000 -> 0 --> min value
+11111111 -> 255 -->max value --> 
+
+7 6 5 4 3 2 1 0 --> positon only 
+1 1 1 1 1 1 1 1 --> 1*2^0 + 1*2^1 + 1*2^2 +....1*2^7 = GT 255
+
+255.255.255.255 --> max ip adress
+
+_ -> 0 1 -> 2^1 = 2 --> probability chances here
+
+_	_
+0	0
+0	1
+1	0
+1	1
+-> 2^2 = 4
+
+n bits -> how many numbers -> 2^n
+32 bits ipv4 --> n=32 --> 2^32 
+
+NAT -> Network Address Translation (NAT) 
+=========================================
+-->NAT team vallu pub and pvt concept lu techharu...
+public IP from ISP ( internet service provider) 
+
+IP is combination of Network+Host(server)
+
+4 Octates -> here 1 octa is equals to 8 bits each(4*8) = 32 bits
+
+10.0.0.0/16 -> it means --> first 16 bits are reserved for network. next 16 bits are reserved for hostinger  ---> 53:00min
+
+4  3 2 1 --> 4 octa positions 
+10.0.0.0   ---> 10.0 2 octa are fixed for network next 2 manaki andhulo 0.0 least or min
+.
+.
+.	= 2^16 = 65,536 these are in our control bcz 2 octa mana controll
+.	
+.
+10.0.255.255 -----------> max
+
+CIDR = Classless Inter Domain Routing
+
+10.0.0.0/16 == CIDR RANGE  == pincode idhi manam select chesukovali intha kavali ani tisukovali  10.0.0.0/16 ila  --> it used for VPC creation
+
+
+2^8 -> 256 subnets
+10.0.0.0/24 == subnet range -> 24 bits are reserved.it means 3 octa are reserved 3*8 =24......inka 1 octa is remain so  2^8 = 256 = 0-255 --> it used for subnet cretion
+10.0.0.0  -> min
+.
+.          2^8 = 256 = 0-255
+.
+10.0.0.0/24
+10.0.1.0/24
+10.0.2.0/24
+10.0.3.0/24
+.
+.
+.
+.
+10.0.255.0/24   --> max 
+
+
+--> so ila like as above laga ip lu 256 create avuthai 10.0.0.0/24 ee subnet ki 
+--> vpc (village) created here, and next network(Gate or entrance) supply cheyali ante we need to create nat gatway called in vpc( modem is called our undrsta)
+--> ig create chesi dhani vpc ki attach chesa..
+
+Ip address ni chusi cheppachu adhi ekkda vunchi vastudhi ani
+10.0.1.0/24 -> public-1a
+10.0.2.0/24 -> public-1b
+
+10.0.11.0/24 -> private-1a
+10.0.12.0/24 -> private-1b
+
+0.0.0.0/0  --> net work ila notation vuntadhi 
+so here pub rt is connected through IGW ( Internet Gateway) 
+
+what is difference b/w pub rt and pvt rt?
+--------------------------------------------
+Think of a public subnet as a shop with a front door facing the street (internet), while a private subnet is a back room that only gets deliveries through a loading dock (NAT Gateway) and has no street-facing door. 
+
+--> Subnet which have access to IGW rt is called PUB RT
+--> Subnet which don't have access to IGW is called PVT RT
+
+private server -> no internet access 
+
+dnf install mysql-server -> traffic is originating inside server -> egress --> this our control 
+here PM velli meet avvali ani anukuntnadu so adhi egress
+
+backend wants to connecting DB -> ingress --> PM ni meet avvalanukovatam adhi ingress  -->> this is not our control  we need to control
+
+What is NAT gateway?
+If we want to enable egress internet access to the private servers we can enable NAT gateway. for installation, patches, etc.
+
+Elastic IP == Static IP = 1500INR
+
+NAT ante means egress.....
+
+The Three Private IPv4 Ranges
+
+--> 10.0.0.0/8: The largest block, from 10.0.0.0 to 10.255.255.255, commonly used for large enterprise networks.
+
+172.16.0.0/12: A medium-sized range, from 172.16.0.0 to 172.31.255.255, often seen in corporate environments.
+
+192.168.0.0/16: The most common for home networks, from 192.168.0.0 to 192.168.255.255, used by most home routers. 
+===========================SUMMERY ==============================
+VPC -> CIDR
+IGW
+Subnets -> CIDR
+Route tables and Routes
+Route table associations with subnets
+EIP
+NAT gateway
+
+Public and Private subnets
+NAT in public
+bastion host in seperate subnet
+VPN in different subnet
+
+Lap -> VPN -> VPN IP is enabled in private subnet. NAT for internet
+Bastion can access private EC2 -> NACL attached to private subnet should allow bastion subnet CIDR or IP
+NACL
