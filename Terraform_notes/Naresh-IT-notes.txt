@@ -1,0 +1,418 @@
+Majar cloud providers
+
+AWS, GCP, AZURE 
+
+Here we need to focus on only our applications and projects. no need to what is going on backend that's will take care of providers( whoever maintain the servers) 
+
+Why only AWS
+-------------
+AWS is the early bird in the market first cloud provider
+
+** It contains a large network distribution in this world
+ 						Advantages of AWS 
+	--------------------
+Low Latency 
+Speed network
+Low delay
+
+*** AWS offers pay as u go concepts pay for use
+** very good pricing models 
+1. ON demand 
+------------
+if there is no any prior information to providers from client create immediately whenever demand is there per hour cost is 2$
+2. reserved
+-----
+We are going to lock resources for particular time ----- like 1 year, 3 year per hour cost is 1 $ 
+
+*** AWs offers 200+ services 
+there are few in below
+Sever services, EC2, storage services, S3, security services IAM, DB services RDS,  serverless services LAMBDA,.........
+
+ *** Large Market share
+ ---------------------------------------------
+ 		AWS Distributions
+		------------------
+1.Asia
+Europe
+South America
+North America
+Africa
+Australia
+7.Antarctica * here there is no aws services bcz no one there to living
+
+** ASIA and AUSTALIA both are in same region  
+in AWS having 32+ regions totally 
+in that India having the 2 regions there are MUMBAI and HYDERBAD
+
+* Here for ex in global having the regions
+in regions having the availability zones 
+
+Mumbai--- ap-south-1
+hyd-- ap-south-2  ===== ap means Asia pacific
+
+* MUM having 3 zones (availability zones AZ)
+ap-south-1a
+ap-south-1b
+ap-south-1c
+HYD also same like ap-south-2a,2b,2c
+
+**AZ contains Servers 
+AZ -- Data centres
+
+For each AZ are provides 100 km distance against the disasters and any issues....
+
+******************************* 
+ AWS is public not a private,
+so that in public they are introduce the VPC it means ( VERTUAL PRIVATE CLOUD)
+
+* IN AZURE V net ( VERTUAL NET WORK) 
+
+WHY vpc is required in aws bcz --if u want to create a server in aws first u need to create a VPC bcz vpc is work as wall or securize the u r servers, once u created a VPC no can access u r servers u are only the ower of the servers.
+
+------------------------SUBNET---------
+WHY subnet is required bcz it's work as differentiate the work scenarios 
+like we will split the work at the same time or else one servers is work for public and one server is work for private.  
+
+If u want create a server we need to follow the below steps clearly ...
+
+Select region--> select VPC or else create new VPC--> select AZ--> create subnet or else select subnet---> then create server or do any work
+
+
+=============================================
+
+************* AWS Server EC2 ***********
+(Elastic compute cloud)
+
+If u want buy a loptop or any device we need to have somebasic infiramtion for that those are below
+
+OP( Operating system )
+Hardisk
+hardware(RAM, CPU)
+Network
+Security
+
+same feature also we need to have if u create server nedd to check the basic things 
+
+for server creation follow the below steps
+1.OS selection 
+Instance Type: RAM and CPU 
+3. Key pair
+4. network (VPC, SUBNET, SECURITY GRPS)
+5. Protect from unauthorize access --- (Firewall)
+6. hard disk : EBS (elastic block storage)
+
+Once u created the server in free tier mode after that if u want change the instance type it is possible to change the instance type---- these process is called as sacle to scale like as below
+
+we can easily scale in scale out the server 
+
+we need to stop the server only we can change the type and increase or decrease the configurations 
+
+  --------------kEY PAIRS ***-----------
+Here 2 types of key pairs
+1. Public ( its comes under ec2 server in AWS) 
+2. Private( it comes under our loptop or desktop)
+*
+
+** Key pair is used to connect to EC2 instances  
+
+** if loose the key pair then we face some consequences to connect EC2 instances,
+** if u want create new instances while that time we can use existing key pair also.
+
+1. Internet
+2. IP address
+** Public ip will use to connect instance over the internet ------------- External connections
+
+** Private ip will accessible request coming from same network ------------- Internal connections
+3.Key pair
+4. Protocol
+( it means set of rules to communicate to your destination 
+EX: http, https, ssh and RDP
+
+Different ways of protocal like as below
+
+LINUX ---- SSH(SECURE SHELL) protocol
+
+WINDOWS ------- RDP(Remote desktop protocol)
+
+for this has some port numbers they are as below
+
+Https protocol has 443
+
+Http: 80
+
+ssh: 22
+
+rdp: 3389
+
+Here now prcess of connect EC2 instance through 3rd party software
+
+open mobax--> go to sessions-->click on protocol for Linux that is SSH --> there one option we have REMOTE HOST in that ned to give public IP address ---> click on advanced SSH settings there we need to give key pair ---> ok once login we need to give ec2-user
+
+*******************************
+DaY 5*****************
+***************************
+  ========================================================================================================================================================================================
+
+
+
+
+
+
+
+*********************************************************************
+                     Class 10 
+
+auto scaling haveing 2 types static and dynamic 
+Static is depends on time period  IF its has traffic increase or decrease it will create as set point for server
+Dynamic is depends on traffic it will goes increase or decrease the server  
+
+** Target grps contains server only
+Auto scaling grp (ASG) has to create server with same configuration with same application in same target grp ( TG )
+
+1. Same TG means our ASG should depends on ELB( LOAD BALANCER) and TG configuration 
+ when ever u want create tg then u need to create ELB to serve the traffic to peoples.
+2. if u want create autoscaling u need to create load balancer (ELB) and TG
+3. while creating ASG it should be ask create new TG or u want select existing one, then we must be  go through existing 
+
+SAME CONFIG  :- it comes from LUNCH Template 
+
+SAME APPLICATION :- It comes from Custom AMI
+
+Create server with same application with different config
+
+we can create image from EC2 insta image===== 
+
+
+==========================================================================DAY 6 =====================================================================
+Custom network creation 
+
+EX:  Need to create two instances 
+1 private
+2 public
+
+1 PUBLIC EC2 INSTANCE CREATION PROCESSS
+--> SELECT REGION
+--> CREATE VPC 
+--> SUBNET CREATION 
+--> create ec2 
+If user wants to access the server or ec2 must be have the internet, Ip address, protocol(https or http) 
+
+Internet Gateway is required to attach the VPC --> here all request will be reached there only 
+
+INTERNETGATEWAY: To allow the internet from external to internal and vise versa
+
+ROUTE TABLE: It is used to route the traffic from one device to other device --- its must be create in VPC level or inside VPC
+ 
+Path for creation the above statements>>> create VPC---> create IG attach to VPC --> create Route table attach to IG -->create subnet attach to RT(Route table) ----> inside subnet create server EC2 
+
+
+===========================================================DAY 7============================== 
+
+Day -1 lab 
+
+case1 : create public ec2 instances in Custon network creation..
+
+if u want create VPC follow the below steps----
+
+1. select region Create VPC 
+
+---> In system search VPC and select VPC after then select region as mumbai---> go to VPC's in resorces by region ( if u have exsting unneccesaries of VPC u can delete) ---> Click Create VPC -----> Give name like custon-vpc under name tag section--------> give CIDR by default 10.0.0.0/16 range---> click on create vpc --> go to your vpc u can see the whatever u create the vpc
+
+2. create subnet 10.0.0.0/24
+---> in system go to subnet dashboard click on it ---> select custon-vpc ( this one we created in above) or else select existing 
+--------> give sbnet name custon-public-subnet under subnet name
+give the cidr range fr subnet below the vpc cidr range it should be less, 
+
+----> give subet CIDR range like as 10.0.0.0/24
+
+NOTE: 32-16=16 ==65k ( 2 power 16) -==65k
+ 32-24=8 == 256
+
+3. create IG( internet gateway) and attach to your custon-VPC
+
+--> in system go to IG path ---> give name like custon-ig under name tag --> create gateway -->after then attach to custon-vpc here got action tab we could see the option attach VPC
+
+4. route table 
+---> click on route table ----> give name like custon-public-rt under name section --> slect exsting VPC there was custon-vpc ( Here RT has to create under VPC )
+
+5. route the internet from IG to route table ----- we need to enable the EDIT ROUTES option
+Route the traffic from RT to subnet --- we need to ENABLE SUBNET ASSOCIATION 
+
+*** here open the Route in that click on the edit routes -----> select the destination by default all 0000/0 ----> in target select INTERNET GATEWAY under that select our IG --> click on save changes
+
+here we are in RT tab so next select sunbet association ---> edit SA ---> select our subnet --> save
+
+
+** Firewall(Security Grops)  --> means it's block unauthorised accesss so only allow the authorised access only  this job having or done by in the level of ec2..........
+
+**** SG will create in vpc level but attach   into ec2 level
+
+*** We can't attach multiple sg's into same ec2
+
+*** we can attach same sg to multiple ec2  
+
+in these we have 2 rules 
+
+Inbound : This rule is allowed towards the server and application from client machine
+
+outbound : This rule is allowed towards  the client machines(loptop) from the server
+
+By default no restrctions form outbound rule, only restrctions in inbound end....
+
+but inbound rules 
+type -- if u have protocols u can select here or else if no u have u can select custom TCP
+
+port range ---- u can select custom in type here u can type manual to give range for authorized access
+
+source--- here u can select any or else specific 
+
+*********************
+case 2 
+create private ec2 instances in Custon network creation.
+
+1. step is same for these u can use same VPC name under VPC now we can create private
+
+2. create subnet 10.0.1.0/24
+---> in system go to subnet dashboard click on it ---> select custon-vpc ( this one we created in above) or else select existing 
+--------> give sbnet name custon-private-subnet under subnet name
+----> give subet CIDR range like as 10.0.1.0/24
+3. we can create directly EC2 instance under that same VPC and private subnet 
+4. we can use same IG and SG 
+
+*** For connection we can use Bastion host process
+here we need to upload in key fille to connect private ec2 
+
+
+=================================================== DAy 8 ===============================================================================
+
+Bastion Host : it used to connect private server by using public server, once u entered the public server then if u want connect private there u must be give the private Ip address after then u could connect private server
+
+Public IP is work based on internet access. without internet we can't work 
+
+
+************************************************ Nat Gatway Process(NGW) *****
+
+**This is AWS architecture network components for all
+
+Create VPC
+--> Public Subnet
+--> Private subnet
+
+To connect IG to VPC ---> create a RT for Public  
+----> after create all we need to connect those are all for that VPC connect to IG and IG to RT for that we need to use EDIT ROUTES and RT to Public subnet we need to use subnet association
+---> inside public subnet we have to create EC2 instances or Servers
+
+---> inside Private subnet we have to create EC2 instance or server   
+ 
+ ***** NGW means only allows my request to private server and didn't give permissions to others request is called NGW......**********
+
+** NGW device we need to installed inside public subnet after that inside VPC, we have to create private RT using this to connect private subnet.......   
+
+*** Steps**
+1. Create Nat gateway and attach to public subnet
+2. Create pvt RT 
+3. Routing from nat to pvt rt and pvt rt to pvt subnet
+
+Creation process
+1. Goto vpc sections under we have Natgateway name click on it--->to find natgateway name right side top corner---> select public subnet name bcz we have to installed ngw in public only ----> we have select elastic ip just we need to click on allocate elastic ip name---> done all click on create NGW button
+
+2. Goto route table click on create route table---> in name section give name like cust-pvt-rt---> select cust vpc label--> done all click on  create button
+
+** Here we need to route ngw to pvt rt so for that we have to use EDIT ROUTES---> IN DESTINATION select all 00000----> IN TARGET we have to select NAt gateway after select existing one--> done all save changes
+
+**** Here we need to route pvt rt to prvt subnet for that we have to click on EDIT SUBNET ASSOCIATION ---> select pvt subnet
+
+************************************************************
+                   CIDR - CLASSLESS INTER DOMAIN ROUTING 
+
+CIDR will generate the IP's to the network
+
+EX: 10.0.0.0(4 octoate) --this indicates ip4 bcx we have 4 didgts(4 octoate) so we can called ip4
+
+EX : 10.0.0.0(4 octoate)/28 -- Here 28 is net mask value this will deicide generate of IP's
+
+32(4*8 =32)-28=4 ----2 power 4 = 16 
+
+OCTATE= BYTES BOTH ARE SAME 
+HERE 1 Byte = 8 bits so 4 *8 =32
+
+EX : 10.0.0.0/16 Here 32-16 =16 2 power 16 = 65536
+
+EX: 00000000=0             EX: 10.0.0.0/28 =16(32-28=4 so 2*2*2*2=16)
+    00000001=1                 Then Ranges start like 10.0.0.0
+    00000010=2                                         10.0.0.1
+    00000011=3                                         10.0.0.2 like
+    00000100=4                                         10.0.0.15
+    ETC.....
+    11111111=256	
+
+ 
+EX Subnet 
+10.0.0.0/29 (32-29 =3 so 2*2*2=8)  
+
+10.0.0.0
+10.0.0.1
+10.0.0.2
+
+10.0.0.7
+
+IN AWS finally says take values min 16 and max 28
+
+====================================================================== DAY 9 ==========================================================
+Here we need to learn the automatic ec2 creation process, so for that follow the below steps,
+
+Go to VPC section-->click on create--> VPC and more-- give name in name tag--> give CIDR Range--> select no IPv6 cidr block--> tendancy put defalut--- after select all the steps--> click on create vpc
+GIT HUB is used to store the our application, its a central storage.
+
+Developer( wrote the code here) -->Git hub( store the code here)--> EC2 server( deployed the code here) --> give access to public ( for access given ec2 public IP address)
+ Here we need to instal the ELASTIC LOAD BALANCER  it will use to distribute the load traffic for public acesss 
+when ever we hit the amazon url it will direct goes to the elb url bcz it was configured with amazon website
+
+2 . ELB will provide the HIGH AVALILABILITY of the applications  
+a. Monitor
+b . Failover
+ 
+3. HIGH AVALILABILITY has the below points
+
+a. Redundancy ---> replica or dupicate and also it is taking care by ASG  
+b. Monitor
+c. Failover
+
+ 4 ELB should have the follow Round Robin---> Means it pings the first servers and second server, zig-zag process
+
+5. ASG ( AUTO SCALLING GROUP) it will be working to create the server 2,3,4 and 5 like that if we create one server and others will be creating ASG 
+
+a. By using ASG we can scale out and scale in the servers
+SCALE OUT: Increase the server--- horizontal scalling
+SCALE IN : Decrease the server 
+Based on the set point autoscaling will work. 
+
+MIN: this is set point if there is no load ASG will reach to min set point so here delete the servers if any. 
+
+SET POINT give by manually not automatic
+
+MAX: It has to reach to max set point if load or traffic is more
+
+Desired:  Whenever create the ASG apply time it will create servers as per desired set point
+
+6. TG( TARGET GROUP) it has the server included all the servers in that. 
+
+TYPES OF ASG'S
+=============
+Vertical Scaling: Increase or decrease the same server configuration 
+Horizontal scaling : adding or deleting the servers as per the traffic and set point. 
+
+Static: It is constant w.r.t to traffic. 
+Dynamic : it will changes as per the traffic 
+ 
+https://tally.so/r/meV7Gk
+
+=================================================================================== class 10 =====================
+--> Auto scalling has to create
+
+
+
+
+
+
+

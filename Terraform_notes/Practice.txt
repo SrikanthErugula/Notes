@@ -1,0 +1,32 @@
+session 9 for DNS
+session 8 for ip
+
+
+1. vpc creation has been done
+after VPC creation VPC, dhaniki network ravali so dhani kosam IG ni create cheyali
+2. created IG and needs to be attach to VPC in action tab click and see attach VPC option
+3. 2 subnet created for pub and pvt here subnet range will under VPC
+4 2 route table created for public and pvt  and attach to subnet in subnetassociation click on edit subnet association
+5. pub rt connect avvalante we need to add ig to pub rt.. pub rt connect avvalante through ig thone
+6. elastic ip ni add chesukovali assume like broker
+7. nat gateway creaed ans selected elastic ip for creation process
+8. pvt rt ki nat gateway ni add cheyali bcz for network connections kosam
+
+
+T-c7-36 session lo vpc creation
+-----------------------------------
+1. vpc module folder created--> vpc.tf file created in that code will help to create VPC resources--> variable.tf file done it will helps to declare the values
+2. locals.tf done it will helps to over the override values for tags name
+2a. output.tf file done it will helps to get vpc id .. ikkada vachina vpc id vpc module folder lo store avuthudhi, 
+
+3. vpc module test folder done--> put it in that .gitignore and provider.tf--> main.tf file done it will helps take code and ouputs from vpc module folder
+4. variable.tf it will helps to user for give values as per their requirement.. nenu rasina code lo values change chesukovadanki...
+5. output.tf file done module folder store ayina output ni main.tf lo access chesam so akkada nuchi manam vpc id tisukovali...
+
+run terraform CMDS as well like init,plan,apply 
+
+6. module folder lo vpc.tf file lo IGW code rasi and vpc_id lo vpc ni attach chesi run chesam
+7. separate ga tags kuda rasam like igw_tags ani...
+
+8. module folder lo vpc.tf file lo subnets code rasam 
+

@@ -10,10 +10,61 @@ EIP
 NAT
 Add NAT route to private subnets
 
-project_name-environment-<resource_name>
+--> AWS-VPC folder created->name manaistum so vpc.tf ani rasa
+in this folder we need to create VPC resources EX more : https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc
+see in VSCODE
 
-public 		private 	database
-frontend	backend		data related
+--> VPC-module folder-->name mana istum main.tf rasa-->provoder.tf and gitigonore file copied..
+--> 
+project_name-environment-<resource_name> --> idhi manam pettukuntunna condistion or rule vere company ki velte valla rules manam chudali.... 
+--> so now we need to create varialbels for project name and environ see in variable.tf file
+-->local.tf create chestam bcz no can override, so here every project ki use chestam ----------see in VSCODE
+
+--> AWS-VPC folder vunna variables and VPC-module test lo vunna variables both are not same.. both are different
+--> inputs must give module so they have to create output.tf in module folder
+ aws_vpc.main.id ---> vpc.tf folder lo aws_vpc "main" block run avvalante aws.vpc.main.id iste oka id ani iste manaki vpc id vstudhi
+---> so upto here VPC resourse create chesam and vpc id ni tisukunnam
+---> IGW for EX more https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/internet_gateway.html
+--> igw has bee done in vpc.tf lo 
+--> next subnets creation, here we have to create min 2 subnets for high availability kosam..
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet
+
+--> module test lo default= ["10.0.1.0/24","10.0.2.0/24" ivi user side numchi vasati vatini vpc.tf lo represent cheyali count loop chesi
+var.public_subnet_cidrs[count.index] here one by one loop avuthai ip lu 
+
+--> avaiabilty zolu ivvakapothe ekkadao create chestundhi so ala vadhu  https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones
+data.tf lo slice function chudali
+
+map_public_ip_on_launch = true --> here manam cheptunam ee subnet lo vache vatiki pub ip ni assign chei ani so akkada false vunte vadhu ani 
+
+public_subnet_cidrs = var.public_subnet_cidrs --> {so here user must be providing values are public subnet cidrs
+  # dhani kosam module lo test lo kuda define cheyali like varialble.tf lo and
+  # main.tf lo declare cheyali } 
+upto here pub subnet are created so next by using same module i want crated like as below
+
+public ki subnet 		private ki subnet	database also here
+frontend	                backend		       data related
+
+so insted of public we need to replace with private names
+--> for pvt ki user emi ip lu pass cheyalo vi pass cheyali in main.tf lo 
+
+so alane same for database ki kuda
+upto here vpc done, 
+igw done attached to vpc
+subnets done for pub,pvt and db
+
+---> route tables created in vpc.tf and variables.tf lo for pub and pvt and db ki 
+-->Route needs to create https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route..... syntax
+--> pub route created and it has been attached to pub route table path route table--> pub rt--> routes in below dashboard
+
+-->  needs to create nat gateway for pvt and db, so for that we have to create elastic ip first
+-->eip done in vpc.tf and variable.tf 
+--> nat gateway has been done in vpc.tf and 
+aws_subnet.public[0.id] so here aws_subnet_public lo two vunnai az lu like us-1a an us1b so andhulo naaku first dhi kavali ni aduguthunam
+
+Basically terraform automatic ga dependency ni resolve chesukunttadhi 
+depends_on = [aws_internet_gateway.main] --> it means nat anedhi ig meedha depend avuthundi bcz andhulo numchi he kadha traffic batatiki velledhi -> sess-36-1:00:00
+
 
 VPC peering
 ============

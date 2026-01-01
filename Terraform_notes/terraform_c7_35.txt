@@ -9,7 +9,7 @@ Browser -> Cache -> OS -> Cache -> ISP DNS resolver -> Root Servers -> TLD -> Wh
 High Availability -> --> vundali dowm avvakunda -->Same region multi AZ
 Disaster recovery -> --> vundali dowm avvakunda--> Multi Region --> entire region down avvatum 
 
-us-east-1 -> AWS control all global services are here
+us-east-1 -> AWS control full authority and all global services are here
 
 Multi Cloud -> AWS, Azure, GCP --> ila multi cloud lo vundali aws down ithe gcp loki switch avvali so ala atleast 2 ayina vundali..
 --> but companies cloud loki ravadaniki reason cost reduce.. but 2 service tisukovali ante adhi shocking companies kii
@@ -23,8 +23,9 @@ module "module_name" {
 	module_vars = "values"
 }
 
-VPC(Virtual private cloud) -> where we can our resources in isolated space. we have the full control over this. we are completely responsible to this
-=========================
+VPC(Virtual private cloud) ->  see in bottom for define
+========================
+
 EX: house construction in village or city ..no need to do in forest or outcuts...
 -->like that server kuda ekkada padite akkda create cheste vatiki connection and communication radhu 
 
@@ -49,7 +50,7 @@ physical security
 
 -->ivvani kalipi oke chota or at a time available vunte dhani called as VPC
 
-Subnets -> we create partitions ( separations or mukkalu mukkalu) in network for maintenance and security. 
+Subnets -> see in bottom for define
 --> see in goggle doc name is terraform VPC 
 VPC -> Village
 Subnet -> Streets
@@ -58,7 +59,7 @@ Internet Gateway -> Modem/Arch
 
 IP Address
 
-Ex: 192.168.0.1 -> 32 bits it has here for separate ga 192 decimal and 168 is decimal all....
+Ex: 192.168.0.1 -> 32 bits it has....so here in separate ga 192 decimal and 168 is decimal all....
 
 0 1 2 3 . . . . 9 -> binary word for computer understand 
 0 1 2 3 . . . . 9 -> decimal word for human understand 
@@ -109,7 +110,7 @@ IP is combination of Network+Host(server)
 
 4 Octates -> here 1 octa is equals to 8 bits each(4*8) = 32 bits
 
-10.0.0.0/16 -> it means --> first 16 bits are reserved for network. next 16 bits are reserved for hostinger  ---> 53:00min
+10.0.0.0/16 -> it means --> first 16 bits are reserved for network. next 16 bits are reserved for host  ---> 53:00min
 
 4  3 2 1 --> 4 octa positions 
 10.0.0.0   ---> 10.0 2 octa are fixed for network next 2 manaki andhulo 0.0 least or min
@@ -132,18 +133,18 @@ CIDR = Classless Inter Domain Routing
 .          2^8 = 256 = 0-255
 .
 10.0.0.0/24
-10.0.1.0/24
-10.0.2.0/24
-10.0.3.0/24
+10.0.0.1/24
+10.0.0.2/24
+10.0.0.3/24
 .
 .
 .
 .
-10.0.255.0/24   --> max 
+10.0.0.255/24   --> max 
 
 
 --> so ila like as above laga ip lu 256 create avuthai 10.0.0.0/24 ee subnet ki 
---> vpc (village) created here, and next network(Gate or entrance) supply cheyali ante we need to create nat gatway called in vpc( modem is called our undrsta)
+--> vpc (village) created here, and next network(Gate or entrance) supply cheyali ante we need to create nat gateway called in vpc( modem is called our undrsta)
 --> ig create chesi dhani vpc ki attach chesa..
 
 Ip address ni chusi cheppachu adhi ekkda vunchi vastudhi ani
@@ -157,34 +158,23 @@ Ip address ni chusi cheppachu adhi ekkda vunchi vastudhi ani
 so here pub rt is connected through IGW ( Internet Gateway) 
 
 what is difference b/w pub rt and pvt rt?
---------------------------------------------
-Think of a public subnet as a shop with a front door facing the street (internet), while a private subnet is a back room that only gets deliveries through a loading dock (NAT Gateway) and has no street-facing door. 
-
---> Subnet which have access to IGW rt is called PUB RT
---> Subnet which don't have access to IGW is called PVT RT
+--------------------------------------------  see in bottom for define
 
 private server -> no internet access 
 
-dnf install mysql-server -> traffic is originating inside server -> egress --> this our control 
+dnf install mysql-server -> traffic is originating inside server( lopala numchi ravatum bayatiki no restrictions) -> egress(exit or out) --> this our control 
 here PM velli meet avvali ani anukuntnadu so adhi egress
 
-backend wants to connecting DB -> ingress --> PM ni meet avvalanukovatam adhi ingress  -->> this is not our control  we need to control
+backend wants to connecting DB -> ingress --> PM ni meet avvalanukovatam adhi ingress(in or entry loapaloki vellante there are retrictions)  -->> this is not our control  we need to control
 
 What is NAT gateway?
-If we want to enable egress internet access to the private servers we can enable NAT gateway. for installation, patches, etc.
+------------------------ see in bottom for define
 
 Elastic IP == Static IP = 1500INR
 
 NAT ante means egress.....
 
-The Three Private IPv4 Ranges
-
---> 10.0.0.0/8: The largest block, from 10.0.0.0 to 10.255.255.255, commonly used for large enterprise networks.
-
-172.16.0.0/12: A medium-sized range, from 172.16.0.0 to 172.31.255.255, often seen in corporate environments.
-
-192.168.0.0/16: The most common for home networks, from 192.168.0.0 to 192.168.255.255, used by most home routers. 
-===========================SUMMERY ==============================
+===========================SUMMERY ========================
 VPC -> CIDR
 IGW
 Subnets -> CIDR
@@ -193,11 +183,67 @@ Route table associations with subnets
 EIP
 NAT gateway
 
-Public and Private subnets
-NAT in public
-bastion host in seperate subnet
-VPN in different subnet
+Path for creation the above statements>>> create VPC---> create IG attach to VPC --> create Route table attach to IG -->create subnet attach to RT(Route table) ----> inside subnet create server EC2 
 
-Lap -> VPN -> VPN IP is enabled in private subnet. NAT for internet
-Bastion can access private EC2 -> NACL attached to private subnet should allow bastion subnet CIDR or IP
+--> subnet range will be select within the range of VPC it measn VPC range kante thakkuva select cheayali
+
+
+
+========				==============MAIN POINTS ===============
+VPC(Virtual private cloud) ->  
+=========================
+acting like a virtual data center where you launch and control your resources (like EC2 instances, databases)in isolated space, with full control over IP addresses and subnets, gateways, and security settings, we are completely responsible to this.
+
+For servers maintain 
+===================
+one room
+power connection
+network connection
+AC
+physical security
+
+a subnet is a range of IP addresses within your Virtual Private Cloud (VPC) that acts as a logical subdivision for organizing and isolating your resources, for maintenance and security.  like EC2 instances, within a single Availability Zone 
+
+4 Octates -> here 1 octa is equals to 8 bits each(4*8) = 32 bits
+255.255.255.255 --> max ip adress
+
+IP is combination of Network+Host(server)
+
+CIDR = Classless Inter Domain Routing
+10.0.0.0/16 from here the range will be start CIDR
+
+10.0.0.0/24 from here the range will be start for subnet 
+
+what is difference b/w pub rt and pvt rt?
+--------------------------------------------
+Think of a public subnet as a shop with a front door facing the street (internet), while a private subnet is a back room that only gets deliveries through a loading dock (NAT Gateway) and has no street-facing door. 
+
+--> Subnet which have access to IGW rt is called PUB RT
+--> Subnet which don't have access to IGW is called PVT RT
+
+
+What is NAT gateway?
+----------
+ NAT (Network Address Translation) Gateway is a managed service that enables resources in a private subnet to connect to the internet or other AWS services while preventing the internet from initiating a connection with those resources
+
+EX : If we want to enable egress internet access to the private servers we can enable NAT gateway. for installation, patches, etc.
+
+Elastic IP == Static IP
+-----------------------
+Designed for dynamic cloud environments, allowing you to quickly remap it from one instance to another and providing a consistent, internet-routable endpoint even if your underlying server changes
+
+The Three Private IPv4 Ranges
+
+--> 10.0.0.0/8: The largest block, from 10.0.0.0 to 10.255.255.255, commonly used for large enterprise networks.
+
+172.16.0.0/12: A medium-sized range, from 172.16.0.0 to 172.31.255.255, often seen in corporate environments.
+
+192.168.0.0/16: The most common for home networks, from 192.168.0.0 to 192.168.255.255, used by most home routers. 
+
 NACL
+------
+In AWS, a Network Access Control List (NACL) is a stateless virtual firewall that controls traffic in and out of your subnets, acting as an optional security layer for your Virtual Private Cloud (VPC)
+
+Bastion Host : it used to connect private server by using public server, once u entered the public server then if u want connect private there u must be give the private Ip address after then u could connect private server
+
+A bastion host in AWS is a dedicated Amazon EC2 instance that acts as a secure gateway to access other instances located in private subnets
