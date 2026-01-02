@@ -14,3 +14,10 @@ CIDR Classless Inter Domain Routing
 EIP Elastic IP address.
 NACL Network Access Control List. 
 IGW Internet Gateway
+
+ANISBLE
+=======
+YAML -- Yet Another Markup Language
+JSON  JavaScript Object Notation, 
+DTO -> Data transfer objects
+XML -> Extensible Markup Language (XML) 
