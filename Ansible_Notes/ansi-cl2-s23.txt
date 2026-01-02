@@ -1,9 +1,24 @@
 Varialbes
 ==============
 NAME=Trump -- in shell 
-
 $NAME in shell lo var ni represent chese proccess....
 ${NAME} or this 
+
+--> connection: local
+# so here anisble is manageing without another server there is no dependency.. so for that we need set up .ini lo local ni ivvali oka grp.. ansuible ekkada ithe install ayyi vundho akkada connect avuthundhi ther is no dependent on frontend and any...
+
+{{ COURSE }}, ila special ga declare chyali in absible lo vars ni print cheyali ante 
+--> 04 vars has been done
+05 task vars done
+06 done
+
+--> Course,yaml --> ee file lo code rasi main code call cheyachuu..........it is used to overcome or prevent accidental changes in main code.. 
+prompt --> emiana imp names and pwd must be secure in this CMD
+
+07 vats prompt 
+Error is
+===========
+when password haven't define ------ fatal: [localhost]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'password' is undefined. 'password' is undefine
 -------------------------------------------------------
 Varibales  ni ekkada ayina pettachu like  .ini or  files we need just call i t 
 
@@ -28,3 +43,5 @@ What is playbook
 Playbooks are the simplest way in Ansible to automate repeating tasks in the form of reusable and consistent configuration files. 
 
 -- > u can see more syntax in google type like ansible syntax and commnds like that
+
+2 vars vunte . first prefference is to tasks lo vunte vatiki adhe print avuhundhi.....
