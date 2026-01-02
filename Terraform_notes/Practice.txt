@@ -15,7 +15,7 @@ after VPC creation VPC, dhaniki network ravali so dhani kosam IG ni create cheya
 
 T-c7-36 session lo vpc creation
 -----------------------------------
-1. vpc module folder created--> vpc.tf file created in that code will help to create VPC resources--> variable.tf file done it will helps to declare the values
+1. vpc module folder created--> vpc.tf file created in that VPC code will help to create VPC resources--> variable.tf file done it will helps to declare the values
 2. locals.tf done it will helps to over the override values for tags name
 2a. output.tf file done it will helps to get vpc id .. ikkada vachina vpc id vpc module folder lo store avuthudhi, 
 
@@ -29,4 +29,9 @@ run terraform CMDS as well like init,plan,apply
 7. separate ga tags kuda rasam like igw_tags ani...
 
 8. module folder lo vpc.tf file lo subnets code rasam 
+
+
+
+================================
+
 
