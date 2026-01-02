@@ -1,0 +1,30 @@
+Varialbes
+==============
+NAME=Trump -- in shell 
+
+$NAME in shell lo var ni represent chese proccess....
+${NAME} or this 
+-------------------------------------------------------
+Varibales  ni ekkada ayina pettachu like  .ini or  files we need just call i t 
+
+Data types
+
+Conditions
+=============
+if, if else
+when
+-- so here ansible is idomptent always
+Loops
+============
+{{ item }}
+
+ansible all -i 172.34.23.53, 
+
+ansible all -i "172.34.23.53,172.34.23.54" 
+
+================================================FINAL NOTES ================
+What is playbook
+------------------
+Playbooks are the simplest way in Ansible to automate repeating tasks in the form of reusable and consistent configuration files. 
+
+-- > u can see more syntax in google type like ansible syntax and commnds like that

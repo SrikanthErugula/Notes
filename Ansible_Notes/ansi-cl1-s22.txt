@@ -1,4 +1,3 @@
-*** Ansible ---> It is developed  through python so  
 
 Disadvantages of shell
 ========================
@@ -139,6 +138,10 @@ indentation -> spacing
 
 https://docs.ansible.com/projects/ansible/latest/index.html ---> for doc 
 
+#{The ansible.builtin.ping module is a core Ansible module used to test the connectivity and 
+    #basic functionality between the Ansible control node and the managed hosts. It is a fundamental tool for verifying that#Ansible can successfully communicate with and execute commands on remote systems. }
+
+
 in this we learn basic code see in below file
 =======================
 01-playbook.yaml 
@@ -147,6 +150,13 @@ in this we learn basic code see in below file
 inventory.ini
 
 								========================= FINAL NOTES =======================
+ 
+WHAT is ANSIBLE
+--------------
+**Ansible is an open-source IT automation engine that simplifies configuration management, application deployment, and orchestration using simple, declarative code (YAML) and an agentless architecture**
+
+*** Ansible ---> It is developed  through python so 
+
 Push -> Ansible is popular, it recently implemented pull too
 Pull -> Chef software
 
