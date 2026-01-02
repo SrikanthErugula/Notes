@@ -139,7 +139,14 @@ indentation -> spacing
 
 https://docs.ansible.com/projects/ansible/latest/index.html ---> for doc 
 
-========================= FINAL NOTES =======================
+in this we learn basic code see in below file
+=======================
+01-playbook.yaml 
+02-nginx.yaml
+
+inventory.ini
+
+								========================= FINAL NOTES =======================
 Push -> Ansible is popular, it recently implemented pull too
 Pull -> Chef software
 
