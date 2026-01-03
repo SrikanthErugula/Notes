@@ -20,8 +20,9 @@ Error is
 ===========
 when password haven't define ------ fatal: [localhost]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'password' is undefined. 'password' is undefine
 -------------------------------------------------------
-Varibales  ni ekkada ayina pettachu like  .ini or  files we need just call i t 
+Varibales  ni ekkada ayina pettachu like  .ini or  files we need just call it
 
+08, 09, 10 files are done
 Data types
 
 Conditions
