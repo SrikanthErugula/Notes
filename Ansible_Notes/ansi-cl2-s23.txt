@@ -52,3 +52,5 @@ Playbooks are the simplest way in Ansible to automate repeating tasks in the for
 -- > u can see more syntax in google type like ansible syntax and commnds like that
 
 2 vars vunte . first prefference is to tasks lo vunte vatiki adhe print avuhundhi.....
+
+inventory ---> inventory is a collection of hosts against which jobs may be launched
