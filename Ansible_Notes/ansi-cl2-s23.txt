@@ -40,9 +40,7 @@ Loops
 {{ item }} --> # item is reserved it means item lo ki one by one name anedhi vachhi print avuthundhi.
 16 file has been done
 
-ansible all -i 172.34.23.53, 
 
-ansible all -i "172.34.23.53,172.34.23.54" 
 
 ================================================FINAL NOTES ================
 What is playbook
