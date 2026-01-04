@@ -45,7 +45,7 @@ u can check with that name like vim student-data1.json.............
 
 345.4329.43209.4332
 
-shell vs command
+shell vs command :- 19 file done refer there 
 ================
 ---> linux lo 100% work ayyedi shell and Linux cmd only
 so ansible anedhi only process ni easy chestundi anthe
@@ -83,7 +83,7 @@ id roboshop -> open chesi ni check chesi chudali
     ignore_errors: true  error vastundhi telusu but procced avvalante u can this cmd
 
 Roboshop using Ansible
-======================
+====================== :- anisible-robo folder lo 01-ec2- file u can refer for ec2 and route 53 record 
 Instances creation
 
 1. create instance
@@ -97,3 +97,7 @@ loop: "{{ ec2_output.results }}" here loop loki  ec2_output indhulo results lo v
 default function --> You can override the default values of these settings in the Ansible configuration file or as an environment variable. 
 
 set_fact --> In Ansible, set_fact is a module used to dynamically create or modify variables (facts) during playbook execution, making them available for subsequent tasks
+
+
+
+====================================================
