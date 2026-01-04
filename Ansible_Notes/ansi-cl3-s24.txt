@@ -3,51 +3,83 @@ data types
 conditions
 loops
 
+--> for excute cmd is ansible-playbook -i inventory.ini 17-file_name
 functions
 ===========
-taking input and providing the output, execute whenever we call
+taking input and providing the output, execute whenever we call ---->  so that is called as functions
 
-functions == filters
-we can write functions but we need to write python code..
+functions == filters # In ansible we called as filters so both are same
+--> so here ansible discovered with python code so 
+we can write functions but we need to write python code.. not a mandatory for that custom type functions
 
 we can use default in built functions from ansible
+Ex: see 18th file for default function 
 
+Transforming strings into lists
+----------------------------------
 DevOps, Linux, Shell, Ansible -> String
-,
+(,)-->  idhi devide chese item above name ni
+
 DevOps
 Linux
 Shell
 Ansible
+------ here more ex in 18.1... 18.4 files manaki kavasinattug filter chestunnai
 
-gather_facts
+gather_facts --> we know the o/p of this execute whenever we call required data
 
-facts == variables
+facts == variables both are same in ansible
 
+18.5 file describe about set_fact see in there it used to define variables
+
+ student_yaml: "" # here lookup anedhi student.yaml file ni capture chesi andhulo lo vunde data ni  from_yaml ante stundet_yaml file lo ki vellu ani cheptunam
+
+msg: "json is :{{ --> here student_yaml lo data  ani to_json means json loki convert chei ani cheptunam.. so its printed but it doesn't good for look or understand to see
+
+u can check with that name like vim student-data1.json.............
+
+18.6 used to know lower and upper case stings conversations
+
+ # IP address filters  --> 18.7 file u can refer there 
 255.255.255.255
 
 345.4329.43209.4332
 
 shell vs command
 ================
-ansible -> node
+---> linux lo 100% work ayyedi shell and Linux cmd only
+so ansible anedhi only process ni easy chestundi anthe
 
-remote login -> take login, execute command and comeout
+--> oka vela cmd or modules emi lekapothe u can use shell or cmd mode
+when we don't have readymade modules available, we can execute command or shell module
 
-or login inside the server and execute the command
 
-when we dont have readymade modules available, we can execute command or shell module
 
-command -> a simple command no need of access to shell environment like variables, bash, piping, etc..
-shell Module -> can access variabless, pipes, redirections, shell environment, etc.
+ansible -> node --> here ansible is calling the server
 
-VAR_NAME=$(command)
+module lenappudu cmd  tho call cheyali 
+
+here ansible is working like as remote login -> take login, execute command and come out
+
+or login inside the server and execute the command and come out
+
+command -> a simple command no need of access to shell environment like variables, bash, piping, etc.. ( for small small cmds excute cheyalante u can go with COMMAND MODE) 
+shell Module -> can access variables, pipes, redirections, shell environment, etc. ( for complex or restricted times lo u can use shell
+
+VAR_NAME=$(command)  --> in shell cmd excute ayyi key lo save avuhundhi...
+
+ ls -ltr > /tmp/output.txt  it means ls -ltr lo data ni /tmp folder ki vellu ani cheptunam
 
 1. we can handle
 2. we can't handle
 
-creating the user but user already exist
+Ex: creating the user but user already exist in this case we need to handle this case 
 
-id roboshop -> 
+id roboshop -> open chesi ni check chesi chudali 
+
+--> anisible lo error vaste procced avvadhu usually... but in shell lo procced avuthundhi 
+
+    ignore_errors: true  error vastundhi telusu but procced avvalante u can this cmd
 
 Roboshop using Ansible
 ======================
@@ -55,3 +87,9 @@ Instances creation
 
 1. create instance
 2. update r53 record private ip if not frontend, if frontend updated public ip
+
+
+============================ FINAL NOTES =====================
+default function --> You can override the default values of these settings in the Ansible configuration file or as an environment variable. 
+
+set_fact --> In Ansible, set_fact is a module used to dynamically create or modify variables (facts) during playbook execution, making them available for subsequent tasks

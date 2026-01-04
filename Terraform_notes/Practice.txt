@@ -41,7 +41,10 @@ ansible.builtin.service: -> for serices running
 
 ansible.builtin.debug --> print the values for general code
 
-ansible.builtin.dnf  --> 
+ansible.builtin.dnf  --> RHEL lo manaki kavalsina data ni feteching
 
- ansible.builtin.apt --> 
+ ansible.builtin.apt -->  in Ubuntu lo manaki kavalsina data ni feteching
 
+ansible.builtin.set_fact ---> it used for transfer data into another file
+
+ansible.builtin.copy: ----> for copy files
