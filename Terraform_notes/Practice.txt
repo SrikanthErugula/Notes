@@ -33,5 +33,15 @@ run terraform CMDS as well like init,plan,apply
 
 
 ================================
+ansible.builtin.ping  --> for smaple test code for ansible connection
 
+ ansible.builtin.package  -> for package installation 
+
+ansible.builtin.service: -> for serices running
+
+ansible.builtin.debug --> print the values for general code
+
+ansible.builtin.dnf  --> 
+
+ ansible.builtin.apt --> 
 

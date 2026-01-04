@@ -23,16 +23,22 @@ when password haven't define ------ fatal: [localhost]: FAILED! => {"msg": "The 
 Varibales  ni ekkada ayina pettachu like  .ini or  files we need just call it
 
 08, 09, 10 files are done
-Data types
+Data types --> 11 file has been done
 
 Conditions
 =============
 if, if else
-when
--- so here ansible is idomptent always
+when --> 12 file has been done
+
+-- so here ansible is idomptent always --> check the facts 13 file and 
+14th files done in that we are using that facts we can able to fetch required data form facts
+--> this will becomes heterogeneous. so ila single palybook or yaml lo manaki kavalasina data ni fetch cheyachhuu.. 
+
 Loops
 ============
-{{ item }}
+15 file
+{{ item }} --> # item is reserved it means item lo ki one by one name anedhi vachhi print avuthundhi.
+16 file has been done
 
 ansible all -i 172.34.23.53, 
 
