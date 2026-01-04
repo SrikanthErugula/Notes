@@ -63,8 +63,9 @@ here ansible is working like as remote login -> take login, execute command and 
 
 or login inside the server and execute the command and come out
 
-command -> a simple command no need of access to shell environment like variables, bash, piping, etc.. ( for small small cmds excute cheyalante u can go with COMMAND MODE) 
-shell Module -> can access variables, pipes, redirections, shell environment, etc. ( for complex or restricted times lo u can use shell
+will excute it in this case:  command -> a simple command no need of access to shell environment like variables, bash, piping, etc.. ( for small small cmds excute cheyalante u can go with COMMAND MODE) 
+
+will excute it in this case:  shell Module -> can access variables, pipes, redirections, shell environment, etc. ( for complex or restricted times lo u can use shell
 
 VAR_NAME=$(command)  --> in shell cmd excute ayyi key lo save avuhundhi...
 
@@ -88,6 +89,9 @@ Instances creation
 1. create instance
 2. update r53 record private ip if not frontend, if frontend updated public ip
 
+first aws configure cheyali while excute time 
+
+loop: "{{ ec2_output.results }}" here loop loki  ec2_output indhulo results lo vunde data lo pub and pvt kavali ani cheptunam value lo code rsam { item.instances[0 ila
 
 ============================ FINAL NOTES =====================
 default function --> You can override the default values of these settings in the Ansible configuration file or as an environment variable. 
