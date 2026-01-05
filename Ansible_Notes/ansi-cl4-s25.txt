@@ -16,6 +16,8 @@ python
 first we need to run AWS configure before going to start
 need to install $ pip3.9 install boto3 botocore
 
+--> official doc and community modules lenaapudu we have to use shell or command module
+
 ansible-roboshop folder lo
 1. mongodb.yaml file done and mongo.repo also done
 after login mongodb server u can use this cmd like netstat -lntp 

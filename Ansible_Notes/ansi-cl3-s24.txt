@@ -103,6 +103,7 @@ default function --> You can override the default values of these settings in th
 
 set_fact --> In Ansible, set_fact is a module used to dynamically create or modify variables (facts) during playbook execution, making them available for subsequent tasks
 
+--> official doc and community modules lenaapudu we have to use shell or command module
 
 
 ====================================================

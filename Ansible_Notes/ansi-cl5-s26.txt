@@ -2,6 +2,8 @@ first we need to run AWS configure before going to start
 
 need to install $ pip3.9 install boto3 botocore
 
+--> official doc and community modules lenaapudu we have to use shell or command module
+
 ansible-playbook -i inventory.ini mongodb.yaml
 ansible-playbook -i inventory.ini redis.yaml
 ansible-playbook -i inventory.ini mysql.yaml
