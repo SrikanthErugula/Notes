@@ -149,6 +149,10 @@ in this we learn basic code see in below file
 
 inventory.ini
 
+--> first need to install anisble server
+aws configurartion
+pynthon server install
+
 								========================= FINAL NOTES =======================
  
 WHAT is ANSIBLE

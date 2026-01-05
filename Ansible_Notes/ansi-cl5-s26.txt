@@ -21,20 +21,38 @@ for checking status netstat -lntp and curl http://cart.dsoaws.fun:8080/health  -
 --> in ansible every module has been developed by python so we have to install some required modules
 
 payment file has been done
+frontend and config files has been created, 
+--> upto here roboshop project has been done 
 
 Roles
 =======
 DRY
 
-variables
-functions
+variables  here also we are using DRY
+functions here also we are using DRY
 
 Ansible roles is a proper directory structure of creating playbooks, maintaining and reusing. roles will have tasks, files, vars, defaults, handlers, templates. By default role will try to load main.yaml in each directory
 
 ============== Google  diff =+===============
 Ansible roles are the primary mechanism for organizing and reusing Ansible automation code. They are self-contained, portable units that group related tasks, variables, files, handlers, and templates into a known, standardized directory structure, making complex automation cleaner and easier to manage.  
 =================
+ansible-robo-roles folder has been done
+copied .ini folder
+separate ga mongodb.yaml file created
+create roles folder
+inside that mongodb
+tasks
+redis
 
-rm -rf /usr/share/nginx/html/
+--> roles: ila iste roles folder loki veli andhulo mongodb file chusi andhulo vunde tasks excute chei ani cheptunam
+
+-> by default anni folders lo vunna main.yaml file ni load chestundhi ani chepparu 
+
+--> roles lo vunde mongodb folder enni ithe main.yaml files vunnayo avvvani run avuthai and next files folder lo vunde files anniexcute avuthai
+
+--> roles means manam rase playbook li oka proper structure follow avvuthu oka format lo rase process ni roles
+
+
+
 
 ---> so here why we are using this Pip3 libraries bcz in linix and shell we are using directly but in ansible we are using module to excute lines ... so all modules anni python develop chesaru so python laga vatini install cheyali 
