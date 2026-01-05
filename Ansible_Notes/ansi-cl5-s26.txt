@@ -1,0 +1,23 @@
+ansible-playbook -i inventory.ini mongodb.yaml
+ansible-playbook -i inventory.ini redis.yaml
+ansible-playbook -i inventory.ini mysql.yaml
+ansible-playbook -i inventory.ini rabbitmq.yaml
+
+so ila anni okesari run cheyachhu  for reduce the time
+
+Roles
+=======
+DRY
+
+variables
+functions
+
+Ansible roles is a proper directory structure of creating playbooks, maintaining and reusing. roles will have tasks, files, vars, defaults, handlers, templates. By default role will try to load main.yaml in each directory
+
+============== Google  diff =+===============
+Ansible roles are the primary mechanism for organizing and reusing Ansible automation code. They are self-contained, portable units that group related tasks, variables, files, handlers, and templates into a known, standardized directory structure, making complex automation cleaner and easier to manage.  
+=================
+
+rm -rf /usr/share/nginx/html/
+
+---> so here why we are using this Pip3 libraries bcz in linix and shell we are using directly but in ansible we are using module to excute lines ... so all modules anni python develop chesaru so python laga vatini install cheyali 
