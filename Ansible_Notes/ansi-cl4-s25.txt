@@ -38,3 +38,9 @@ after login mongodb server u can use this cmd like netstat -lntp
 
   when: catalogue_output.stdout | int < 0 here stdout value lo 0 kate thakuva ithe manam data ni load checi ani cheptunam for more u can see session once
 int --> ansible string to int https://serverfault.com/questions/1030350/converting-string-to-integer-in-ansible-playbook
+
+
+
+UPTO HERE mongodb.yaml, redis-yaml,musql-yaml,RabbitMQ-yaml,cata-yaml files has been done
+
+=================================
