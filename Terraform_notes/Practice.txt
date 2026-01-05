@@ -35,9 +35,11 @@ run terraform CMDS as well like init,plan,apply
 ================================
 ansible.builtin.ping  --> for smaple test code for ansible connection
 
- ansible.builtin.package  -> for package installation 
+ ansible.builtin.package  -> for package installation so ikkada ansible check chesukuntadhi as per package wise
 
 ansible.builtin.service: -> for serices running
+
+ansible.builtin.replace: for values replace 
 
 ansible.builtin.debug --> print the values for general code
 
@@ -48,3 +50,17 @@ ansible.builtin.dnf  --> RHEL lo manaki kavalsina data ni feteching
 ansible.builtin.set_fact ---> it used for transfer data into another file
 
 ansible.builtin.copy: ----> for copy files
+
+ ansible.builtin.command:  exsiting module emi ledhu so we need to go for manual here we can use commad mode
+
+ ansible.builtin.lineinfile --> change the line not word for existing key value EX  line: 'protected-mode no'
+
+ansible.builtin.user: --> create roboshop system user or any user
+
+ ansible.builtin.file: --> for file chages u can use this like remove or addd
+
+ ansible.builtin.get_url --> used for get url inside the content
+
+ ansible.builtin.unarchive: used for file or inside content unzip or unarchive
+
+ community.general.npm: used for whatever having inside packages, those are must be intall by using this...
