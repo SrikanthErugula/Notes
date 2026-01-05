@@ -83,7 +83,12 @@ id roboshop -> open chesi ni check chesi chudali
     ignore_errors: true  error vastundhi telusu but procced avvalante u can this cmd
 
 Roboshop using Ansible
-====================== :- anisible-robo folder lo 01-ec2- file u can refer for ec2 and route 53 record 
+======================
+
+first we need to run AWS configure before going to start
+need to install $ pip3.9 install boto3 botocore
+
+ :- anisible-robo folder lo 01-ec2- file u can refer for ec2 and route 53 record 
 Instances creation
 
 1. create instance
