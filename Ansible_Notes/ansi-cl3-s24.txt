@@ -105,5 +105,7 @@ set_fact --> In Ansible, set_fact is a module used to dynamically create or modi
 
 --> official doc and community modules lenaapudu we have to use shell or command module
 
+--> functions == filters # In ansible we called as filters so both are same
+
 
 ====================================================

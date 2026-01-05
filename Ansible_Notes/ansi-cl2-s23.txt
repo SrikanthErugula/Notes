@@ -9,7 +9,7 @@ ${NAME} or this
 
 {{ COURSE }}, ila special ga declare chyali in absible lo vars ni print cheyali ante 
 --> 04 vars has been done
-05 task vars done
+05 task vars done --> task level lo vude vatiki first preference
 06 done
 
 --> Course,yaml --> ee file lo code rasi main code call cheyachuu..........it is used to overcome or prevent accidental changes in main code.. 
@@ -43,12 +43,13 @@ Loops
 
 
 ================================================FINAL NOTES ================
+
 What is playbook
 ------------------
 Playbooks are the simplest way in Ansible to automate repeating tasks in the form of reusable and consistent configuration files. 
 
 -- > u can see more syntax in google type like ansible syntax and commnds like that
 
-2 vars vunte . first prefference is to tasks lo vunte vatiki adhe print avuhundhi.....
+2 vars vunte . first prefference is to tasks lo vunte vatiki adhe print avuhundhi.....05 task vars done --> task level lo vude vatiki first preference
 
 inventory ---> inventory is a collection of hosts against which jobs may be launched
