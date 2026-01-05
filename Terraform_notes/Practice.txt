@@ -35,7 +35,7 @@ run terraform CMDS as well like init,plan,apply
 ================================
 ansible.builtin.ping  --> for smaple test code for ansible connection
 
- ansible.builtin.package  -> for package installation so ikkada ansible check chesukuntadhi as per package wise
+ ansible.builtin.package  -> for package installation so ikkada ansible check chesukuntadhi ansibe_os_family as per package wise like RHEL lo dnf and unhunt lo Debian ala
 
 ansible.builtin.service: -> for serices running
 

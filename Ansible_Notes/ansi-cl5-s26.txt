@@ -11,6 +11,17 @@ ansible-playbook -i inventory.ini rabbitmq.yaml
 
 so ila anni okesari run cheyachhu  for reduce the time
 
+user and cart files has been done
+shipping file done 
+
+for checking status netstat -lntp and curl http://catalogue.dsoaws.fun:8080/health
+for checking status netstat -lntp and curl http://user.dsoaws.fun:8080/health
+for checking status netstat -lntp and curl http://cart.dsoaws.fun:8080/health  ---> ila ani chech chesukovali 
+
+--> in ansible every module has been developed by python so we have to install some required modules
+
+payment file has been done
+
 Roles
 =======
 DRY
