@@ -21,6 +21,7 @@ for checking status netstat -lntp and curl http://cart.dsoaws.fun:8080/health  -
 --> in ansible every module has been developed by python so we have to install some required modules
 
 payment file has been done
+
 frontend and config files has been created, 
 --> upto here roboshop project has been done 
 
