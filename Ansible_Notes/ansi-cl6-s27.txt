@@ -30,6 +30,7 @@ catalogue should import the tasks in common role --> common folder nuchi techhuk
 mongodb-dev.daws86s.fun  --> based on dev
 mongodb-qa.daws86s.fun --> based on prod
 mongodb.daws86s.fun  -> --> based on testing 
+
 --> in roles --> catalogue --> vars folder created --> main.yaml
 
 --> in roles doc lo vars and defaults/  ani 2 vutai bur vars lo vunde vatiki high preference
@@ -45,9 +46,7 @@ if any changes are done in code we have to perform notifiers or handlers
 
 in interview --> What are the handlers 
 ===========
-->Handlers are like notifiers when there is change in particular task we can notify other task, if there is no changes will happen then we no need to run 
-
-->Ansible handlers are special tasks that run only when they are explicitly notified by other tasks that have made a change to the system.
+see in FINAL notes at last in this page 
 
 --> catalogue.service file lo change chese value vundi that is mongodb.fun so we have to replace it in vars lo main.yaml file lo value HOST value
 
@@ -61,7 +60,7 @@ fixed form with placeholders
 here j2 anedhi not manadatory but evaraina chusinappudu idhi roles template ani ardham avuthundhi
 --> so andhulo some placeholders change cheyali ani ardham avuthundhi
 
-What is template --: ansible templates are jinja2 formatted files, there will be placeholders inside the file, actual values will be submitted at runtime and copied to remote server
+What is template --: see in FINAL notes at last in this page 
 
 -->so final ga catalogue ni run ayyi excute avuthundi done here 
 --> so ansible content ni kuda check chestundi not a files 
@@ -151,7 +150,6 @@ Environment=AMQP_PASS={{ RABBITMQ_PASS }}  -------> these values come from vars 
 Environment=AMQP_HOST={{ RABBITMQ_HOST }}
 Environment=USER_HOST={{ USER_HOST }}  ------------>comes from group_vars lo for-all.yaml lo numchi
 
---> FINALLY roles means proper directory structure ...
 
 -> for checking $ curl http://shipping.dsoaws.fun:8080/health
 
@@ -163,9 +161,23 @@ In frontend --> handlers (main.yaml) ,  --> tasks (main.yaml) , --> templates (p
 
   src: nginx.conf.j2 --> its defined in templates folders bcz in future if any changes will happen it will automatically reflect once run code 
 
-
-
 plugins kuda vunttai
 https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_reuse_roles.html here all doc about roles======
 
 -==========================================
+
+====================================================== FINAl NOTES ===================
+
+ What are the handlers 
+===========
+->Handlers are like notifiers when there is change in particular task we can notify other task, if there is no changes will happen then we no need to run 
+
+->Ansible handlers are special tasks that run only when they are explicitly notified by other tasks that have made a change to the system.
+
+What is template --: ansible templates are jinja2 formatted files, there will be placeholders inside the file, actual values will be submitted at runtime and copied to remote server
+
+meta – Includes metadata information for the role, its dependencies, the author, license, available platform, etc.
+
+--> FINALLY roles means proper directory structure ...
+
+.j2 file in Ansible is a Jinja2 template file used to generate dynamic configuration files or scripts on managed hosts
