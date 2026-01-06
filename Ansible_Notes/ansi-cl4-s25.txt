@@ -25,7 +25,7 @@ after login mongodb server u can use this cmd like netstat -lntp
 
 2 . redis-yaml file done ---> ansible.builtin.lineinfile
 
-3. musql-yaml file has been done
+3. mysql-yaml file has been done
 4. RabbitMQ-yaml file done
 5. cata-yaml
 
