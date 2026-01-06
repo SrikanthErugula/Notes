@@ -131,21 +131,37 @@ IN shiiping --> handlers (main.yaml) , --> meta (main.yaml) , --> tasks (main.ya
 Environment=CART_ENDPOINT={{ CART_HOST }}:8080
 Environment=DB_HOST={{ MYSQL_HOST }} -------------------> comes from group_vars lo for-all.yaml lo numchi
 
+    login_user: "{{ MYSQL_ROOT_USER }}"
+    login_password: "{{ MYSQL_ROOT_PASSWORD }}  -------------> these values come from vars --> main.yaml file lo
 
 -> for checking $ curl http://shipping.dsoaws.fun:8080/health
-
 
 ============================================= PAYMENT SET UP ==================== ansible-playbook -i inventory.ini main.yaml -e "component=payment" 
 
 IN roles --> payment DIR
 
+IN payment dir -->  handlers (main.yaml) , --> meta (main.yaml) , --> tasks (main.yaml) , --> templates (payment.service.j2)  , --> vars (main.yaml)
+
+IN roles --> for-common --> python.yaml 
 
 
+Environment=AMQP_USER={{ RABBITMQ_USER }}
+Environment=AMQP_PASS={{ RABBITMQ_PASS }}  -------> these values come from vars --> main.yaml file lo
 
+Environment=AMQP_HOST={{ RABBITMQ_HOST }}
+Environment=USER_HOST={{ USER_HOST }}  ------------>comes from group_vars lo for-all.yaml lo numchi
 
+--> FINALLY roles means proper directory structure ...
 
+-> for checking $ curl http://shipping.dsoaws.fun:8080/health
 
+========================= FRONTEND SET UP ================== ansible-playbook -i inventory.ini main.yaml -e "component=frontend" 
 
+IN roles --> frontend dir 
+
+In frontend --> handlers (main.yaml) ,  --> tasks (main.yaml) , --> templates (payment.service.j2)
+
+  src: nginx.conf.j2 --> its defined in templates folders bcz in future if any changes will happen it will automatically reflect once run code 
 
 
 
