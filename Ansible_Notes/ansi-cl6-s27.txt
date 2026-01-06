@@ -164,7 +164,6 @@ In frontend --> handlers (main.yaml) ,  --> tasks (main.yaml) , --> templates (p
 plugins kuda vunttai
 https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_reuse_roles.html here all doc about roles======
 
--==========================================
 
 ====================================================== FINAl NOTES ===================
 
