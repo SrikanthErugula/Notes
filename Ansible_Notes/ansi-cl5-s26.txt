@@ -74,3 +74,6 @@ next separate ga redis folder directory created
 
 
 ---> so here why we are using this Pip3 libraries bcz in linix and shell we are using directly but in ansible we are using module to excute lines ... so all modules anni python develop chesaru so python laga vatini install cheyali 
+
+
+==============================
