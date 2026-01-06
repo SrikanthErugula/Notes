@@ -57,7 +57,7 @@ ansible.builtin.copy: ----> for copy files
 
 ansible.builtin.user: --> create roboshop system user or any user
 
- ansible.builtin.file: --> for file chages u can use this like remove or addd
+ ansible.builtin.file: --> for file changes u can use this like remove or add file
 
  ansible.builtin.get_url --> used for get url inside the content
 

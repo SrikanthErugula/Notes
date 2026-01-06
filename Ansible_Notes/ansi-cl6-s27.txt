@@ -1,37 +1,152 @@
 
+first manual ga one server crate chesi 
+andhulu ansible ni install cheyali and aws configure ni set up cheyali --> git clone --> cd ansible-robo-roles 
+--> ansible-playbook -i inventory 01-ec2-r53.yaml -e "instances=['mongodb','redis','mysql','rabbitmq','catalogue','user','cart','shipping','payment','frontend']"
+--> pip3.9 install boto3 botocore
 
-instances=['mongodb','redis','mysql','rabbitmq','catalogue','user','cart','shipping','payment','frontend']
-
+--> upto here session 26 lo setup chesam ippdu run chestunam 
 ansible-playbook -i inventory.ini main.yaml -e "component=mongodb"
 ansible-playbook -i inventory.ini main.yaml -e "component=redis"
 ansible-playbook -i inventory.ini main.yaml -e "component=mysql"
-ansible-playbook -i inventory.ini main.yaml -e "component=rabbitmq"
+ansible-playbook -i inventory.ini main.yaml -e "component=rabbitmq"   ----> one by one will run here 
 
-app setup
-nodejs setup
-systemd
+
+CATALOGUE SET UP
+====================
+ansible-playbook -i inventory.ini main.yaml -e "component=catalogue"
+
+--> cata lo common code chala vundi like as below  so we need to set common folder crated
+app setup -->nodejs setup --> system --> remove and add user and folders ivvani common for all
+
+--> in roles folder--> catalogue directory --> tasks folder --> main.yaml inside that for-common lo code nicall chstunam 
+
+--> common folder --> tasks --> app-setup.yaml
+--> common folder --> tasks --> nodejs.yaml
 
 catalogue is one role, common is another role
-catalogue should import the tasks in common role
+catalogue should import the tasks in common role --> common folder nuchi techhukunttadhi 
 
-mongodb-dev.daws86s.fun
-mongodb-qa.daws86s.fun
+--> here as per prod and dev ni bas chesukoni below variable change avuuthun vunttadhi, so to over come this problem we need to create a separate folder in tasks
+mongodb-dev.daws86s.fun  --> based on dev
+mongodb-qa.daws86s.fun --> based on prod
+mongodb.daws86s.fun  -> --> based on testing 
+--> in roles --> catalogue --> vars folder created --> main.yaml
 
-mongodb.daws86s.fun
+--> in roles doc lo vars and defaults/  ani 2 vutai bur vars lo vunde vatiki high preference
+--> so ila enni vars ayina call cheyachhu
 
-when there is a change in something notify others to reload
+--> in roles --> catalogue --> files created --> mongo.repo created 
 
-notifiers or handlers
+when there is a change in service file /etc/systemd/system/{{ component }}.service"    something  notify others to reload
+
+if any changes are done in code we have to perform notifiers or handlers  
+
+--> roles --> catalogue --> handlers --> main.yaml
+
+in interview --> What are the handlers 
+===========
+->Handlers are like notifiers when there is change in particular task we can notify other task, if there is no changes will happen then we no need to run 
+
+->Ansible handlers are special tasks that run only when they are explicitly notified by other tasks that have made a change to the system.
+
+--> catalogue.service file lo change chese value vundi that is mongodb.fun so we have to replace it in vars lo main.yaml file lo value HOST value
 
 template
 ==========
 fixed form with placeholders
 
-templatising file is nothing but keeping the placeholders, submitting the actual values at runtime.
+--> we have jinja2 templating
 
-jinja2 templating
+--> in roles --> catalogue --> templates --> catalogue.service.j2
+here j2 anedhi not manadatory but evaraina chusinappudu idhi roles template ani ardham avuthundhi
+--> so andhulo some placeholders change cheyali ani ardham avuthundhi
 
-ansible templates are jinja2 formatted files, there will be placeholders inside the file, actual values will be submitted at runtime and copied to remote server
+What is template --: ansible templates are jinja2 formatted files, there will be placeholders inside the file, actual values will be submitted at runtime and copied to remote server
+
+-->so final ga catalogue ni run ayyi excute avuthundi done here 
+--> so ansible content ni kuda check chestundi not a files 
+
+--> for checking $ curl http://catalogue.dsoaws.fun:8080/health
+
+
+so roles lo vars,tasks,templates,files,handlers, inka vunnai avi anni kuda use for custum  ga cheyalante like defaults/  meta/ library/  module_utils/ lookup_plugins  
+
+--> here meta ante depended file means we can keep the role depended files --> evaraina chusina vallaki kuda ardham avuthuni
+
+EX means catalogue anedi main ga for-common folder meedha run avuthundhi so see below
+
+--> roles --> catalogue --> meta --> main.yaml
+
+
+USER SET UP
+====================
+ansible-playbook -i inventory.ini main.yaml -e "component=user"
+
+in roles --> user dir
+
+in user dir --> handlers --> main.yaml
+   user dir --> meta --> main.yaml
+   user dir --> vars -->main.yaml
+  user dir --> tasks --> main.yaml
+  user dir --> templates --> user.service.j2 *** j2 ani ivvakapothe error vastundhi 
+
+in roles --> group_vars --> for-all.yaml ( indhulo all ki use ayye vatini ikkada store chestaru) 
+
+Environment=REDIS_URL='redis://{{ REDIS_HOST }}:6379'
+Environment=MONGO_URL="mongodb://{{ MONGODB_HOST }}:27017/users"
+
+the above values comes from group_vars lo for-all.yaml lo numchi
+
+--> for checking $ curl http://user.dsoaws.fun:8080/health
+
+
+CART SET UP
+=============				========= ansible-playbook -i inventory.ini main.yaml -e "component=cart"
+in roles --> cart dir
+
+in cart dir --> handlers --> main.yaml
+   cart dir --> meta --> main.yaml
+   cart dir --> vars -->main.yaml
+  cart dir --> tasks --> main.yaml
+  cart dir --> templates --> cart.service.j2 *** j2 ani ivvakapothe error vastundhi 
+
+in roles --> group_vars --> for-all.yaml
+
+Environment=CATALOGUE_HOST={{ CATALOGUE_HOST }} this values comes from group_vars lo for-all.yaml lo numchi
+
+
+--> for checking $ curl http://cart.dsoaws.fun:8080/health
+
+=================== SHIPPINH SET UP =============== ansible-playbook -i inventory.ini main.yaml -e "component=shipping"
+so idhi konchem java set up then we need to create java.yaml see there
+
+IN roles --> shipping dir
+
+IN roles --> for-common --> java.yaml 
+
+IN shiiping --> handlers (main.yaml) , --> meta (main.yaml) , --> tasks (main.yaml) , --> templates (shipping.service.j2)  , --> vars (main.yaml)
+
+--> basically number of microservices might be increasing in project, then java ane microservice lo rayalante we can use this java.yaml 
+
+Environment=CART_ENDPOINT={{ CART_HOST }}:8080
+Environment=DB_HOST={{ MYSQL_HOST }} -------------------> comes from group_vars lo for-all.yaml lo numchi
+
+
+-> for checking $ curl http://shipping.dsoaws.fun:8080/health
+
+
+============================================= PAYMENT SET UP ==================== ansible-playbook -i inventory.ini main.yaml -e "component=payment" 
+
+IN roles --> payment DIR
+
+
+
+
+
+
+
+
+
 
 
 plugins kuda vunttai

@@ -20,6 +20,8 @@ need to install $ pip3.9 install boto3 botocore
 
 ansible-roboshop folder lo --> need to install $ pip3.9 install boto3 botocore
 
+#  ansible-playbook -i inventory.ini 01-ec2-r53.yaml -e "instances=['catalogue','user','cart']" 
+
 1. mongodb.yaml file done and mongo.repo also done
 after login mongodb server u can use this cmd like netstat -lntp 
 
@@ -30,7 +32,7 @@ after login mongodb server u can use this cmd like netstat -lntp
 5. cata-yaml
 
 # so intha varaku runcheste manaki error avstundhi like --The error was: If you are using a module and expect the file to exist on the remote, see the remote_src option
-# so here remote server lo kadha task lu excute ayyedhi bcz we are configuring the remoteserver kabbati.. not in ansible server...  
+# so here remote server or node lo kadha task lu excute ayyedhi bcz we are configuring the remoteserver kabbati.. not in ansible server...  
 # by default ansible server lo numchi file ni remote serevr loki move chayali feel avuthudni, but actuall ga remote lone file vuntadi download ayinapdu... we have a one option like as below remote_src
 
 # see notes for deatails..
