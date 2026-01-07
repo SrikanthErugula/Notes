@@ -1,3 +1,8 @@
+we have to create one ec2 server and then connect to mobaxterm...
+
+first we need to run AWS configure before going to start 
+
+need to install $ pip3.9 install boto3 botocore
 
 ansible configuration
 ====================
