@@ -1,49 +1,138 @@
-we have to create one ec2 server and then connect to mobaxterm...
+we have to create one ec2 server and then connect to mobaxterm... install ansible
 
 first we need to run AWS configure before going to start 
 
 need to install $ pip3.9 install boto3 botocore
 
+--> for sure every tool has some kind of default configuration or else for customization purpose, so in that if any need we have a chance to edit or recorrect
+
+EX Nginx configuration, crontab config, ssh config.......etc so like that ansible also have some configuration 
+
 ansible configuration
 ====================
+For more deatils u can access the below URL
+https://docs.ansible.com/projects/ansible/latest/reference_appendices/config.html
+
+Changes can be made and used in a configuration file which will be searched for in the following order: --> so ansible will start to search for config any one of it
+
+	1. ANSIBLE_CONFIG (environment variable if set)
+
+	2. ansible.cfg (in the current directory)
+
+	3. ~/.ansible.cfg (in the home directory)
+
+	4. /etc/ansible/ansible.cfg
+
+Ansible will process the above list and use the first file found, all others are ignored.
+
+--> see google doc for more info cmds
+
 1. ANSIBLE_CONFIG env variable
 2. pwd
 3. home directory
 4. /etc/ansible/ansible.cfg
 
-logs
-debug -vvv
+--> so best preference is 2. pwd, bcz we have been to create many ansible repos, so when that time if u want store specific config for each repos then u will able to create separate folder like ansible.cfg....in your project
+
+--> so in that folder it has many options so reffer this URL for more options to know (https://docs.ansible.com/projects/ansible/latest/reference_appendices/config.html)
+
+--> IN ansible-robo-roles --> ansible.cfg folder created
+
+--> see in google for execution 
+
+--> IN ansible.cfg lo log path has been defined 
+
+--> it used to store the all ansible repos logs inside
+
+logs --> need to ask someone session 28 15: 00 min
+
+--> WHAT is DEBUG === VVV measns verbose ======	
+=========
+Debug is a process used by developers and programmers to identify and remove errors or bugs in software or hardware
+--> if u want see excute code ion screen u can give like (-vv) it is for few matter, for more more u can give like (-vvv) 
+
+EX: ]$ ansible-playbook -vv all-start-code.yaml -e "component=mongodb"
+
+TAGS
+=====
+Ansible tags are metadata used to label tasks, blocks, plays, or roles within a playbook, allowing users to selectively run or skip specific parts during execution. This is particularly useful for debugging, testing, and managing large, complex playbooks
+
+							OR  https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_tags.html
+
+If you have a large playbook, it may be useful to run only specific parts of it instead of running the entire playbook. 
+
+--> means which code excute avvali and adhi excute avakudadhu ani cheptundi..
+
+--> for example deployment chestunam anuko then first time run cheste code antha excute avuthudi, and emaina chages vunte malli first nuchi kakunda only ekkada ithe changes done aa step lu run ithe chalu so run kavalisina step dhaggar tags use cheste done inka
+
+EX : see in cata --> tasks ( main.yaml)  # tags:
+  					    # - deployment
+
+--> In execution time u can call it like these ]$ ansible-playbook -vv all-start-code.yaml -e "component=mongodb" -t deployment
+
+--> if need in your projects u can create separate folder in tasks --> main.yaml file andhulo code ni put chei
 
 include_role vs import_role
 
-include_role
-==============
+include_role 					explicit --> crystal clear or obvious or clear
+==============          			
 it includes at run time, checks while processing. include will not respect tags. We must explicitly set inside the tasks
 
-import_role
+-->excute time lo overall code antha check chesukodhuu, step by step code excute avuthunte, ekkada ithe step lo fail avuthundho aa step varaku run ayyi agipothundhi
+
+import_role  
 ==============
 imports the role before exection and parse it, checks before processing. applying tags at the import setup to all the tasks automatically.
 
+--> excute time lo overall code antha check chesukoni  emaina error vunte startinglone error vastundhi will stop excution 
+
+--> In ansible-robo-role --> include-import-robo.yaml
+
+--> In roles --> inlcude-imoprt dir --> tasks --> main.yaml
+---> In roles --> for-common --> include-import-com.yaml
+====================	=======================================================			=================================
+
 dynamic inventory
 ===============
-autoscaling, when trafic increase servers will be increased
-a plugin is provided aws and ansible to fetch the IP address dynamically
+Dynamic inventory in Ansible automatically fetches a real-time list of hosts from external sources like cloud APIs (AWS, Azure, GCP) or CMDBs, eliminating manual updates and adapting to changing infrastructure (like auto-scaled servers)
 
-query aws
-us-east-1, ec2, running and name should be frontend
+--> autoscaling means ---> when trafic increase servers will be increased  [ EX: big billon days) 
 
-tasks -> execute something on the remote/target server
-plugins -> connects to other system and fetch required information
+--> a plugin is provided by aws and ansible to fetch the IP address dynamically 
 
-*.aws_ec2.yml/yaml
+--> Now let's assume if u have created 6 server in ec2 server in AWS, when if u want take ip of those 6 server easy, but if it has 100 servers when that its very stuff to get 100 ip's
 
-ansible can connect to AWS dynamically to fetch the IP address using dynamic inventory plugin(amazon.aws.aws_ec2), this helps in autoscaling kind of environment, where fetching the IP address statically is not possible
+EX: query aws properties or parameters like as us-east-1, ec2, running and name should be frontend  so ila filter chesi query cheyachu through plugins
+
+-->tasks behaviour is -> execute something on the remote/target server  
+
+so manam vere system loki velli info ni fetch cheyalante u need plugins
+
+plugins behaviour is -> connects to other system and fetch required information
+
+so naming formate is demo.aws_ec2.yml/yaml --> instead of demo u can put anything
+
+************for excute CMD --$ ansible-inventory -i demo-plugins.aws_ec2.yaml --graph
+
+--> ila iste demo yaml file excute ayyi ip address lu print avuthai
+
+so now try with this for real time 
+
+--> In ansible-robo-role --> demo-plugins.aws_ec2.yaml file created 
+
+ --> In ansible-robo-rol --> nginx.yaml file created for running u need give below cmd
+
+ansible-inventory -i demo-plugins.aws_ec2.yaml -e ansible_user=ec2-user -e ansible_password=DevOps321 nginx.yaml
+
+--[ansible can connect to AWS dynamically to fetch the IP address using dynamic inventory plugin(amazon.aws.aws_ec2), this helps in autoscaling kind of environment, where fetching the IP address statically is not possible]
+
+
 
 secrets
 ==========
-vault -> secured place to keep the secrets
+we have one parameter vault means-> secured place to keep the secrets
 
-ansible-vault
+in ansible we have called =---> ansible-vault
 
 ansible-vault create vault.yaml
 
