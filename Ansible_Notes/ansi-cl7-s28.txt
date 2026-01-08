@@ -130,16 +130,94 @@ ansible-inventory -i demo-plugins.aws_ec2.yaml -e ansible_user=ec2-user -e ansib
 
 secrets
 ==========
-we have one parameter vault means-> secured place to keep the secrets
+we have one parameter that is vault means-> secured place to keep the secrets
 
-in ansible we have called =---> ansible-vault
+in ansible we have called as =---> ansible-vault
 
-ansible-vault create vault.yaml
+--> first we have to create a file or folder, then u need to set up for that folder or file
+--> the below pwd is encypt for detailed info see in google doc ansible config page
+
+[ ec2-user@ip-172-31-66-23 ~/ansible-robo-roles ]$ cat test.yaml
+$ANSIBLE_VAULT;1.1;AES256
+34373562326439383231613035643866326539363037306436353361653565343363363434653961
+6538323761376433663066666634386263346337333733360a633661366661316363373564333066
+39356638643037653166356634346633356561383064656331623666373362626138336634376531
+3935333464373133610a316665313564636638626266356363343532346234356138393634613661
+39343630313666393965376466353666623736653332333432316363396664616333
+
+--> So whoever have that original pwd they can decypt or open
+--> we have just 4 cmds to set up pwd for vault
+ ansible-vault create mysql.yaml
+ ansible-vault view mysql.yaml
+ ansible-vault edit mysql.yaml
+ ansible-vault delete mysql.yaml
+
+--> is u want give this pwd for public then give decypt pwd ... cat mysql.yaml
+
+--> IN ansible-robo-role --> grp_vars---> MySQL folder created --> inside any name like vault.yaml
+ 						OR ELSE
+--> u can put it like in role --> MySQL --> vars --> main.yaml  ---> it's behaviour like as variable 
+
+--> after set secret pwd if u want run MySQL dir give below cmd
+
+-->$ ansible-playbook -i inventory main.yaml -e "component=mysql" ( ila iste error like attempting to decrypt but no vault .....) 
+
+--> $ ansible-playbook -i inventory main.yaml -e "component=mysql" --ask-vault-pass   ( this is the right cmd) 
+
+--> but ila kuda manam adagakuadhu in cmd line lo like --ask-vault-pass ani ila 
+
+--> so for this we have cmd like vault_password_file = ... this is available in anisble.cfg file in roles in VSCODEs
+
+--> see more info in google doc ansible config page
+
+--> if u want run again give like $ ansible-playbook -i inventory main.yaml -e "component=mysql" 
+
+--> for telnet check is --> telnet mysql.dsoaws.fun 3306
+
+--> see more info in google doc ansible config page
+
+--> finally here store key inside the server
 
 secrets manager
 ===============
-AWS is a platform
 
-hashicorp vault
+AWS is a platform it measn it gives many options to us like VPC,EC2,IAM,S3,.....	So ala everything oka chota available ga vundatumm
 
-store key inside the server
+--> In aws tool ni could kosam use chestunnam, so we have a option to store our pwd in that. no need go for 3rd party tools to secure our pwds 
+
+--> In aws --> system manager --> parameter store is one of the option 
+--> create parameter --> name (/) tho ivvali like /robo/mysql/mysql_root_password --> standard --> type is SecureString--> my account --> in value box give pwd is RoboSHop@1 --> click on create
+
+--> here whoever has admin access in our team like client or manager or VC... so vallaki visible
+
+hashicorp vault .. ila 3rd party tool vuntai pwd ni secure cheyadanii,
+
+--> 
+--> IN ansible-robo-role --> grp_vars---> MySQL folder created --> inside any name like main.yaml
+ 						OR ELSE
+--> u can put it like in role --> MySQL --> vars --> main.yaml  ---> it's behaviour like as variable 
+
+if u want run again give like $ sudo or without this if error occured ansible-playbook -i inventory main.yaml -e "component=mysql"   --( bcz valut ki file ki permission ichham )
+ while running this u can comment ansible.cfg lo vault_password_file ni comment chei.........
+
+--> *** ansible vault numchi .. aws lo ssm parameter ki change ayyamu 
+
+--> ansible forks 
+
+--> In ansible-robo-role --> ansible-forks.cfg 
+
+--> u can this cmd after changes done below
+--> ansible-playbook -i demoplugins.aws_ec2.yaml -e ansible_user=ec2-user -e ansible_password=DevOps321 nginx.yaml
+
+--> at a time 6 servers ki okesari connect avuthundi..  based on server capacity like t3micro kakunda t3samll ane power full server ki forks use cheste we will get immediate response
+
+
+
+
+=================== Ansible is done =====================
+
+ansibe tower useless topic 
+ansible galaxy worst no need to worry about that bcz more complexcity no one can use this
+
+
+
