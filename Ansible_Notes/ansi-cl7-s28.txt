@@ -219,5 +219,7 @@ if u want run again give like $ sudo or without this if error occured ansible-pl
 ansibe tower useless topic 
 ansible galaxy worst no need to worry about that bcz more complexcity no one can use this 
 
+================================== all closed ==============================
+
 
 
