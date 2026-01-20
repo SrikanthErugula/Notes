@@ -94,6 +94,9 @@ loop: "{{ ec2_output.results }}" here loop loki  ec2_output indhulo results lo v
 
 
 ============================ FINAL NOTES =====================
+first we need to run AWS configure before going to start
+need to install $ pip3.9 install boto3 botocore
+
 --> for excute cmd is ansible-playbook -i inventory.ini 17-file_name
 
 functions
@@ -138,5 +141,7 @@ will excute it in this case:  shell Module -> can access variables, pipes, redir
 file 19 it is used to error handling code and we can check user exit or not 
 
 ignore_errors: true  error vastundhi telusu but procced avvalante u can this cmd
+first we need to run AWS configure before going to start
+need to install $ pip3.9 install boto3 botocore
 
 ====================================================
