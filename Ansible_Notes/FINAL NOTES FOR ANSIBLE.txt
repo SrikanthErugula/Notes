@@ -1,0 +1,271 @@
+									FINAL NOTES FOR ANSIBLE
+								       =======================
+
+SESSION-1
+
+WHAT is ANSIBLE
+--------------
+**Ansible is an open-source IT automation engine, so it is used to simplify configuration management, application deployment, and orchestration using simple, declarative code (YAML) and an agentless architecture**
+
+*** Ansible ---> It is developed through python 
+
+Push vs Pull
+============
+Push -> Ansible is popular, it recently implemented pull too
+Pull -> it is used in Chef software
+
+
+
+Polling/Pulling
+=============
+1. chef  lo agnet  ni install chetsam node ki and agent ni configuration cheyali like every 30 min ki changes emaina vunte pull chei  ani..
+
+Event Driven/Push
+===============
+You carry on work, when you get a courier it will be delivered ( delivery vaste adhe vastundhi )
+pulll lo no need to install extra server but u should be monitor
+
+--> Ansible ekkada ithe install ayyi adhi ansible server antaru
+---> ansible ekkada ithe connect avuthundho adhi node , boxes, remote server , target server
+Linux command == Ansible Module/Collection/tasks
+
+-->i -- inventory it says like which server need to connect like that kind of info it could be providing
+
+---> ansible mostly configuration kosam use chestam ante within server 
+
+=================================================
+
+								SESSION-2
+							    *******************
+
+
+What is playbook
+------------------
+Playbooks are the simplest way in Ansible to automate repeating tasks in the form of reusable and consistent configuration files. 
+
+--> playbook is nothing but list of plays....it means it has any objects....
+
+
+--> connection: local
+# so here anisble is manageing without another server there is no dependency.. so for that we need set up .ini lo local ni ivvali oka grp.. ansible ekkada ithe install ayyi vundho akkada connect avuthundhi ther is no dependent on frontend and any...
+
+
+-- > u can see more syntax in google type like ansible syntax and commnds like that
+
+2 vars vunte . first prefference is to tasks lo vunte vatiki adhe print avuhundhi.....05 task vars done --> task level lo vude vatiki first preference
+
+inventory ---> inventory is a collection of hosts against which jobs may be launched
+
+ 10 files are done for preference like as below
+==============
+# 1. args or command line
+# 2. from task
+# 3. files
+# 4. prompt
+# 5. play level
+# 6. inventory
+
+# so ikkada (-) iphen tho start ithe adhi list
+# dictionary or map so here below not start with - so we called as map or disctinory
+
+# list: []
+# map: {}
+
+# in loops topic, item is reserved it means item lo ki one by one name anedhi vachhi print avuthundhi.
+
+for condition statements : when
+
+
+======================================================================================================================
+
+	              						SESSION-3
+							    *******************
+first we need to run AWS configure before going to start
+need to install $ pip3.9 install boto3 botocore
+
+--> for excute cmd is ansible-playbook -i inventory.ini 17-file_name
+
+functions
+============
+taking input and providing the output, execute whenever we call ---->  so that is called as functions
+
+functions == filters # In ansible we called as filters so both are same
+
+we can use default in built functions from ansible
+
+default function --> You can override the default values of these settings in the Ansible configuration file or as an environment variable. 
+
+Transforming strings into lists done at 18.2 file
+Transforming map into lists done 18.3
+Transforming list into map done 18.4
+
+18.5 file describe about set_fact
+========================================
+gather_facts --> we know the o/p of this execute whenever we call required data
+
+facts == variables both are same in ansible
+
+set_fact --> In Ansible, set_fact is a module it is used to dynamically create or modify variables (facts) during playbook execution, making them available for subsequent tasks
+
+18.6 used to know lower and upper case stings conversations
+# IP address filters  --> 18.7 file u can refer there
+
+shell vs command :- 18.8 file
+================
+---> linux lo 100% work ayyedi shell and Linux cmd only
+so ansible anedhi only process ni easy chestundi anthe ( ansible is used for simplify the process) 
+
+--> oka vela cmd or modules emi lekapothe u can use shell or cmd mode 
+when we don't have readymade modules available, we can execute command or shell module
+
+--> official doc and community modules lenaapudu we have to use shell or command module
+
+will excute it in this case:  command -> a simple command no need of access to shell environment like variables, bash, piping, etc.. ( for small small cmds excute cheyalante u can go with COMMAND MODE) 
+
+will excute it in this case:  shell Module -> can access variables, pipes, redirections, shell environment, etc. ( for complex or restricted times lo u can use shell
+
+file 19 it is used to error handling code and we can check user exit or not 
+
+ignore_errors: true  error vastundhi telusu but procced avvalante u can this cmd
+first we need to run AWS configure before going to start
+need to install $ pip3.9 install boto3 botocore
+
+=====
+
+======================================================================================================================
+
+	              						SESSION-4
+							    *******************
+
+ansible controller/server == where ansible installed
+
+server ni connect ayye process or ways
+===================
+console  ---> server ni connect ayyamu 
+aws cli ---server ni connect ayyamu
+ansible  ---> server ni connect ayyamu 
+terraform
+python
+
+
+========================================================================================================================
+
+	              						SESSION-5
+							    *******************
+ROLES
+=======
+Ansible roles is a proper directory structure of creating playbooks, maintaining and reusing. roles will have tasks, files, vars, defaults, handlers, templates. By default role will try to load main.yaml in each directory
+
+ansible-playbook -i inventory all-start-code.yaml -e "component=redis"
+
+---> so here why we are using this Pip3 libraries bcz in linix and shell we are using directly but in ansible we are using module to excute lines ... so all modules anni python develop chesaru so python laga vatini install cheyali 
+
+
+
+======================================================================================================================
+
+	              						SESSION-6
+							    *******************
+What are the handlers 
+===========
+
+if any changes are done in code we have to perform notifiers or handlers  
+
+->Handlers are like notifiers when there is change in particular task we can notify other task, if there is no changes will happen then we no need to run 
+
+							or else
+
+->Ansible handlers are special tasks that run only when they are explicitly notified by other tasks that have made a change to the system.
+
+--> catalogue.service file lo change chese value vundi that is mongodb.fun so we have to replace it in vars lo main.yaml file lo value HOST value
+
+
+What is template --: ansible templates are jinja2 formatted files, there will be placeholders inside the file, actual values will be submitted at runtime and copied to remote server
+
+here j2 anedhi not manadatory but evaraina chusinappudu idhi roles template ani ardham avuthundhi
+--> so andhulo some placeholders change cheyali ani ardham avuthundhi
+
+so roles lo vars,tasks,templates,files,handlers, inka vunnai avi anni kuda use for custum  ga cheyalante like defaults/  meta/ library/  module_utils/ lookup_plugins  
+
+meta – Includes metadata information for the role, its dependencies, the author, license, available platform, etc.
+
+--> here meta ante depended file means we can keep the role depended files --> evaraina chusina vallaki kuda ardham avuthuni
+--> so meta is used for code lo emains dependent keys and values vunde avi meta --> main.yaml lo pedatham
+EX means catalogue anedi main ga for-common folder meedha run avuthundhi so see below
+
+
+
+--> FINALLY roles means proper directory structure ...
+
+.j2 file in Ansible is a Jinja2 template file used to generate dynamic configuration files or scripts on managed hosts
+
+
+
+
+======================================================================================================================
+
+	              						SESSION-7
+							    *******************
+--> for sure every tool has some kind of default configuration or else for customization purpose, so in that if any need we have a chance to edit or recorrect
+
+ansible configuration
+====================
+Changes can be made and used in a configuration file which will be searched for in the following order: --> so ansible will start to search for config any one of it
+
+	1. ANSIBLE_CONFIG (environment variable if set)
+
+	2. ansible.cfg (in the current directory)
+
+	3. ~/.ansible.cfg (in the home directory)
+
+	4. /etc/ansible/ansible.cfg
+
+Ansible will process the above list and use the first file found, all others are ignored.
+
+--> WHAT is DEBUG === VVV measns verbose ======	
+=========
+Debug is a process used by developers and programmers to identify and remove errors or bugs in software or hardware
+--> if u want see excute code on screen u can give like (-vv) it is for few matter, for more more u can give like (-vvv) 
+
+TAGS
+=====
+Ansible tags are metadata used to label tasks, blocks, plays, or roles within a playbook, allowing users to selectively run or skip specific parts during execution. This is particularly useful for debugging, testing, and managing large, complex playbooks
+
+--> If you have a large playbook, it may be useful to run only specific parts of it instead of running the entire playbook
+
+include_role vs import_role
+
+include_role 	---------------------	explicit --> crystal clear or obvious or clear
+==============          			
+it includes at run time, checks while processing. include will not respect tags. We must explicitly set inside the tasks
+
+-->excute time lo overall code antha check chesukodhuu, step by step code excute avuthunte, ekkada ithe step lo fail avuthundho aa step varaku run ayyi agipothundhi
+
+import_role  
+==============
+imports the role before exection and parse it, checks before processing. applying tags at the import setup to all the tasks automatically.
+
+--> excute time lo overall code antha check chesukoni  emaina error vunte startinglone error vastundhi will stop excution 
+
+dynamic inventory
+===============
+Dynamic inventory in Ansible automatically fetches a real-time list of hosts from external sources like cloud APIs (AWS, Azure, GCP) or CMDBs, eliminating manual updates and adapting to changing infrastructure (like auto-scaled servers)
+
+--> autoscaling means ---> when trafic increase servers will be increased  [ EX: big billon days) 
+
+--> a plugin is provided by aws and ansible to fetch the IP address dynamically 
+
+--[ansible can connect to AWS dynamically to fetch the IP address using dynamic inventory plugin(amazon.aws.aws_ec2), this helps in autoscaling kind of environment, where fetching the IP address statically is not possible]
+
+secrets
+==========
+we have one parameter that is vault means-> secured place to keep the secrets
+
+secrets manager
+===============
+
+
+======================================================================================================================
+
+
+

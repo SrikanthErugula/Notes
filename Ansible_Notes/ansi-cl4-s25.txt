@@ -56,14 +56,3 @@ UPTO HERE mongodb.yaml, redis-yaml,musql-yaml,RabbitMQ-yaml,cata-yaml files has 
 
 FINAL NOTES
 =-=========================================
-
-
-ansible controller/server == where ansible installed
-
-server ni connect ayye process or ways
-===================
-console  ---> server ni connect ayyamu 
-aws cli ---server ni connect ayyamu
-ansible  ---> server ni connect ayyamu 
-terraform
-python

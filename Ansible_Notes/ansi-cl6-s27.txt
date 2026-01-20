@@ -168,36 +168,4 @@ https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_reuse_
 ====================================================== FINAl NOTES ===================
 
 
- What are the handlers 
-===========
-
-if any changes are done in code we have to perform notifiers or handlers  
-
-->Handlers are like notifiers when there is change in particular task we can notify other task, if there is no changes will happen then we no need to run 
-
-							or else
-
-->Ansible handlers are special tasks that run only when they are explicitly notified by other tasks that have made a change to the system.
-
---> catalogue.service file lo change chese value vundi that is mongodb.fun so we have to replace it in vars lo main.yaml file lo value HOST value
-
-
-What is template --: ansible templates are jinja2 formatted files, there will be placeholders inside the file, actual values will be submitted at runtime and copied to remote server
-
-here j2 anedhi not manadatory but evaraina chusinappudu idhi roles template ani ardham avuthundhi
---> so andhulo some placeholders change cheyali ani ardham avuthundhi
-
-so roles lo vars,tasks,templates,files,handlers, inka vunnai avi anni kuda use for custum  ga cheyalante like defaults/  meta/ library/  module_utils/ lookup_plugins  
-
-meta – Includes metadata information for the role, its dependencies, the author, license, available platform, etc.
-
---> here meta ante depended file means we can keep the role depended files --> evaraina chusina vallaki kuda ardham avuthuni
---> so meta is used for code lo emains dependent keys and values vunde avi meta --> main.yaml lo pedatham
-EX means catalogue anedi main ga for-common folder meedha run avuthundhi so see below
-
-
-
---> FINALLY roles means proper directory structure ...
-
-.j2 file in Ansible is a Jinja2 template file used to generate dynamic configuration files or scripts on managed hosts
-
+ 

@@ -156,32 +156,3 @@ pynthon server install
 
 								========================= FINAL NOTES =======================
  
-WHAT is ANSIBLE
---------------
-**Ansible is an open-source IT automation engine, so it is used to simplify configuration management, application deployment, and orchestration using simple, declarative code (YAML) and an agentless architecture**
-
-*** Ansible ---> It is developed through python 
-
-Push vs Pull
-============
-Push -> Ansible is popular, it recently implemented pull too
-Pull -> it is used in Chef software
-
-
-
-Polling/Pulling
-=============
-1. chef  lo agnet  ni install chetsam node ki and agent ni configuration cheyali like every 30 min ki changes emaina vunte pull chei  ani..
-
-Event Driven/Push
-===============
-You carry on work, when you get a courier it will be delivered ( delivery vaste adhe vastundhi )
-pulll lo no need to install extra server but u should be monitor
-
---> Ansible ekkada ithe install ayyi adhi ansible server antaru
----> ansible ekkada ithe connect avuthundho adhi node , boxes, remote server , target server
-Linux command == Ansible Module/Collection/tasks
-
--->i -- inventory it says like which server need to connect like that kind of info it could be providing
-
----> ansible mostly configuration kosam use chestam ante within server 

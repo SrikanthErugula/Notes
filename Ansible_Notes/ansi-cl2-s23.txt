@@ -61,39 +61,3 @@ Loops
 
 ================================================FINAL NOTES ================
 
-What is playbook
-------------------
-Playbooks are the simplest way in Ansible to automate repeating tasks in the form of reusable and consistent configuration files. 
-
---> playbook is nothing but list of plays....it means it has any objects....
-
-
---> connection: local
-# so here anisble is manageing without another server there is no dependency.. so for that we need set up .ini lo local ni ivvali oka grp.. ansible ekkada ithe install ayyi vundho akkada connect avuthundhi ther is no dependent on frontend and any...
-
-
--- > u can see more syntax in google type like ansible syntax and commnds like that
-
-2 vars vunte . first prefference is to tasks lo vunte vatiki adhe print avuhundhi.....05 task vars done --> task level lo vude vatiki first preference
-
-inventory ---> inventory is a collection of hosts against which jobs may be launched
-
- 10 files are done for preference like as below
-==============
-# 1. args or command line
-# 2. from task
-# 3. files
-# 4. prompt
-# 5. play level
-# 6. inventory
-
-# so ikkada (-) iphen tho start ithe adhi list
-# dictionary or map so here below not start with - so we called as map or disctinory
-
-# list: []
-# map: {}
-
-# in loops topic, item is reserved it means item lo ki one by one name anedhi vachhi print avuthundhi.
-
-for condition statements : when
-

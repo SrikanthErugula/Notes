@@ -74,13 +74,4 @@ next separate ga redis folder directory created
 
 ============================== FINAL NOTES =======================
 
-ROLES
-=======
-Ansible roles is a proper directory structure of creating playbooks, maintaining and reusing. roles will have tasks, files, vars, defaults, handlers, templates. By default role will try to load main.yaml in each directory
 
-ansible-playbook -i inventory all-start-code.yaml -e "component=redis"
-
----> so here why we are using this Pip3 libraries bcz in linix and shell we are using directly but in ansible we are using module to excute lines ... so all modules anni python develop chesaru so python laga vatini install cheyali 
-
-
-====================
