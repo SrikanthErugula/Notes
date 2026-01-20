@@ -49,7 +49,7 @@ logs --> need to ask someone session 28 15: 00 min
 --> WHAT is DEBUG === VVV measns verbose ======	
 =========
 Debug is a process used by developers and programmers to identify and remove errors or bugs in software or hardware
---> if u want see excute code ion screen u can give like (-vv) it is for few matter, for more more u can give like (-vvv) 
+--> if u want see excute code on screen u can give like (-vv) it is for few matter, for more more u can give like (-vvv) 
 
 EX: ]$ ansible-playbook -vv all-start-code.yaml -e "component=mongodb"
 
@@ -74,7 +74,7 @@ EX : see in cata --> tasks ( main.yaml)  # tags:
 
 include_role vs import_role
 
-include_role 					explicit --> crystal clear or obvious or clear
+include_role 	---------------------	explicit --> crystal clear or obvious or clear
 ==============          			
 it includes at run time, checks while processing. include will not respect tags. We must explicitly set inside the tasks
 
