@@ -5,15 +5,15 @@ andhulu ansible ni install cheyali and aws configure ni set up cheyali --> git c
 --> pip3.9 install boto3 botocore
 
 --> upto here session 26 lo setup chesam ippdu run chestunam 
-ansible-playbook -i inventory.ini main.yaml -e "component=mongodb"
-ansible-playbook -i inventory.ini main.yaml -e "component=redis"
-ansible-playbook -i inventory.ini main.yaml -e "component=mysql"
-ansible-playbook -i inventory.ini main.yaml -e "component=rabbitmq"   ----> one by one will run here 
+ansible-playbook -i inventory.ini all-start-code.yaml -e "component=mongodb"
+ansible-playbook -i inventory.ini all-start-code.yaml -e "component=redis"
+ansible-playbook -i inventory.ini all-start-code.yaml -e "component=mysql"
+ansible-playbook -i inventory.ini all-start-code.yaml -e "component=rabbitmq"   ----> one by one will run here 
 
 
 CATALOGUE SET UP
 ====================
-ansible-playbook -i inventory.ini main.yaml -e "component=catalogue"
+ansible-playbook -i inventory.ini all-start-code.yaml -e "component=catalogue"
 
 --> cata lo common code chala vundi like as below  so we need to set common folder crated
 app setup -->nodejs setup --> system --> remove and add user and folders ivvani common for all
