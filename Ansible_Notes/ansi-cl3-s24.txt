@@ -5,10 +5,8 @@ loops
 
 --> for excute cmd is ansible-playbook -i inventory.ini 17-file_name
 functions
-===========
-taking input and providing the output, execute whenever we call ---->  so that is called as functions
+=========== see in final notes in last 
 
-functions == filters # In ansible we called as filters so both are same
 --> so here ansible discovered with python code so 
 we can write functions but we need to write python code.. not a mandatory for that custom type functions
 
@@ -47,13 +45,7 @@ u can check with that name like vim student-data1.json.............
 
 shell vs command :- 19 file done refer there 
 ================
----> linux lo 100% work ayyedi shell and Linux cmd only
-so ansible anedhi only process ni easy chestundi anthe
-
---> oka vela cmd or modules emi lekapothe u can use shell or cmd mode
-when we don't have readymade modules available, we can execute command or shell module
-
-
+see in FINAL notes
 
 ansible -> node --> here ansible is calling the server
 
@@ -61,11 +53,9 @@ module lenappudu cmd  tho call cheyali
 
 here ansible is working like as remote login -> take login, execute command and come out
 
-or login inside the server and execute the command and come out
+or login inside the server and execute the command and come out 
 
-will excute it in this case:  command -> a simple command no need of access to shell environment like variables, bash, piping, etc.. ( for small small cmds excute cheyalante u can go with COMMAND MODE) 
-
-will excute it in this case:  shell Module -> can access variables, pipes, redirections, shell environment, etc. ( for complex or restricted times lo u can use shell
+see in FINAL notes..... for detailed.....
 
 VAR_NAME=$(command)  --> in shell cmd excute ayyi key lo save avuhundhi...
 
@@ -76,7 +66,7 @@ VAR_NAME=$(command)  --> in shell cmd excute ayyi key lo save avuhundhi...
 
 Ex: creating the user but user already exist in this case we need to handle this case 
 
-id roboshop -> open chesi ni check chesi chudali 
+id roboshop -> open chesi id check chesi chudali 
 
 --> anisible lo error vaste procced avvadhu usually... but in shell lo procced avuthundhi 
 
@@ -98,14 +88,55 @@ first aws configure cheyali while excute time
 
 loop: "{{ ec2_output.results }}" here loop loki  ec2_output indhulo results lo vunde data lo pub and pvt kavali ani cheptunam value lo code rsam { item.instances[0 ila
 
+
+
+
+
+
 ============================ FINAL NOTES =====================
+--> for excute cmd is ansible-playbook -i inventory.ini 17-file_name
+
+functions
+============
+taking input and providing the output, execute whenever we call ---->  so that is called as functions
+
+functions == filters # In ansible we called as filters so both are same
+
+we can use default in built functions from ansible
+
 default function --> You can override the default values of these settings in the Ansible configuration file or as an environment variable. 
 
-set_fact --> In Ansible, set_fact is a module used to dynamically create or modify variables (facts) during playbook execution, making them available for subsequent tasks
+Transforming strings into lists done at 18.2 file
+Transforming map into lists done 18.3
+Transforming list into map done 18.4
+
+18.5 file describe about set_fact
+========================================
+gather_facts --> we know the o/p of this execute whenever we call required data
+
+facts == variables both are same in ansible
+
+set_fact --> In Ansible, set_fact is a module it is used to dynamically create or modify variables (facts) during playbook execution, making them available for subsequent tasks
+
+18.6 used to know lower and upper case stings conversations
+# IP address filters  --> 18.7 file u can refer there
+
+shell vs command :- 18.8 file
+================
+---> linux lo 100% work ayyedi shell and Linux cmd only
+so ansible anedhi only process ni easy chestundi anthe ( ansible is used for simplify the process) 
+
+--> oka vela cmd or modules emi lekapothe u can use shell or cmd mode 
+when we don't have readymade modules available, we can execute command or shell module
 
 --> official doc and community modules lenaapudu we have to use shell or command module
 
---> functions == filters # In ansible we called as filters so both are same
+will excute it in this case:  command -> a simple command no need of access to shell environment like variables, bash, piping, etc.. ( for small small cmds excute cheyalante u can go with COMMAND MODE) 
 
+will excute it in this case:  shell Module -> can access variables, pipes, redirections, shell environment, etc. ( for complex or restricted times lo u can use shell
+
+file 19 it is used to error handling code and we can check user exit or not 
+
+ignore_errors: true  error vastundhi telusu but procced avvalante u can this cmd
 
 ====================================================
