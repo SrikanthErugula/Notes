@@ -33,11 +33,11 @@ run terraform CMDS as well like init,plan,apply
 
 
 ================================
-ansible.builtin.ping  --> for smaple test code for ansible connection
+ansible.builtin.ping  --> for sample test code for ansible connection
 
  ansible.builtin.package  -> for package installation so ikkada ansible check chesukuntadhi ansibe_os_family as per package wise like RHEL lo dnf and unhunt lo Debian ala
 
-ansible.builtin.service: -> for serices running
+ansible.builtin.service: -> for services running
 
 ansible.builtin.replace: for values replace 
 
@@ -51,7 +51,12 @@ ansible.builtin.set_fact ---> it used for transfer data into another file
 
 ansible.builtin.copy: ----> for copy files
 
+ansible.builtin.shell: exsiting module emi ledhu and cmd module work avvakapithe , then so we need to go for manual here we can use shell mode
  ansible.builtin.command:  exsiting module emi ledhu so we need to go for manual here we can use commad mode
+
+ amazon.aws.ec2_instance: for creation of ec2 servers
+amazon.aws.route53: for creation of route 53 records
+
 
  ansible.builtin.lineinfile --> change the line not word for existing key value EX  line: 'protected-mode no'
 
@@ -64,3 +69,5 @@ ansible.builtin.user: --> create roboshop system user or any user
  ansible.builtin.unarchive: used for file or inside content unzip or unarchive
 
  community.general.npm: used for whatever having inside packages, those are must be intall by using this...
+
+ansible.builtin.import_role: statically loads and executes a role's tasks into a playbook at parse time,
