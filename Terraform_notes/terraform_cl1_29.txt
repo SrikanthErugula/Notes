@@ -6,7 +6,7 @@ It is configuration management, it means that within the server( **here manam on
 **),** Ansible can do everything, 
 
 
-Collections/Modules. these are main for ansibles.... It will have parameters or arguments.. it means officially modules or communities officially, if not these both are available we have shell and commands as well..
+Collections/Modules. these are main for ansibles.... It will have parameters or arguments.. it means officially modules or communities officially, if not these both are available we have shell and commands as well...
 
 Adv ansible
 ======
@@ -38,7 +38,7 @@ Terraform -> IaaC ( Infrastructure as a code )
 
 CM -> Configuration as a code
 
----> So why do we write code? bcz manual ga one server loki logi ayyi emi emi configuration and properties vunnnai chudandi ante chala kastum and time consumed, so adhe code laga rasukunte it will be easy to track everything in that server....
+---> So why do we write code? bcz manual ga one server loki login  ayyi emi emi configuration and properties vunnnai chudandi ante chala kastum and time consumed, so adhe code laga rasukunte it will be easy to track everything in that server....
 
 ---> anisble playbook chuste manaki antha ardham avuthundiii what is what ani....
 
