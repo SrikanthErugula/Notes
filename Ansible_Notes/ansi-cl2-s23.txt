@@ -4,8 +4,10 @@ NAME=Trump -- in shell
 $NAME in shell lo var ni represent chese proccess....
 ${NAME} or this 
 
+--> playbook is nothing but list of plays....it means it has any objects....
+
 --> connection: local
-# so here anisble is manageing without another server there is no dependency.. so for that we need set up .ini lo local ni ivvali oka grp.. ansuible ekkada ithe install ayyi vundho akkada connect avuthundhi ther is no dependent on frontend and any...
+# so here anisble is manageing without another server there is no dependency.. so for that we need set up .ini lo local ni ivvali oka grp.. ansible ekkada ithe install ayyi vundho akkada connect avuthundhi ther is no dependent on frontend and any...
 
 {{ COURSE }}, ila special ga declare chyali in absible lo vars ni print cheyali ante 
 --> 04 vars has been done
@@ -20,17 +22,32 @@ Error is
 ===========
 when password haven't define ------ fatal: [localhost]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'password' is undefined. 'password' is undefine
 -------------------------------------------------------
-Varibales  ni ekkada ayina pettachu like  .ini or  files we need just call it
+Varibales  ni ekkada ayina pettachu like  .ini or  files, just call it wherever if it is required
 
-08, 09, 10 files are done
-Data types --> 11 file has been done
+08, 09, files are done
+
+ 10 files are done for preference like as below
+==============
+# 1. args or command line
+# 2. from task
+# 3. files
+# 4. prompt
+# 5. play level
+# 6. inventory
+
+Data types --> 11 file has been done see for more info
+# so ikkada (-) iphen tho start ithe adhi list
+# dictionary or map so here below not start with - so we called as map or disctinory
+
+# list: []
+# map: {}
 
 Conditions
 =============
 if, if else
-when --> 12 file has been done
+when condition used at file number --> 12 file has been done
 
--- so here ansible is idomptent always --> check the facts 13 file and 
+-- so here ansible is always idempotent --> check the facts 13 file and 
 14th files done in that we are using that facts we can able to fetch required data form facts
 --> this will becomes heterogeneous. so ila single palybook or yaml lo manaki kavalasina data ni fetch cheyachhuu.. 
 
@@ -48,8 +65,35 @@ What is playbook
 ------------------
 Playbooks are the simplest way in Ansible to automate repeating tasks in the form of reusable and consistent configuration files. 
 
+--> playbook is nothing but list of plays....it means it has any objects....
+
+
+--> connection: local
+# so here anisble is manageing without another server there is no dependency.. so for that we need set up .ini lo local ni ivvali oka grp.. ansible ekkada ithe install ayyi vundho akkada connect avuthundhi ther is no dependent on frontend and any...
+
+
 -- > u can see more syntax in google type like ansible syntax and commnds like that
 
 2 vars vunte . first prefference is to tasks lo vunte vatiki adhe print avuhundhi.....05 task vars done --> task level lo vude vatiki first preference
 
 inventory ---> inventory is a collection of hosts against which jobs may be launched
+
+ 10 files are done for preference like as below
+==============
+# 1. args or command line
+# 2. from task
+# 3. files
+# 4. prompt
+# 5. play level
+# 6. inventory
+
+# so ikkada (-) iphen tho start ithe adhi list
+# dictionary or map so here below not start with - so we called as map or disctinory
+
+# list: []
+# map: {}
+
+# in loops topic, item is reserved it means item lo ki one by one name anedhi vachhi print avuthundhi.
+
+for condition statements : when
+
