@@ -9,18 +9,21 @@ terraform plan
 terraform apply
 terraform destroy
 
---> the syntax we called as 
+--> the syntax we called as HCL 
 The HashiCorp Configuration Language (HCL) syntax is designed to be human-readable and machine-friendly, built primarily around arguments, blocks, and expressions. It is used in HashiCorp products like Terraform, Nomad, and Packer. 
 
 resource "type_of_resource" "resource_name_our_wish" {
 	key = "value"
 }
 
-** so the above syntax must be present to create or delete any resource..it is called as skelton syntax ......
+** so the above syntax must be present to create or delete any resource..it is called as skelton syntax OR HCL SYNTAX ......
 
 
-git -> repository to store only code.
-drive -> store files
+git -> repository to store only code. here max 50 MB varaku store cheyali ani restrict chesaru
+drive -> store files those are and all stored here
+
+.gitignore means konni files ni ignore chei ani cheptundhi andhulo vunttai emi emi ignore cheyalo..
+
 
 added into staging area
 commited to local repository
@@ -33,18 +36,21 @@ git branch -M main
 git remote add origin <URL>
 git add . ; git commit ; git push
 
+$ git add . ; git commit -m "terraform_start" ; git push origin main -f  ( so here -f used to for force push ) 
 
 
 variables
 ============
-
 DRY
 
 variable folder has been created
+variable --> provider.tf file --> if u have speed internet then give terraform init--> so there .terraform files will be download
+variable --> ec2.tf same code copied from ec2 folder 
+variable --> variable.tf 
 
-x=1, y=2
+EX : x=1, y=2 in maths 
 
-final substitution
+final substitution cheste we will get a value
 
 ---> serach in google like tearraform variabels ---> https://developer.hashicorp.com/terraform/language/values/variables
 Syntax is
@@ -54,13 +60,16 @@ variable "variable_name" {
 }
 
 
-var.variable_name --- it is used to access or get value useing var
+var.variable_name --- it is used to access in main code 
+
 ex:- var.ami_id and var.instance_type  like this u can refer in ec2.tf lo 
 
 variable "ec2-tags" here ec2 instance server create ayina tharuvatha tags anvi manaki understand purpose ki use chestam adhe oka sepeate label in aws ...manula ga kuda add chesukovachhu in aws lo 
 
 +====================== +++======
-serach in google like terraform data typeshttps://developer.hashicorp.com/terraform/language/expressions/types
+serach in google like terraform data types https://developer.hashicorp.com/terraform/language/expressions/types
+
+--> upto here variable.tf lo ami id, instance id, sg ingress egress ..etc like as all are defined after then those all are access in ec2.tf file with var.amiid....etc
 
 preference topic
 ===========
@@ -68,6 +77,7 @@ preference topic
 1. command line variable values have first preference
 syntax: terraform plan -var='instance_type=t2.micro'
 
+--> terraform.tfvars file created 
  
 2. terraform.tfvars
 syntax:: terraform plan -var-file='my-vars.tfvars'   ---> another model ---> 
@@ -75,7 +85,7 @@ syntax:: terraform plan -var-file='my-vars.tfvars'   ---> another model --->
 EX:-
 #instance_type = "t3.sri" 
 
-# but here variable name like instance_type should be same in ec2.tf whatever here present value those must be same appude adi pickup chesukuntttadhi
+#* but here variable name like instance_type ane name should be same in ec2.tf whatever here present that value those must be same appude adi pickup chesukuntttadhi
 
 
 3. env variable TF_VAR_<variable_name>
@@ -106,8 +116,10 @@ conditions
 ==============
 
 Condition folder has been created..
-
-SYNTAX
+Condition --> provder.tf
+Condition --> ec2.tf same code copied from ec2 foder
+Condition --> vars.tf so ikkada instance id ni control cheyachu adhi ec2.tf lo accessc cheyali 
+SYNTAX in shell script 
 ===========
 if(expression){
 	this will run if expression is true

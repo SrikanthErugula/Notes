@@ -1,27 +1,9 @@
 Configuration management
 =====================
+ Refer FINAL NOTES of ansible
 
-It is configuration management, it means that within the server( **here manam one Linux server iste**
-
-**),** Ansible can do everything, 
-
-
-Collections/Modules. these are main for ansibles.... It will have parameters or arguments.. it means officially modules or communities officially, if not these both are available we have shell and commands as well...
-
-Adv ansible
-======
-By default, it has idempotent
-heterogeneous
- ====================
-
-Why can't i use ansible creation for infrastructure?
-=================================================
-
-Ansible can create infra, but it can't manage/update infra because of no state management feature available in ansible, originally created, created for configuration management not good for infra management.....
-
--> so here 1 or more then 100 server u can give to ansible it will be handling no issues. will do any operation or perform upto here...... but it can't procced to do infra, so don't give infra to anisble......
 ===========================
-EX:- if u want creating one server by using ansible, yes its allowed to create for example MySQL server created, unfortunately someone will come and change the name of server like mysqlsri, while that time if u run ansible again it will be create again MySQL serever.... it is not good for we don't want another server....
+EX:- if u want creating one server by using ansible, yes its allowed to create for example MySQL server created, unfortunately someone will come and change the name of server like mysqlsri, while that time if u run ansible again it will be create duplicate server like MySQL serever.... it is not good for we don't want another server....
 
 
 **Use Terraform for better  infra creation. Once servers are created by Terraform, then hand over them to Ansible, so here Ansible completes the configuration in the server**
@@ -31,16 +13,13 @@ EX:- if u want creating one server by using ansible, yes its allowed to create f
 
 --> So all-purpose ki same tool use avvdhu we need to use perspective for that.......
 
-===============================================================================================================================================			===================
+===============================================================================================================================================			
 
-
-Terraform -> IaaC ( Infrastructure as a code )
-
-CM -> Configuration as a code
+refer Final notes terraform
 
 ---> So why do we write code? bcz manual ga one server loki login  ayyi emi emi configuration and properties vunnnai chudandi ante chala kastum and time consumed, so adhe code laga rasukunte it will be easy to track everything in that server....
 
----> anisble playbook chuste manaki antha ardham avuthundiii what is what ani....
+---> anisble playbook chuste manaki antha ardham avuthundiii what is what ani.... same alane shell script chusina manaki ardham avuhundhi about that....
 
 CRUD operations ni easy ga perform cheyachhu in code ( through code called as Automation) ,  but by manually it can't able to do it.
 
@@ -53,7 +32,7 @@ Update the configuration code ni easy ga update cheyachu
 Delete the configuration .....................like as above
 
 
-Infra as a code ---> some of adv like as below points....
+Infra ni kuda code laga raste we can easily find out ---> some of adv like as below points....
 
 ===============
 
@@ -98,33 +77,39 @@ Flexibility: Swap or extend modules without rewriting everything.
 
 Terraform, Pulumi, Cloudformation, etc..  all are the same, but based on the latest version we can use here
 
---> manam endhuku shell and ansible use chesam ante shell windows lo run avvdhu so,..... we need based on the support tool  
---> terraform anedhi server run cheyamu 
---> terraform tho rasina code tho aws lo server ni create cheyachu that is infrasture so aws ni connect or access cheyanlante we need to install terraform in our windows
+--> manam endhuku oka server create chesam  aws lo manula ga ante....  shell script and ansible anevi windows lo run avvdhu so we need shell or server ,..... we need based on the support tool  
+--> terraform anedhi server run cheyamu here no need server for terraform
+--> terraform ni use chesi rasina code tho aws lo server ni create cheyachu that is infrasture so aws ni connect or access cheyanlante we need to install terraform in our windows
 
 --> in terraform everything is key value based like key = somevalue.....
 
---> so here we need to install the below 2 tools only 
+--> so here we need to install the below 2 tools only  ( for install steps 30:00 min) 
 
 **1. Terraform 
 
 **2. AWS CLI V2 
 
 
----> we have dig that is teraform.drawio that is snap in google sheet u can check it there 
+---> we have dig that is teraform.drawio that is snap in google sheet terrafrom_dig page u can check it there 
 
 =================================================
 https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 
 ls -> /usr/bin or /bin ---> ila ekkado oka chota store avuthudi cloud lo 
 
-terraform -> We can give the PATH in Windows
+terraform ila iste ekkado oka chota check cheyali so We can give the PATH in Windows ( for this 37:00 min if want) ENV variables ni adjust cheyali...
+
+--> for checking purpose in git bash give cmd like.... $terraform  ( so path lekapothe command not found ani vastundhi) so dhani kosam manam path set up cheyali
+
+
+--> download chesina vetane dhaiki path teliyadhu so we need ENV variables set up 41:00 min
+
 
 --> aws configure ni run cheyali
 
 HCL -> HashiCorp Configuration Language .. terraform introduced this company
 
-name, image, sg, storage disk, key(no-key) ... --> for any instance certation 
+name, image, sg, storage disk, key(no-key) ... --> for any instance creation 
 
 --> terraform always follow this syntax...as below
 
@@ -163,9 +148,11 @@ https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/inst
 
 ---> provider.tf --- so here manam cheptunam dheniki connect avvali ani, its mandatory for terraform
 
---> ec2 folder create chesam ee class lo
+--> terraform DIR lo --> provider.tf file created
+--> terraform DIR --> ec2.tf file created
+-> so keys are nothing but arguments then doc lo vunttai which are mandatory ani  u can refer in argument reference page
 
-1. terraform init -> downloads the provider, intialise terraform
+1. terraform init -> downloads the provider, initialize terraform
 2. terraform plan -> It will give us a plan that what it is going to do
 3. terraform apply -> creates the infra as given in the plan
 
@@ -175,17 +162,32 @@ https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/inst
 
 terraform apply -auto-approve --> if u provide like these it doesn't ask any permission like yes so its automatically procced 
 
+terraform destroy -auto-approve  It means all data will be destroyed, sg and instance all
+
+
+--> like as ansible roles lo laga all main.yaml files ni excute chesinattu.... terraform lo kuda terraform ani iste .tf files anni excute chestundhi
+
+terraform aws sg group ---> https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group
+
+SYNTAX is 
+--------
+resource "aws_security_group" "example" {
+  name   = "sg"
+  vpc_id = aws_vpc.example.id
+
+  ingress = []
+  egress  = []
+}
+
 -->Ingress ( Data in )means entrance, or the right to enter, or the act of entering
 
 --> Egress (Data Out)
 Definition: Data leaving a network or system (e.g., downloading from the cloud, sending emails).
 
 -->
-terraform aws sg group ---> https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group
 
---> vpc_security_group_ids --> it used to connect or tag sg to instance ... we can tag 2 more sg for a single instace so we need follow list[]..
+--> vpc_security_group_ids --> it used to connect or tag sg to instance ... we can tag 2 more sg for a single instance so we need follow list[]..
 
-terraform destroy -auto-approve  It means all data will be destroyed, sg and instance all
 
 
 

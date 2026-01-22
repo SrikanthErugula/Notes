@@ -1,2 +1,65 @@
-FINAL NOTES FOR TERRAFORM
-==========================
+							FINAL NOTES FOR TERRAFORM
+							==========================
+
+							  SES-1
+						   *****************
+**Use Terraform for better  infra creation. Once servers are created by Terraform, then hand over them to Ansible, so here Ansible completes the configuration in the server**
+--->  Terraform can manage or owner of the server infrastructure
+
+Terraform -> IaaC ( Infrastructure as a code )
+
+CM -> Configuration as a code
+
+---> So why do we write code? bcz manual ga one server loki login  ayyi emi emi configuration and properties vunnnai chudandi ante chala kastum and time consumed, so adhe code laga rasukunte it will be easy to track everything in that server....
+
+---> CRUD operations ni easy ga perform cheyachhu in code 
+--> so code lo ithe eas ga CRUD operations cheyachuu
+--> so finally infra kuda consistency laga vundali.
+Inventory -> ikkada chuste manaki easy ga telustundhi  
+Cost optimisation ---->
+Time saving and no human errors
+Dependency -> SG, EC2 and then R53 
+
+Terraform, Pulumi, Cloudformation, etc..  all are the same, but based on the latest version we can use here
+
+--> terraform anedhi server run cheyamu ( it doesn't work within server) 
+--> terraform ni use chesi rasina code tho aws lo server ni create cheyachu that is infrasture so aws ni connect or access cheyanlante we need to install terraform in our windows
+
+-> in terraform everything is key value based like key = somevalue.....
+--> terraform always follow this syntax...as below
+resource "type_of_resource" "name-of-resource"
+ {
+	
+	key = value
+	
+}
+---> provider.tf --- so here manam cheptunam dheniki connect avvali ani, its mandatory for terraform
+
+---> Terraform cmds will have been worked at .tf folder only
+1. terraform init -> downloads the provider, intialise terraform
+2. terraform plan -> It will give us a plan that what it is going to do
+3. terraform apply -> creates the infra as given in the plan
+
+terraform apply -auto-approve --> if u provide like these it doesn't ask any permission like yes so its automatically procced 
+
+terraform destroy -auto-approve  It means all data will be destroyed, sg and instance all
+
+-->Ingress ( Data in )means entrance, or the right to enter, or the act of entering
+
+--> Egress (Data Out)
+Definition: Data leaving a network or system (e.g., downloading from the cloud, sending emails).
+
+
+		=====================================================================
+
+
+							  SES-2
+						   *****************
+
+		=====================================================================
+
+							  SES-3
+						   *****************
+
+		=====================================================================
+
