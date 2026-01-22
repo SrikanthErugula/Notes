@@ -55,7 +55,7 @@ terraform destroy -auto-approve  It means all data will be destroyed, sg and ins
 Definition: Data leaving a network or system (e.g., downloading from the cloud, sending emails).
 
 OVER VIEW
-============
+=================================================================================
 
 1. installed terraform, setup the env variable in system path
 2. aws cli v2 install
@@ -141,10 +141,68 @@ interpolation
 concatenating variable and other content--> it means add 2 variables
 
 
-		=====================================================================
+OVER VIEW
+=================================================================================
 
-							  SES-3
+Variables:-
+=============
+variable "var_name" {
+	default = "default_value"
+}
+
+--> SO inka varibales like as below laga kuda declare cheyachu
+
+1. Through command line
+2. terraform.tfvars
+3. ENV variable TF_VAR_var_name
+4. default value
+5. prompt it means it is asking pls enter like that
+
+var.var_name --> ila code lo variables ni declare cheyachu
+
+"${var.var_name}" --> ila ekkuva vars ni declare cheyalante process like this
+
+types of variables
+================
+number
+string
+list
+map
+bool
+
+Condition:-
+==============
+expression ? "true" : "false"
+
+loops
+======
+count based loop -> it is used to get list iteration, here aa process lo manaki count.index ani vastundi
+
+count = number
+
+count.index --> so ikkasa loop ayina everytime manaki ila oka special variables istundhi   ---------------> these all are learn by class 30 
+==============
+resource "aws_instance" "terraform" {} --> so ikkada ee block varaku output kavalante u need to ask like these ..so ala dhenikaina kuda we can get........
+
+output "instances_output" 
+{
+#   value = aws_instance.terraform # so idhi ec2.tf lo name vuntthdi so akkada numchi tisukovali
+# }
+		=====================================================================
+							  SES-31-c3
 						   *****************
+for loop --> we are using it, in set or map situation lo use chestam...
+for_each = toset(["bucket-alpha", "bucket-beta", "bucket-gamma"])  --> so ikkada map ki matrame chestam, don't use it in at count 
+
+list -> string values --> in this situation we need to use count-based
+map -> key and values  --> in this situation we need to use for-loops
+
+
+
+
+
+
+
 
 		=====================================================================
 

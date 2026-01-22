@@ -1,49 +1,8 @@
-cd /c/Users/srika/devsecops/shellscript/Notes/Terraform_notes/
 
-Variables:-
-=============
-variable "var_name" {
-	default = "default_value"
-}
 
---> SO inka varibales like as below laga kuda declare cheyachu
+over of viw of c2 sess-30 refer in c2
 
-1. Through command line
-2. terraform.tfvars
-3. ENV variable TF_VAR_var_name
-4. default value
-5. prompt it means it is asking pls enter like that
 
-var.var_name --> ila code lo variables ni declare cheyachu
-
-"${var.var_name}" --> ila ekkuva vars ni declare cheyalante process like this
-
-types of variables
-================
-number
-string
-list
-map
-bool
-
-Condition:-
-==============
-expression ? "true" : "false"
-
-loops
-======
-count based loop -> it is used to get list iteration, here aa process lo manaki count.index ani vastundi
-
-count = number
-
-count.index --> so ikkasa loop ayina everytime manaki ila oka special variables istundhi   ---------------> these all are learn by class 30 
-==============
-resource "aws_instance" "terraform" {} --> so ikkada ee block varaku output kavalante u need to ask like these ..so ala dhenikaina kuda we can get........
-
-output "instances_output" 
-{
-#   value = aws_instance.terraform # so idhi ec2.tf lo name vuntthdi so akkada numchi tisukovali
-# }
 ======			===========			================
 for loop --> we are using it, in set or map situation lo use chestam...
 
@@ -64,7 +23,7 @@ key = value  ---> so here we need to use word is each.......each.key = each.valu
 key2 = value2  --> and this one each ..each.key2 = each.value2  ------- idhi antha oka entry.... so ala
 
 }
-every entry is considered as each. each.key and each.value
+every entry is considered like as (each.) each.key and each.value
 
 ---> so here each anedhi oka reserved key word terraform manaki ichhe key word 
 =========		=========			==============		========		========
