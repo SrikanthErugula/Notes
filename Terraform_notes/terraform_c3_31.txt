@@ -36,7 +36,7 @@ every entry is considered like as (each.) each.key and each.value
 ---> so map details levvu anukunte list deatails ni map loki convert cheyalante we need toset syntax appudu list nuchi map convert ayyi key = value avuthundhi
 
 
-I want to iterate list through for_each
+I want to iterate list through for_each then here u have to convert into toset
 
 for_each = toset(list) ---> here list convert into set or map ---> after done iteration we will get each.value.... in this toset both are same like each.key or each.value
 
@@ -109,7 +109,7 @@ functions : it means take i/p and give o/p
 ============
 --> function folder has been created....
 
----> Here we can't develop new functions, we need take exsiting functions only... all are built-in....
+---> Here we can't develop new functions, we need take existing functions only... all are built-in....
 
 --> More Examples on functions https://developer.hashicorp.com/terraform/language/functions/join 
 see in left side we have function name u can open and see all the operations

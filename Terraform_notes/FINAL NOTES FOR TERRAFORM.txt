@@ -40,7 +40,7 @@ resource "type_of_resource" "name-of-resource"
 }
 ---> provider.tf --- so here manam cheptunam dheniki connect avvali ani, its mandatory for terraform
 
----> Terraform cmds will have been worked at .tf folder only
+---> Terraform commands will have been worked at .tf folder only
 1. terraform init -> downloads the provider, intialise terraform
 2. terraform plan -> It will give us a plan that what it is going to do
 3. terraform apply -> creates the infra as given in the plan
@@ -197,12 +197,297 @@ for_each = toset(["bucket-alpha", "bucket-beta", "bucket-gamma"])  --> so ikkada
 list -> string values --> in this situation we need to use count-based
 map -> key and values  --> in this situation we need to use for-loops
 
+I want to iterate list through for_each then here u have to convert into toset
+---> so map details levvu anukunte list deatails ni map loki convert cheyalante we need toset syntax appudu list nuchi map convert ayyi key = value avuthundhi
+
+Syntax is: 
+=========
+for_each = toset(list) 
+---> here list convert into set or map ---> after done iteration we will get each.value.... in this toset both are same like each.key or each.value
+
+count -> list -> count.index
+for_each -> map -> each.key and each.value
+
+
+data sources
+==============
+---> in aws after created servers or instances, values ni query or pickup chesukovatame data sources...
+---> sources means we can query the existing information in the provider using data sources.
+
+Syntax is: 
+=========
+data "aws_ami" "joindevops" {  ---> "aws_ami" here edhi ithe query cheyalanukuntunaro aa name ivvali..  "joindevops" this name is our choice
+	parameters to query
+}
+
+--> so here evaru ithe ami id create chesi push chestaro  Valle owner avutharu ---> very IMP topic projects lo baga use chestaru ......
+---->So finally manual ga ayina or terraform tho ayina create chesina server lo numchi manam akkada vuna data ni qury cheyachu means bayatiki tisukoni save chesukovachhu
+
+functions : it means take i/p and give o/p
+============
+EX 1
+-----
+> join("_",["Srikanth","Reddy","Erugula"])
+"Srikanth_Reddy_Erugula"
+
+EX 2 : give like this max(5, 12, 9)
+
+merge function
+
+--->merge({a="b", c="d"}, {e="f", c="z"})
+          ({map1}       , { map2})
+--> Finally map1 and map2 iste.. always map2 anedhi map1 vunna contenct replace cheyadaki chustadi..
+
+result:-
+=====
+a = b
+c = z
+e = f
+
+--->The Terraform merge function combines multiple maps or objects into a single map or object.
+--> Finally map1 and map2 iste.. always map2 anedhi map1 vunna contenct replace cheyadaki chustadi..
 
 
 
+state
+=========
+Terraform responsibility is whatever we give in .tf files, it should create those resources ->is called declarative way of creating infra( so here manam cheptunam naaku idhi kavali ani nuvvu ichina syntx follow avvuthu rasi istunam) 
 
+--> A "declarative way" means describing what you want as a result, not how to get it
 
+matching you declared infra with actual infra in AWS account
 
+--> Terraform responsibility is   manam ichhina desired infra tho actual infra ni match cheyatum.... so then state file tho comparison chesukoni then will start re create if not present
+
+What is terraform state
+=====================
+terraform state is used to match the desired infra with actual infra, when create read update and delete the infra terraform uses this state file to achieve the desired infra for comparison. It is like memory to terraform
+
+---> terraform locks the state file when terraform is running......>it means terraform apply ni run chestunte, so there tfstate file ni terraform lock chestundi, evvaru kuda disturb cheyakunda.>   process anthe run tharvatha unlock chestundi..appudu manaki visible avuthundi..
+
+--> so finaly state file anedhi terraform kosame vundi, adhe CRUD operation chesukoni adhe manage chesukunttadhi so terraform has full rights of state file..
+--> state file terraform kasame pani chestundhi....
 
 		=====================================================================
+							  SES-32-c4
+						   *****************
+Remote state
+==============
+--> We should secure state file from accidental changes.  --> it means unfortunately keys press avavtum and delete avvatum with our interruption  .  
+---> what is the solution while multiple persons are work chestunte ----> simple solu is centralised state or block or room
+
+we must keep state file in remote location while working in collaboration environment for security and preventing duplicate resources and errors, when multiple members( team members) are working together
+
+--> state file should be locked when terraform is doing something, so for that others can't apply the changes.
+
+--> drive lo manam ela folder create chetamo ala aws lo s3 bucket create cheyali.. for starage purpose our state file....
+--> here entire aws s3 bucket name should be unique ga vundali...
+
+--> dsoaws-remote-state --> s3 bucket create chesam next aa file location or path access terraform ki ichhi state files ni akkada store chesuko ani cheppali...
+
+Syntax
+-======
+
+backend "s3" { # backend ante remote store ani anukovali
+    bucket = "dsoaws-remote-state"
+    key    = "remote-state-demo" # so here keys must be not for the same for all, u have to set name as per the requirement like dev ithe dev name and prod ithe prod name 
+    region = "us-east-1"
+    use_lockfile = true
+    encrypt = true --> it means unauthorised person file tisukuna no use bcz data has been encrypt....
+
+---> these are available in provider.tf file 
+--> if u a done any changes in provider.tf file then immediately give cmd like (terraform init -reconfigure )
+
+locals
+=======
+--> so here variable.tf file access andhariki ivvakudadhu or else small company run chestunte vallu as per the budget vallu t3.micro ni use chestaru manam variable.tf file ki access iste  team vallu dhani change chesi use chesukuntaru so we aren't give access to them.. for that we need to create local.tf for restrict purpose..
+
+--> local.tf introduced by  terraform so we can't do any changes.. inside file.
+
+locals are like variables but it has many extra capabilities
+
+1. variables can be overridden, locals can't be overridden ( re-write by someone)
+2. we can use variables inside locals. but we can't use one variable in another variable
+
+SYNTAX:
+===========
+variable "common_name" {
+    default = "${var.project}-${var.environment}"
+}
+3. you can store expressions or functions inside locals block and reuse them whenever required
+
+dynamic block ----> not much use in real time we need to know basic matter about that
+==============
+loops inside terraform
+	count based
+	for_each
+	dynamic
+SYNTAX:
+===========
+dynamic "setting" {
+    for_each = var.settings
+    content {
+      namespace = setting.value["namespace"]
+      name = setting.value["name"]
+      value = setting.value["value"]
+    }
+  }
+
+--> oka block multiple times repeated avuthunte we need to use dynamic......
+
+Provisioners
+============
+usually terraform is creating instance, if we want to configure terraform is allowing to run few scripts
+--> basically provisioning means it will change position to another position... 
+We have to options like as below
+1. local-exec ---> Simply terraform commands ekkada ithe vundho or run cheestunte  adi local
+SYNTAX:
+=======
+provisioner "local-exec"{
+      command = "echo ${self.private_ip} > inventory"
+      #on_failure = continue  ---> it means continuing when we resources failed as well
+
+    }
+on_failure = continue  it is use like oka vela ip address inventory file lo rayalekapothe provisioner ila cheptundhi the above ec2 resource also failed ni.. so to overcome this issue u need to add on_fail ane option ni add cheste  then provision says like ec2 resources no fail......
+
+ provisioner "local-exec"{
+      command = "echo Instance is destroyed"
+      when    = destroy   ---> it means destroy time lo kuda run avuthundhi or else creation time lo kuda run avuthundhi....
+    }
+--> Destroy ani ivvaka pothe adhi by default creation time anukoni manaki print avuthundhi....
+
+2. remote-exec ---> so here local tho server or ec2 instance crate chesi serve loki login ayyi akkada some commands or actions perform excute chese dhani remote exce antam
+
+ansible-playbook -i inventory playbook.yaml ----> ila ansible ki connect cheyachu for server configuration ki
+
+OVER VIEW
+=================================================================================
+
+Terraform
+===========
+setup
+variables
+data types
+conditions -> expression ? "true-value": "false-value"
+loops
+	count based -> list ki use chestam
+	for each -> set/map ki use chestam
+	dynamic block
+functions -> in built functions
+
+data sources -> query the existing info from provider
+locals -> store expressions, functions. we can reuse them. cant override these values. we can variables inside locals
+state -> matching desired infra with actual infra using state
+remote state -> keep the state secure, for collaboration as well. locking it
+provisioners -> when we create ec2 instances we can use provisioners to configure or perform next actions
+
+=====================================================================
+							  SES-33-c5
+						   *****************
+
+remote-exec
+=============
+terraform can connect to ec2 instance and configure it using remote-exec. basically running commands inside the server
+
+SYNTAX:
+=======
+provisioner "remote-exec" { # this is for server creation code
+      inline = [
+ ## VSCODE
+              ]
+    }
+provisioner "remote-exec" { # this is for server stopping code
+      inline = [
+ ## VSCODE
+              ]
+      when = destroy
+    }
+
+How to create multiple environments using terraform
+===================================================
+--> in terraform one of the best example enti ante.. consistent the infrastructure across the environ.. it means if u are in dev or prod or QA lo vunna we can do to create same infrastructure bcz here code is same
+
+1. using .tfvars
+2. terraform workspaces
+3. individual repos
+
+tfvars
+========
+it is used to override the default values of the variables
+--> so in terraform keys are fixed, so then only changed the values only as per the env or DEV or PROD ... values ni control cheyatame inka
+--> main advtage is code reused
+
+Terraform Workspace
+=====================
+--> Env is nothing but workspace
+--> if u a done any changes in provider.tf file then immediately give cmd like (terraform init -reconfigure )
+
+-- >how to get a key in a map in terraform........... https://developer.hashicorp.com/terraform/language/functions/lookup
+Syntax:
+=======
+lookup(<map>, <key>, <default_value>)
+
+The Terraform lookup function retrieves a single value from a map variable (a collection of key-value pairs) given a specific key. It allows for dynamic configuration and helps maintain clean, reusable code. 
+
+
+
+maintain different repos for different environments
+================================
+--> here individual ga env wise repos ni create chesukoni code rasukunte better.. bcz to over come issue 
+--> but here code anedhi repeated ga avuthundhi..
+
+roboshop-infra-dev
+roboshop-infra-prod
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

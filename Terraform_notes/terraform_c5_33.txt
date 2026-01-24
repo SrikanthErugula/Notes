@@ -1,23 +1,3 @@
-cd /c/Users/srika/devsecops/shellscript/Notes/Terraform_notes/
-
-
-Terraform
-===========
-setup
-variables
-data types
-conditions -> expression ? "true-value": "false-value"
-loops
-	count based -> list ki use chestam
-	for each -> set/map ki use chestam
-	dynamic block
-functions -> in built functions
-
-data sources -> query the existing info from provider
-locals -> store expressions, functions. we can reuse them. cant override these values. we can variables inside locals
-state -> matching desired infra with actual infra using state
-remote state -> keep the state secure, for collaboration as well. locking it
-provisioners -> when we create ec2 instances we can use provisioners to configure or perform next actions
 
 local-exec -> runs the commands in local i.e where terraform command is executed
 
@@ -34,10 +14,7 @@ terraform can connect to ec2 instance and configure it using remote-exec. basica
 
 --> remote exec.. here terraform local ante windows so from windows if u want connect instance u have to use pub-ip not a pvt ip
 ----> before that u have to configure or take connection block {...} see in VSCODE
-
 --> destroy ani run chesinapudu first server stop ayyi next destroy ayipothadhi.....
-
-
 
 How to create multiple environments using terraform
 ===================================================
@@ -49,8 +26,9 @@ How to create multiple environments using terraform
 
 tfvars   -----------------------need to listen for class 33 ---36:00 
 ========
+tfvars folder created and run terraform init for execute the code 
 it is used to override the default values of the variables
---> so in terraform keys are fixed here only changed the values only as per the env or DEV or PROD ... values ni control cheyatame inka
+--> so in terraform keys are fixed, so then only changed the values only as per the env or DEV or PROD ... values ni control cheyatame inka
 
 EX:-
 ====
@@ -63,13 +41,12 @@ common tags
 	Project = Roboshop
 	Terraform = true
 --> ivi dev and prod ki same ithe then we can us this common tags
-
+---> if not same for all in that case we have to use this separate tags
 seperate tags
 	component = catalogue
 	Environment = dev/prod
 
----> if not same for all in that case we have to use this separate tags
---> Execution process antha see in google doc file
+--> Execution process antha see in google doc file dig-1 page lo 
 
 --> ec2 server creation code antha same so we haven't go with separate folder.... we are using same configuration...
 --> main advtage is code reused
@@ -77,18 +54,52 @@ seperate tags
 Terraform Workspace
 =====================
 --> Env is nothing but workspace
---> terraform workspace will given like as terraform.workspace = dev ( manam which workspace lo vunte adhulo dhani value store avutundhi... like dev ite dev or else prod ite prod values will be stored
+--> sample commands are stored in google doc multi env page 
+
+workspace folder created and run terraform init for execute the code 
+
+-->Basically  terraform workspace will given like as terraform.workspace = dev ( manam which workspace lo vunte adhulo dhani value store avutundhi... like dev ite dev or else prod ite prod values will be stored
 
 --> go to vscode need to check the provider.tf and change the key and run terraform cmds..
---> dev tisukoni 
---> manam which values ni control cheyalanukuntunnaroo terraform workspace aa name tho vundali
--- >how to get a key in a map in terraform........... https://developer.hashicorp.com/terraform/language/functions/lookup
+--> same code whatever have tfvars folder
+--> if u a done any changes in provider.tf file then immediately give cmd like (terraform init -reconfigure )
 
-lookup(map, key, default)
+--> new DEV workspace created
+--> in variable,tf lo instance type lo and environ lo values updated.
+
+--> manam which values ni control cheyalanukuntunnaroo adhi terraform.workspace lo store ayi vundali
+-- >how to get a key in a map in terraform........... https://developer.hashicorp.com/terraform/language/functions/lookup
+Syntax:
+=======
+lookup(<map>, <key>, <default_value>)
+
+EX: 1
+> lookup({a="ay", b="bee"}, "a", "what?")
+ay --> so ichhina map lo "a" ki value assign ayyindhi so "a"  value printed
+
+EX: 2
+> lookup({a="ay", b="bee"}, "c", "what?")
+what? so ichhina map lo "c" ki  no value  so default value printed. "what?"
+
+
+The Terraform lookup function retrieves a single value from a map variable (a collection of key-value pairs) given a specific key. It allows for dynamic configuration and helps maintain clean, reusable code. 
+
+terraform.workspace it means manam present which env lo ithe vunnamo dhani refer chestundhi  
+
+--> if u want destroy u have to select respective env and give destroy cmd
+--> main advtage is code reused
+
 
 maintain different repos for different environments
 ================================
+--> here individual ga env wise repos ni create chesukoni code rasukunte better.. bcz to over come issue 
+--> but here code anedhi repeated ga avuthundhi..
+
 roboshop-infra-dev
 roboshop-infra-prod
 
-need to listen last 1:00 hr
+--> to over this repeated code we have one option is terraform modules lo repeated code ni store chesukovachhu.. we can call if required
+
+--> interview lo adiginapudu we are using multiple process konni old project lo tf vars and konni workspace lo use chestunnam but now if any new projects ki modules ni develop chesukoni individual env wise code rastunam 
+
+==========================

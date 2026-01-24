@@ -18,7 +18,7 @@ so here mainly 2 thigs will happen
 
 ---> what is the solution while mutliple persons are work chestunte ----> simple solu is centralised state or block or room
 
---> here we have dig state.drwio..... for detailed dig matter will be available in my own doc can u see there
+--> here we have dig state.drwio..... for detailed dig matter will be available in my own doc dig-1 page can u see there
 
 
 we must keep state file in remote location while working in collaboration environment for security and preventing duplicate resources and errors, when multiple members( team members) are working together
@@ -26,14 +26,14 @@ we must keep state file in remote location while working in collaboration enviro
 
 --> state file should be locked when terraform is doing something, so for that others can't apply the changes.
 
---> everytool ki oka starage vunttadhi like aws ki s3 ani azure ki Blob... emi lekapothe terraform own ga storage create chestundhi..
+--> every tool ki oka storage vunttadhi like aws ki s3 ani azure ki Blob... emi lekapothe terraform own ga storage create chestundhi..
 
 --> drive lo manam ela folder create chetamo ala aws lo s3 bucket create cheyali.. for starage purpose our state file....
 --> here entire aws s3 bucket name should be unique ga vundali...
 
 --> dsoaws-remote-state --> s3 bucket create chesam next aa file location or path access terraform ki ichhi state files ni akkada store chesuko ani cheppali...
 
-terrform aws s3 remote starge ---> https://developer.hashicorp.com/terraform/language/backend/s3 --> here we will get backend code for state file storing
+terrform aws s3 remote state ---> https://developer.hashicorp.com/terraform/language/backend/s3 --> here we will get backend code for state file storing
 
 --> so ideally we have to use remote state files in real time projects........
 
@@ -71,7 +71,7 @@ variable "common_name" {
 
 3. you can store expressions or functions inside locals block and reuse them whenever required
 
-mysql catalogue cart user --ila same names vunttai for different projects so we need to get unique while creating resources....... like as below we have to set names for creation of resoures.... or server names or instance names like as below
+mysql catalogue cart user --ila same names vunttai for different projects so we need to get unique while creating resources....... like as below we have to set names for creation of resoures.... or server names or instance names like as below7
 
 roboshop-catalogue --------> naming conversion for uniqueness kosam
 roboshop-dev-catalogue --------> naming conversion for uniqueness kosam --> small company one aws account vunte like these need to create resources with unique name....
@@ -108,6 +108,18 @@ loops inside terraform
 --> Here multiple ports ni servers ki add chese time lo we need write more ingress blocks like 22 oka block and 80 ki inkokati so ala repeated ithe code length increase
 
 --> https://developer.hashicorp.com/terraform/language/expressions/dynamic-blocks ---> for detailed syntax.....
+
+SYNTAX:
+===========
+dynamic "setting" {
+    for_each = var.settings
+    content {
+      namespace = setting.value["namespace"]
+      name = setting.value["name"]
+      value = setting.value["value"]
+    }
+  }
+
 --> oka block multiple times repeated avuthunte we need to use dynamic......
 
 
@@ -117,24 +129,23 @@ Provisioners
 
 ---> Provison folder has been created.... 
 
-terraform is creating instance, if we want to configure terraform is allowing to run few scripts
+usually terraform is creating instance, if we want to configure terraform is allowing to run few scripts
 
---> basically provisioning means it will change position to another position... 
+--> basically provisioning means it will change one position to another position... 
 --> once incident create chesina tharivatha emi cheyali ante we have to options like as below
 
-1. local-exec  ----> terraform cmd ekkada ithe vundho or run cheestunte  adi local
-EX: here terraform plan and apply cmds windows lo run cheste... windows is local avuthundhi....Linux lo run cheste then Linux is local of the terraform..
+1. local-exec  ----> terraform commands ekkada ithe vundho or run cheestunte  adi local
+EX: here terraform plan and apply commands windows lo run cheste... windows is local avuthundhi....Linux lo run cheste then Linux is local of the terraform..
 
 ---->Basically server creation done after server configuration ki ansible ni run cheyali so dhaniki private ip ivvali
 
---> command = " echo instances created " .... for this output is 
-# aws_instance.terraform (local-exec): instances created
+--> command = " echo instances created " .... ila iste o/p is like as below 
+# aws_instance.terraform (local-exec): echo instances created
 
 
 provisioner "local-exec"{
       command = "echo ${self.private_ip} > inventory"
-      #command = " echo instances created "
-      #on_failure = continue # see notes
+      #on_failure = continue 
     }
 ---> so here provisions by default terraform apply chesina tharuvatha run avuthudiii, 
 ------> on_failure = continue  it is use like oka vela ip address inventory file lo rayalekapothe provisioner ila cheptundhi the above ec2 resource also failed ni.. so to overcome this issue u need to add on_fail ane option ni add cheste  then provision says like ec2 resources no fail.......
@@ -148,6 +159,8 @@ provisioner "local-exec"{
     }
 --> Destroy ani ivvaka pothe adhi by default creation time anukoni manaki print avuthundhi....
 
-2. remote-exec ---> so here local tho server or ec2 instance crate chesi serve loki login ayyi akkada some cmds or actions perform excute chese dhani remote exce antam
+2. remote-exec ---> so here local tho server or ec2 instance crate chesi serve loki login ayyi akkada some commands or actions perform excute chese dhani remote exce antam
 
 ansible-playbook -i inventory playbook.yaml ----> ila ansible ki connect cheyachu for server configuration ki
+
+
