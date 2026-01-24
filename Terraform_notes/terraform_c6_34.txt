@@ -1,26 +1,12 @@
-cd /c/Users/srika/devsecops/shellscript/Notes/Terraform_notes/
-
-
-1. Tfvars
-2. Workspaces
-3. Different repos
-
-same code for all environments, code re use --- these are adv
-whatever code is written it may be accidentally applied into PROD ---> these are dis-adv
-
-uses for different repos
-=====
-clear isloation b/w environments, no accidental changes
-code should be duplicated -> disadvantage
 
 *** Modules development ***
 ========
 -->Here everything is DRY
--->module.diag prsentted
+-->module.diag presented
 --> common code antha oka chota vunttadhi, that is called MODULES
 if separate code for each component, there is no single point of control
 
-scb -> top level project
+EX: Standard Chartered Bank (SCB)-> top level project
 savings banking  --> this is a component
 current banking --> this is a component so ala same for below
 mobile banking --> 
@@ -28,12 +14,15 @@ whatsapp banking -->
 demat 
 loans 
 
-
+DIS/Drawbacks 
+==============
 1. if there is version need to change so then, we need to update in all components ..assume like that we have 10000 components so here difficult to change for all 10000
 2. there are no common standards for all the projects, means same code use cheyaru ..
-3. maintanance and update is very tough
+3. maintenance and update is very tough
 
---> see in google doc 
+--> see in google doc dig -1 page
+
+---> parameterised code means manaki kavalisina parameters ni send cheste code work avuthundhi
 
 module advantages
 =================
@@ -47,7 +36,15 @@ module users
 
 --> parameterised cheyatum ante variables laga create cheyatame...users ki chance ivvali values ni update cheyadaniki.
 
-terraform naming convention time is 26:30 min
+--> Terraform-aws-module folder has been created. VSCODE in that --> ec2.tf-->variable.tf
+
+--> roboshop-ec2-test folder has been done
+--> 1.provider.tf
+run Command --> terraform init for downloading  provider
+
+--> 2. ec2.tf 
+
+terraform naming convention 
 ===========================
 sivakumar_reddy_m -> for programs understand --> whichever could see for program or computer we need to use _(underscore)
 
@@ -60,7 +57,8 @@ Srikanth --> ila kuda call chesina fine
 catalogue-instance -> resource type name should not be used in resource names lo 
 id -> string
 ids -> list
---> so here terraform-aws lo vunna ec2.tf file reffer cheyali in roboshop-test file lo ec2.tf ani create chesi...
+
+--> so here terraform-aws lo vunna ec2.tf file ni.... roboshop-test file lo ec2.tf lo refer or connection cheyali  like this  source = "../terraform-aws-module"
 
 --> syntax is below
 -------------------------
@@ -70,14 +68,19 @@ module "module-name" {
 	mandatory-variables
 }
 
---> terraform init anedhi provider lo emaina changes chesina and ec2.tf lo changes chesina we have to re run
+--> terraform init anedhi provider lo emaina changes chesina and  roboshop-test folder lo vunde ec2.tf lo changes chesina we have to re run
 
 ---> instance_type ni manam control cheyali bcz if we use large t3 type we will loose many budget 
 validation {
     condition     = contains(["t3.micro", "t3.small", "t3.medium"], var.instance_type)
     error_message = "Please select either t3 micro or small or medium"
   }
+-->so ila control cheyachu list lovi kakunda vere emiana select chesukunte it wont allow we will get error
+--> module numchi o/p vaste dhani test file loki access chesukovali 
+
 
 --> terraform-aws-module code rasetappudu we assume like max values ni parameterised chese laga vundali and default value kuda pettali
---> use chesetappudu u can see roboshop-ec2-test file vally rasina code ni source lo refer cheyali
+--> use chesetappudu u can see roboshop-ec2-test file vallu rasina code ni source lo refer cheyali
 --> andhulo avi mandatory anni istam like ami_id and instance-type ala next output chusi manaki nachhina value tisukovadame
+
+ 

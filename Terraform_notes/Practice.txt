@@ -1,4 +1,14 @@
 session 9 for DNS
+Buy a server in hostinger.in
+transfer the ownership to Route53
+Update NS records in hostinger.in
+
+Browser -> Cache -> OS -> Cache -> ISP DNS resolver -> Root Servers -> TLD -> Who is managing the servers NS
+
+High Availability -> --> vundali dowm avvakunda -->Same region multi AZ
+Disaster recovery -> --> vundali dowm avvakunda--> Multi Region --> entire region down avvatum 
+
+
 session 8 for ip
 
 

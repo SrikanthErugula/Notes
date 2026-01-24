@@ -1,27 +1,4 @@
-cd /c/Users/srika/devsecops/shellscript/Notes/Terraform_notes/
 
-Buy a server in hostinger.in
-transfer the ownership to Route53
-Update NS records in hostinger.in
-
-Browser -> Cache -> OS -> Cache -> ISP DNS resolver -> Root Servers -> TLD -> Who is managing the servers NS
-
-High Availability -> --> vundali dowm avvakunda -->Same region multi AZ
-Disaster recovery -> --> vundali dowm avvakunda--> Multi Region --> entire region down avvatum 
-
-us-east-1 -> AWS control full authority and all global services are here
-
-Multi Cloud -> AWS, Azure, GCP --> ila multi cloud lo vundali aws down ithe gcp loki switch avvali so ala atleast 2 ayina vundali..
---> but companies cloud loki ravadaniki reason cost reduce.. but 2 service tisukovali ante adhi shocking companies kii
-
-Module ->common code is here must provide inputs and outputs documentation. Module must provide outputs
-Infra code -> provider set here, so here it needs to be pass inputs to module. Must receive outputs from module
-
-module "module_name" {
-
-	source = ""
-	module_vars = "values"
-}
 
 VPC(Virtual private cloud) ->  see in bottom for define
 ========================
@@ -190,60 +167,3 @@ Path for creation the above statements>>> create VPC---> create IG attach to VPC
 
 
 ========				==============MAIN POINTS ===============
-VPC(Virtual private cloud) ->  
-=========================
-acting like a virtual data center where you launch and control your resources (like EC2 instances, databases)in isolated space, with full control over IP addresses and subnets, gateways, and security settings, we are completely responsible to this.
-
-For servers maintain 
-===================
-one room
-power connection
-network connection
-AC
-physical security
-
-a subnet is a range of IP addresses within your Virtual Private Cloud (VPC) that acts as a logical subdivision for organizing and isolating your resources, for maintenance and security.  like EC2 instances, within a single Availability Zone 
-
-4 Octates -> here 1 octa is equals to 8 bits each(4*8) = 32 bits
-255.255.255.255 --> max ip adress
-
-IP is combination of Network+Host(server)
-
-CIDR = Classless Inter Domain Routing
-10.0.0.0/16 from here the range will be start CIDR
-
-10.0.0.0/24 from here the range will be start for subnet 
-
-what is difference b/w pub rt and pvt rt?
---------------------------------------------
-Think of a public subnet as a shop with a front door facing the street (internet), while a private subnet is a back room that only gets deliveries through a loading dock (NAT Gateway) and has no street-facing door. 
-
---> Subnet which have access to IGW rt is called PUB RT
---> Subnet which don't have access to IGW is called PVT RT
-
-
-What is NAT gateway?
-----------
- NAT (Network Address Translation) Gateway is a managed service that enables resources in a private subnet to connect to the internet or other AWS services while preventing the internet from initiating a connection with those resources
-
-EX : If we want to enable egress internet access to the private servers we can enable NAT gateway. for installation, patches, etc.
-
-Elastic IP == Static IP
------------------------
-Designed for dynamic cloud environments, allowing you to quickly remap it from one instance to another and providing a consistent, internet-routable endpoint even if your underlying server changes
-
-The Three Private IPv4 Ranges
-
---> 10.0.0.0/8: The largest block, from 10.0.0.0 to 10.255.255.255, commonly used for large enterprise networks.
-
-172.16.0.0/12: A medium-sized range, from 172.16.0.0 to 172.31.255.255, often seen in corporate environments.
-
-192.168.0.0/16: The most common for home networks, from 192.168.0.0 to 192.168.255.255, used by most home routers. 
-
-NACL
-------
-In AWS, a Network Access Control List (NACL) is a stateless virtual firewall that controls traffic in and out of your subnets, acting as an optional security layer for your Virtual Private Cloud (VPC)
-
-Bastion Host : it used to connect private server by using public server, once u entered the public server then if u want connect private there u must be give the private Ip address after then u could connect private server
-
-A bastion host in AWS is a dedicated Amazon EC2 instance that acts as a secure gateway to access other instances located in private subnets
