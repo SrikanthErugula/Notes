@@ -12,15 +12,23 @@ Disaster recovery -> --> vundali dowm avvakunda--> Multi Region --> entire regio
 session 8 for ip
 
 
-1. vpc creation has been done
-after VPC creation VPC, dhaniki network ravali so dhani kosam IG ni create cheyali
-2. created IG and needs to be attach to VPC in action tab click and see attach VPC option
-3. 2 subnet created for pub and pvt here subnet range will under VPC
-4 2 route table created for public and pvt  and attach to subnet in subnetassociation click on edit subnet association
-5. pub rt connect avvalante we need to add ig to pub rt.. pub rt connect avvalante through ig thone
-6. elastic ip ni add chesukovali assume like broker
-7. nat gateway creaed ans selected elastic ip for creation process
-8. pvt rt ki nat gateway ni add cheyali bcz for network connections kosam
+1. vpc creation has been done like select cidr range and submit vpc name is sri
+after VPC creation VPC, dhaniki network ravali so dhani kosam IG ni create cheyali ---> just name and submit
+2. created IG and needs to be attach to VPC in action tab click and see attach VPC option then select vpc whichever we created like name is sri
+3. 2 subnet created under sri vpc name like pub and pvt here subnet range will under VPC
+
+4 1 route table created for public and needs to attach to pub subnet, in route table tab go to subnetassociation click on edit subnet association select pub subnets 1a 1b 
+5 1 route table created for pvt and needs to attach to pvt subnet, in route table tab go to subnetassociation click on edit subnet association select pvt subnets 1a 1b
+
+ --> in route table go to routes tab click on edit routes --> there destination is 0.0.0.0/0 and target internet gateway- igw   --->submit 
+6. so pub rt connect avvalante we need to attach ig for pub rt.. pub rt connect avvalante through ig thone
+
+7. elastic ip ni add chesukovali assume like broker
+8. nat gateway created and selected elastic ip for creation process --> pub lo nat gateway vunttadhi so select pub subnet while creating nat
+
+
+-->in route table go to routes tab click on edit routes --> there destination is 0.0.0.0/0 and target NAT gateway- nat --> submit 
+9. pvt rt ki nat gateway ni add cheyali bcz for network connections kosam
 
 
 T-c7-36 session lo vpc creation

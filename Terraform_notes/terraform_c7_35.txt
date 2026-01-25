@@ -1,6 +1,6 @@
 
 
-VPC(Virtual private cloud) ->  see in bottom for define
+VPC(Virtual private cloud) 
 ========================
 
 EX: house construction in village or city ..no need to do in forest or outcuts...
@@ -34,7 +34,7 @@ Subnet -> Streets
 Route tables -> Roads
 Internet Gateway -> Modem/Arch
 
-IP Address
+IP Address --> Generally it has 32 bits 
 
 Ex: 192.168.0.1 -> 32 bits it has....so here in separate ga 192 decimal and 168 is decimal all....
 
@@ -42,12 +42,13 @@ Ex: 192.168.0.1 -> 32 bits it has....so here in separate ga 192 decimal and 168 
 0 1 2 3 . . . . 9 -> decimal word for human understand 
 0 1 -> Binary
 
-2       1       0 (place)
+2       1       0 (place)or position
 =	=	=
-1(face)	2	4 = 4*10^0(4*1) + 2*10^1(2*10) + 1*10^2(1*100) = 4+20+100 --> decimal kabbati desi= 10 --> 124 is decimal
+1(face)	2	4 = 4*10^0(4*1) + 2*10^1(2*10) + 1*10^2(1*100) = 4+20+100 --> decimal kabbati so here (desi= 10)  --> 124 is decimal
 
 
 --> here face and place ni batti value vunttadhi humans ki alane above EX 124 kuda 
+
 --> so computers lo decimal numchi binary ki ala change or conversion avuthai... 
 4 Octates -> here 1 octa is equals to 8 bits each(4*8) = 32 bits
 
@@ -66,8 +67,9 @@ Ex: 192.168.0.1 -> 32 bits it has....so here in separate ga 192 decimal and 168 
 
 255.255.255.255 --> max ip adress
 
-_ -> 0 1 -> 2^1 = 2 --> probability chances here
+_( assume this one position) ki -> 0 1 -> 2^1 = 2 --> probability chances here
 
+the below are the 2 positions
 _	_
 0	0
 0	1
@@ -75,22 +77,28 @@ _	_
 1	1
 -> 2^2 = 4
 
+ so finally formula is 
+=====================
 n bits -> how many numbers -> 2^n
-32 bits ipv4 --> n=32 --> 2^32 
+32 bits ipv4 --> n=32 --> 2^32  GT is 4.29 billions ip lu possible
+--> so ila every persons ki 4 vuntai min in this generation so to over come this issue they introduce pub and pvt 
 
 NAT -> Network Address Translation (NAT) 
 =========================================
 -->NAT team vallu pub and pvt concept lu techharu...
-public IP from ISP ( internet service provider) 
 
-IP is combination of Network+Host(server)
+public IP from ISP ( internet service provider) so ila for each home has 1 pub for all
 
-4 Octates -> here 1 octa is equals to 8 bits each(4*8) = 32 bits
+IP is combination of Network+Host(server) --> so edhaina issue vaste both check chestaru like network and host 
+
+4 Octates -> here 1 octa is equals to 8 bits each(4*8) = 32 bits 
 
 10.0.0.0/16 -> it means --> first 16 bits are reserved for network. next 16 bits are reserved for host  ---> 53:00min
 
+first 16 bits means 2 octants like ( 2*8 ) 1 octa is equals 8 bits 
+
 4  3 2 1 --> 4 octa positions 
-10.0.0.0   ---> 10.0 2 octa are fixed for network next 2 manaki andhulo 0.0 least or min
+10.0.0.0   ---> 10.0 2 octa are fixed for network next 2 manaki andhulo 0.0 
 .
 .
 .	= 2^16 = 65,536 these are in our control bcz 2 octa mana controll
@@ -98,9 +106,10 @@ IP is combination of Network+Host(server)
 .
 10.0.255.255 -----------> max
 
-CIDR = Classless Inter Domain Routing
+CIDR = Classless Inter Domain Routing --->( this one type of aggreement) for ip concept ki 
 
-10.0.0.0/16 == CIDR RANGE  == pincode idhi manam select chesukovali intha kavali ani tisukovali  10.0.0.0/16 ila  --> it used for VPC creation
+10.0.0.0/16 == CIDR RANGE  == pincode idhi manam select chesukovali like entha kavali ani tisukovali  10.0.0.0/16 ila  naa network lo inni kavali ani
+--> it used for VPC creation
 
 
 2^8 -> 256 subnets
@@ -121,7 +130,16 @@ CIDR = Classless Inter Domain Routing
 
 
 --> so ila like as above laga ip lu 256 create avuthai 10.0.0.0/24 ee subnet ki 
---> vpc (village) created here, and next network(Gate or entrance) supply cheyali ante we need to create nat gateway called in vpc( modem is called our undrsta)
+
+--> 10.0.0.0/16 anedhi oka village ki assign cheste andhulo, one street ki 10.0.0.0/24 ip lu assign chesaru so street ki assign chesinavi within range of village ips
+
+--> upto here discussion done next we need to implement in aws for vpc creation then go to aws account and go to vpc selection ......etc
+
+
+
+--> see in practice notes for vpc creation process detailed
+
+--> vpc (village) created here, and next network(Gate or entrance) supply cheyali ante we need to create ig gateway called in vpc( modem is called our undrsta)
 --> ig create chesi dhani vpc ki attach chesa..
 
 Ip address ni chusi cheppachu adhi ekkda vunchi vastudhi ani
@@ -135,8 +153,7 @@ Ip address ni chusi cheppachu adhi ekkda vunchi vastudhi ani
 so here pub rt is connected through IGW ( Internet Gateway) 
 
 what is difference b/w pub rt and pvt rt?
---------------------------------------------  see in bottom for define
-
+--------------------------------------------  
 private server -> no internet access 
 
 dnf install mysql-server -> traffic is originating inside server( lopala numchi ravatum bayatiki no restrictions) -> egress(exit or out) --> this our control 

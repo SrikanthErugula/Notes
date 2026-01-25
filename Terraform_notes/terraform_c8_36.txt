@@ -1,29 +1,24 @@
-cd /c/Users/srika/devsecops/shellscript/Notes/Terraform_notes/
 
-VPC with CIDR
-IGW and attach to VPC
-Subnets with CIDR
-Route tables
-Route tables association with subnets
-Routes
-EIP
-NAT
-Add NAT route to private subnets
 
---> AWS-VPC folder created->name manaistum so vpc.tf ani rasa
+
+--> AWS-VPC module folder created->name manaistum so vpc.tf file done
+
 in this folder we need to create VPC resources EX more : https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc
 see in VSCODE
 
---> VPC-module folder-->name mana istum main.tf rasa-->provoder.tf and gitigonore file copied..
---> 
-project_name-environment-<resource_name> --> idhi manam pettukuntunna condistion or rule vere company ki velte valla rules manam chudali.... 
+--> VPC-module test folder-->name mana istum main.tf rasa-->provoder.tf and gitigonore file copied..
+
+-->project name-environment-<resource_name> --> idhi manam pettukuntunna condistion or rule vere company ki velte valla rules manam chudali.... 
 --> so now we need to create varialbels for project name and environ see in variable.tf file
 -->local.tf create chestam bcz no can override, so here every project ki use chestam ----------see in VSCODE
 
 --> AWS-VPC folder vunna variables and VPC-module test lo vunna variables both are not same.. both are different
+
 --> inputs must give module so they have to create output.tf in module folder
+
  aws_vpc.main.id ---> vpc.tf folder lo aws_vpc "main" block run avvalante aws.vpc.main.id iste oka id ani iste manaki vpc id vstudhi
 ---> so upto here VPC resourse create chesam and vpc id ni tisukunnam
+
 ---> IGW for EX more https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/internet_gateway.html
 --> igw has bee done in vpc.tf lo 
 --> next subnets creation, here we have to create min 2 subnets for high availability kosam..

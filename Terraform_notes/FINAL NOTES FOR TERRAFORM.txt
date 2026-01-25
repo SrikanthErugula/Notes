@@ -527,7 +527,7 @@ module "module_name" {
 }
 
 =====================================================================
-							  SES-34-c6
+							  SES-35-c7
 						   *****************
 
 VPC(Virtual private cloud) ->  
@@ -543,11 +543,14 @@ AC
 physical security
 
 a subnet is a range of IP addresses within your Virtual Private Cloud (VPC) that acts as a logical subdivision for organizing and isolating your resources, for maintenance and security.  like EC2 instances, within a single Availability Zone 
+Subnets -> we create partitions in the network for maintenance and security.
+
+IP Address --> Generally it has 32 bits 
 
 4 Octates -> here 1 octa is equals to 8 bits each(4*8) = 32 bits
 255.255.255.255 --> max ip adress
 
-IP is combination of Network+Host(server)
+IP is combination of Network + Host(server)
 
 CIDR = Classless Inter Domain Routing
 10.0.0.0/16 from here the range will be start CIDR
@@ -561,6 +564,11 @@ Think of a public subnet as a shop with a front door facing the street (internet
 --> Subnet which have access to IGW rt is called PUB RT
 --> Subnet which don't have access to IGW is called PVT RT
 
+ so finally formula is 
+=====================
+n bits -> how many numbers -> 2^n
+32 bits ipv4 --> n=32 --> 2^32  GT is 4.29 billions ip lu possible
+--> so ila every persons ki 4 vuntai min in this generation so to over come this issue they introduce pub and pvt 
 
 What is NAT gateway?
 ----------
@@ -589,8 +597,48 @@ Bastion Host : it used to connect private server by using public server, once u 
 A bastion host in AWS is a dedicated Amazon EC2 instance that acts as a secure gateway to access other instances located in private subnets
 
 
+Path for creation the above statements>>> create VPC---> create IG attach to VPC --> create Route table attach to IG -->create subnet attach to RT(Route table) ----> inside subnet create server EC2 
+
+--> subnet range will be select within the range of VPC it measn VPC range kante thakkuva select cheayali
+--> 10.0.0.0/16 anedhi oka village ki assign cheste andhulo, one street ki 10.0.0.0/24 ip lu assign chesaru so street ki assign chesinavi within range of village ips
 
 
+=====================================================================
+							  SES-36-c8
+						   *****************
+
+VPC creation through TERRAFORM 
+
+
+
+
+
+
+
+
+
+=====================================================================
+							  SES-37-c9
+						   *****************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=====================================================================
+							  SES-38-c10
+						   *****************
 
 
 
