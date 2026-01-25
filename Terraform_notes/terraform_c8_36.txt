@@ -21,6 +21,7 @@ see in VSCODE
 
 ---> IGW for EX more https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/internet_gateway.html
 --> igw has bee done in vpc.tf lo 
+
 --> next subnets creation, here we have to create min 2 subnets for high availability kosam..
 https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet
 
@@ -64,10 +65,13 @@ depends_on = [aws_internet_gateway.main] --> it means nat anedhi ig meedha depen
 VPC peering
 ============
 2 villages or cities communicate avvatum 
+EX pin codes here it doesn't have same pin code for communicate 
 
 if we want communication between multiple VPC, we need peering. By default one vpc can't communicate with another VPC
 --->A VPC peering connection helps you to facilitate the transfer of data. 
 
+VPC has some rules:
+-==================
 1. VPC's should not have same CIDR
 2. routes also should be available
 
@@ -75,11 +79,12 @@ What are the VPC should connect?
 =============================
 same region VPC's could be connect
 diff region VPC could be connect
-diff account diff region VPC's could be connect
+diff account and diff region VPC's could be connect
 
 -->oka accout lo vunna VPC ni another account vunna VPC ni connect avvachu 
 
 --> mainly a company while working with thrird party company so then for data sharing activity is done through this peering function
+
 --> peering lo opposite side vallu kuda accept chestene aa peering function work ayyedhi.. once oka side peering connection create chesaka opposite vallaki cheppali please accept my peering connection ani
 --> for accept steps are --> go to action --> click on accept --> this is done by same region lo 
 --> region lo ithe vallali chepali accept chei ani
@@ -89,12 +94,14 @@ Village-1 numchi Village-2 ki vellali ante manki road avasarum
 source = village-1
 destination = Village-2
 
---> so road kosam--> routes lo pub rt ni open chesi edit rt lo another side valla CIDR ivvali ( destination) --> dhenitho velutunnam peering connection select cheyali
-
+--> so road kosam--> routes lo pub rt ni open chesi edit rt lo another side valla VPC CIDR ivvali ( destination) --> dhenitho velutunnam peering connection select cheyali
+--> which subnet ki ithe access kavalo aa subnet loki velli rotes loki velli above
 
 172.31.0.0/16 idhi opposite valla CIDR range 
 
-172.31.1.221 -ila vunte ne request veluthundi.. so this whin range for that
+172.31.1.221 -ila vunte ne request veluthundi.. so this within range for that
+--> first 2 octa range tho start aye ip range lo vunde vatini accept chestundhi
+
 
 173.45.25.36 --- idhi out of range
 
