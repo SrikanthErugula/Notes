@@ -267,5 +267,29 @@ secrets manager
 
 ======================================================================================================================
 
+ 					 OVER VIEW FOR ANSIBLE
+					***********************
 
+Configuration management
+=====================
 
+It is configuration management, it means that within the server( **here manam one Linux server iste**
+
+**),** Ansible can do everything, 
+
+Collections/Modules. these are main for ansibles.... It will have parameters or arguments.. it means officially modules or communities officially, if not these both are available we have shell and commands as well...
+
+Adv ansible
+======
+By default, it has idempotent
+heterogeneous
+---------------------------------------
+Why can't i use ansible creation for infrastructure?
+=================================================
+
+Ansible can create infra, but it can't manage/update infra because of no state management feature available in ansible, originally created, created for configuration management not good for infra management.....
+
+-> so here 1 or more then 100 server u can give to ansible it will be handling no issues. will do any operation or perform upto here...... but it can't procced to do infra, so don't give infra to anisble......
+
+--> So finally ansible can manage or owner of the server configuration
+---> anisble playbook chuste manaki antha ardham avuthundiii what is what ani...
