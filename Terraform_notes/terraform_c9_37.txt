@@ -1,21 +1,99 @@
-cd /c/Users/srika/devsecops/shellscript/Notes/Terraform_notes/
+--> VPC full structure draw in VPC dig page doc
 
-10.0.0.0/16 -> local VPC CIDR for roboshop
+--> ekkada problem vachhina adhi net work lone so we need to troubleshoot in that only 
 
-52.87.172.93 -> not in local range
+-> ec2 lo sg created under robo-dev vpc lo selected inbound and outbound all traffic 
+--> instance done under robo-dev-vpc lo selected 
+--> another default instances done under default vpc lo 
+--> peer-robo lo default pub ip tho connect avvachu
+
+
+10.0.0.0/16 -> local VPC CIDR for roboshop-peer  ->  ec2 
+3.81.26.210-> not in local range -->idhi default ec2 cidr 
+
+--> so not match then it was taken another way that is going out from internet 
 0.0.0.0/0 -> going out to internet
+--> so ila evaro okaru hack chesi data read chesukocachu and time consuming or else latency and no security
 
-172.31.25.237
-172.31.0.0/16
+--> aws is given one option is peering within inside network
+now these the above 2 ec2 lo vunde vpc oka agreement ki vachi peering option ni enble chesaru like as below
 
+so Accepter is default VPC ID (Accepter) vpc-084d24f93b8479e30
 
+requester is robo-dev VPC ID (Requester) vpc-0821ce8a7258c4910 (roboshop-dev)
+
+--> same region then u can accept --> peering set upto here 
+
+--> then mainly here route connections--> roboshop velli default ni connect avuthundhi so default cidr anedhi ivvali destination 
+--> next same default vpc copy chesukoni rt loki velli paste chesi andhulo routes open chesi --> edit --> roboshop-dev valla cidr kuda ivvali destination 
+--> first rt create chesinapdu there main ani okati create avuthundhi for local kosam
+--> endhuku ante internet by default manam oka sub nuchi inko sub ki connect avvachu
+
+--> upto here manula ga peering connection done with 2 vpc if u want listen again sess 37 0-upto 27:44 min
+
+-->now we are creating peering connection through terraform
+
+--> basically peer anedhi option not a mandatory,
+
+var.is_peering_required ? 1 : 0 ( ila condition set chesi user ki ivvali valla istum) 
+data.aws_vpc.default.id ( every aws lo default vpc vunttadhi dhani manam fetch chestunam) 
+
+auto_accept ( it used to accept after creating peer connection ) 
+
+[count.index] ivvakapothe error vastundhi bcx top lo count ni condiotion rasam user kosam so list vastundhi 
+
+is_peering_required = false ( so user peering no anukunte false iste done) endhuku ante module lo manam condition rasam 
+
+--> upto here peering connection done through terraform 
+
+--> then mana code antha mana local windows lo vundhi but git lo vunde dhani kadha refer cheyali, real time lo git loki push chestaru module developers 
+
+source = "git::https://github.com/SrikanthErugula/terraform-AWS-VPC-module.git?ref=main" ( so ila specific ga main branch ivvachu, module vere brach lo vunde brach name  change chesukovachu ) 
+
+--> module lo chages cheste if u want latest module then u give cmd is 
+terraform init upgrade 
+
+--> for every projects we need VPC 
+
+for our understand purpose
+------------------------
 00-vpc
-10-sg
+10-sg      --> 10 gap endhuku ante in future lo vati kindha related emaina vunte add chesukovadaniki 
 20-ec2
 
-1. Customised modules -> we develop, maintain. full control
-2. Open source modules -> no need to develop, directly use it. we don't have full control
+--> for creation process like top to bottom
+--> for destroy process like bottom to top
+
+--> robo-dev-folder done --> 00-vpc folder done-->copied files from vpc-aws-module-test folder like main.tf,provider.tf,output.tf...etc
+--> robo-dev-folder done --> 10-sg folder done-->copied provider.tf file from above file lo numchi 
+
+Basically modules are 3 types
+=============================== 
+1. Customised modules -> we develop, maintain. full control --> top MNC will go this way
+2. Open source modules -> 3rd party developed use doc and community links tho--> no need to develop, directly use it. we don't have full control --> form internet or google modules  ---> small companies will go this way 
+
+-
 3. direct resource creation
 
-roboshop-dev-catalogue
+---> interview lo memu both use chese valla once upon time lo past years ago then we will get some error client not satisfied with that so but now we are build inhouse modules 
+
+--> ippati varaku chesina codes lo same eg use chesam but real time frontend ki pvt ki db ki vere vunttadhi, now we are go that way below are the naming conversion 
+roboshop-dev-catalogue  --> ila mana istum project wise we can 
 roboshop-dev-mongodb
+
+--> upto here varible.tf lo as per above names tho roboshop ( project name ) dev ( env name) until these are used for all so andule var.pro and var.env ichham
+
+--> SSM  lo secrets and non secrets both vuntai anisble lo pwd lo kosam secrets use chesam ikkada non secrets use chestam like type sting istam anthe 
+
+--> In real time lo vpc ki vere team and sg ki vere team 
+
+dig in google doc lo for SSM parameter process
+
+--> so in aws system manager-- parameter store --> name :/roboshop/dev/vpc_id --> Type: String --> value ivvali 
+--> parameters create chese vallu doc lo mention chestaru like alanti parameter use chestunaru ani 
+
+--> 00-vpc lo para.tf lo vunna parameter key anedhi 10-sg loki access cheyali 
+
+
+
+

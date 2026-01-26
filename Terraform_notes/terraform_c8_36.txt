@@ -85,17 +85,25 @@ diff account and diff region VPC's could be connect
 
 --> mainly a company while working with thrird party company so then for data sharing activity is done through this peering function
 
+Manual Process for peering connection 
+============
+Accepter is default VPC ID (Accepter) vpc-084d24f93b8479e30
+
+requester is robo-dev VPC ID (Requester) vpc-0821ce8a7258c4910 (roboshop-dev)
+
 --> peering lo opposite side vallu kuda accept chestene aa peering function work ayyedhi.. once oka side peering connection create chesaka opposite vallaki cheppali please accept my peering connection ani
 --> for accept steps are --> go to action --> click on accept --> this is done by same region lo 
---> region lo ithe vallali chepali accept chei ani
+--> vere region lo ithe vallali ki chepali accept chei ani
 
+now we need to set up routes
+===============================
 Village-1 numchi Village-2 ki vellali ante manki road avasarum 
 
 source = village-1
 destination = Village-2
 
 --> so road kosam--> routes lo pub rt ni open chesi edit rt lo another side valla VPC CIDR ivvali ( destination) --> dhenitho velutunnam peering connection select cheyali
---> which subnet ki ithe access kavalo aa subnet loki velli rotes loki velli above
+
 
 172.31.0.0/16 idhi opposite valla CIDR range 
 
@@ -108,6 +116,6 @@ destination = Village-2
 emi lekapothe by default ip like 0.0.0.0 ni tisukuntadhi...........
 
 --> so village-1 velli village-2 ni connect avvali anukunte dhani routes lo village 2 destination (CIDR) ivvali and peering ni select cheesukovai 
-vilage-2 kuda village-1 ni connect avvali so village-2 rotes lo destination icchi (CIDR) ivvali village-1 dhi
+vilage-2 kuda village-1 ni connect avvali ante so village-2 rotes destination lo icchi (CIDR) ivvali village-1 dhi
 
 --> Module develop chese vallu doc definitely provide chestaru....

@@ -1,4 +1,5 @@
 cd /c/Users/srika/devsecops/shellscript/Notes/Terraform_notes/
+ git log to know errors
 
 
 							FINAL NOTES FOR TERRAFORM
@@ -613,28 +614,60 @@ VPC creation through TERRAFORM
 
 VPC peering
 ============
+if we want communication between multiple VPC, we need peering. By default one vpc can't communicate with another VPC
+--->A VPC peering connection helps you to facilitate the transfer of data. 
 
+VPC has some rules:
+-==================
+1. VPC's should not have same CIDR
+2. routes also should be available
 
+What are the VPC should connect?
+=============================
+same region VPC's could be connect
+diff region VPC could be connect
+diff account and diff region VPC's could be connect
+
+-->oka accout lo vunna VPC ni another account vunna VPC ni connect avvachu 
+--> mainly a company while working with thrird party company so then for data sharing activity is done through this peering function
+
+Manual Process for peering connection 
+============
+Accepter is default VPC ID (Accepter) vpc-084d24f93b8479e30
+
+requester is robo-dev VPC ID (Requester) vpc-0821ce8a7258c4910 (roboshop-dev)
+--> peering lo opposite side vallu kuda accept chestene aa peering function work ayyedhi.. once oka side peering connection create chesaka opposite vallaki cheppali please accept my peering connection ani
+--> for accept steps are --> go to action --> click on accept --> this is done by same region lo 
+--> region lo ithe vallali chepali accept chei ani
+
+Village-1 numchi Village-2 ki vellali ante manki road avasarum 
+
+source = village-1
+destination = Village-2
+
+--> so village-1 velli village-2 ni connect avvali anukunte dhani routes lo village 2 destination (CIDR) ivvali and peering ni select cheesukovai 
+vilage-2 kuda village-1 ni connect avvali so village-2 rotes lo destination icchi (CIDR) ivvali village-1 dhi
 
 
 
 =====================================================================
 							  SES-37-c9
 						   *****************
+--> for detailed process for Peering connection 
+
+--> ekkada problem vachhina adhi net work lone so we need to troubleshoot in that only 
+→ By default there is no connection in b/w 2 VPC’s, bcz those are isolated 
 
 
 
 
 
 
-
-
-
-
-
-
-
-
+Topics: covered in this session 
+========
+VPC Module through terraform
+Roboshop infra creation
+SSM parameter store
 
 
 =====================================================================
