@@ -1,9 +1,14 @@
 
-cd /c/Users/srika/devsecops/shellscript/Notes/Terraform_notes/
+--> for custum process purpose --> custum-aws-sg folder created --> in that main.tf,varible.tf,output.tf ...etc done
 
-Custom module
-Open source module
-We can use direct resource definitions
+--> ingress anedhi sg lo big process and we need to get approval higher magnt 
+--> egress is same for all and it was open no restrictions 
+
+--then 
+
+
+
+
 
 1. Project Infra -> One time infra
 2. Application Infra -> frequent changes

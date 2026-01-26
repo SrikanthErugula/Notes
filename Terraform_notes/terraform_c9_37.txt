@@ -24,7 +24,7 @@ requester is robo-dev VPC ID (Requester) vpc-0821ce8a7258c4910 (roboshop-dev)
 
 --> same region then u can accept --> peering set upto here 
 
---> then mainly here route connections--> roboshop velli default ni connect avuthundhi so default cidr anedhi ivvali destination 
+--> then mainly here route connections--> roboshop velli default ni connect avuthundhi so default dhi cidr anedhi ivvali destination 
 --> next same default vpc copy chesukoni rt loki velli paste chesi andhulo routes open chesi --> edit --> roboshop-dev valla cidr kuda ivvali destination 
 --> first rt create chesinapdu there main ani okati create avuthundhi for local kosam
 --> endhuku ante internet by default manam oka sub nuchi inko sub ki connect avvachu
@@ -72,8 +72,7 @@ Basically modules are 3 types
 1. Customised modules -> we develop, maintain. full control --> top MNC will go this way
 2. Open source modules -> 3rd party developed use doc and community links tho--> no need to develop, directly use it. we don't have full control --> form internet or google modules  ---> small companies will go this way 
 
--
-3. direct resource creation
+3. direct resource creation for small cases
 
 ---> interview lo memu both use chese valla once upon time lo past years ago then we will get some error client not satisfied with that so but now we are build inhouse modules 
 

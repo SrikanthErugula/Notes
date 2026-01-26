@@ -1,4 +1,5 @@
 cd /c/Users/srika/devsecops/shellscript/Notes/Terraform_notes/
+git add . ; git commit -m "terraform_start" ; git push origin main
  git log to know errors
 
 
@@ -654,19 +655,50 @@ vilage-2 kuda village-1 ni connect avvali so village-2 rotes lo destination icch
 							  SES-37-c9
 						   *****************
 --> for detailed process for Peering connection 
+--> VPC full structure draw in VPC dig page doc
 
---> ekkada problem vachhina adhi net work lone so we need to troubleshoot in that only 
+--> ekkada problem vachhina adhi rt network lone so we need to troubleshoot in that only 
 → By default there is no connection in b/w 2 VPC’s, bcz those are isolated 
+-->manual process there in session 37 refer that notes 
 
+--> basically peer anedhi option not a mandatory,
+var.is_peering_required ? 1 : 0 ( ila condition set chesi user ki ivvali valla istum) 
+data.aws_vpc.default.id ( every aws lo default vpc vunttadhi dhani manam fetch chestunam) 
 
+--> upto here peering connection done through terraform 
+--> then mana code antha mana local windows lo vundhi but git lo vunde dhani kadha refer cheyali, real time lo git loki push chestaru module developers 
+source = "git::https://github.com/SrikanthErugula/terraform-AWS-VPC-module.git?ref=main" ( so ila specific ga main branch ivvachu, module vere brach lo vunde brach name  change chesukovachu ) 
 
+--> module lo chages cheste if u want latest module then u give cmd is 
+terraform init upgrade 
 
+--> for every rea time lo projects we need VPC creation bcz security
+
+Basically modules are 3 types
+=============================== 
+1. Customised modules -> we develop, maintain. full control --> top MNC will go this way
+2. Open source modules -> 3rd party developed use doc and community links tho--> no need to develop, directly use it. we don't have full control --> form internet or google modules  ---> small companies will go this way 
+
+3. direct resource creation for small cases
+
+---> interview lo memu both use chese valla once upon time lo past years ago then we will get some error client not satisfied with that so but now we are build inhouse modules 
+
+--> ippati varaku chesina codes lo same eg use chesam but real time frontend ki pvt ki db ki vere vunttadhi, now we are go that way below are the naming conversion 
+roboshop-dev-catalogue  --> ila mana istum project wise we can 
+roboshop-dev-mongodb
+
+SSM PARAMETER
+==========
+--> SSM  lo secrets and non secrets both vuntai anisble lo pwd lo kosam secrets use chesam ikkada non secrets use chestam like type sting istam anthe 
+
+--> In real time lo vpc ki vere team and sg ki vere team 
+--> parameters create chese vallu doc lo mention chestaru like Alanti parameter use chestunaru ani and dhani path
 
 
 Topics: covered in this session 
 ========
-VPC Module through terraform
-Roboshop infra creation
+VPC Module and peer connection done  through terraform
+Roboshop infra creation 
 SSM parameter store
 
 
@@ -674,6 +706,8 @@ SSM parameter store
 							  SES-38-c10
 						   *****************
 
+--> ingress anedhi sg lo big process and we need to get approval higher magnt 
+--> egress is same for all and it was open no restrictions 
 
 
 
