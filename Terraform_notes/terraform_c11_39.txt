@@ -9,29 +9,91 @@ Target group -> Team
 Health check -> availability check
 Instance -> Team member
 
-00-vpc needs tun first 
---> we need to create sg for load balancer ki 
+00-vpc needs run first 
+--> we need to create sg for load balancer ki so sg--> variable.tf lo frontend done
+10-sg needs run after vpc
 
+-->dig in vpc page
 
+-->in aws manula ga 2 instances created, like front-1 and front-2 while creating instances process select robo-vpc ---> select front sg --> in user data lo 
+we wrote small script like 
+#!/bin/bash
+dnf install nginx -y
+systemctl start nginx
+systemctl enable nginx 
+rm -rf /usr/share/nginx/html/index.html ----> removed old data 
+echo "<h1> Hi, My name is Srikanth<h1>" > /usr/share/nginx/html/index.html  ---> add new data inside file 
 
+and click on lunch instances
 
+--> sg just created, there is rules set up done inbound we need to set up ... outbound by default is all traffic 
 
-
-
-
+In generally
+============
 Instance-1 should accept traffic from Instance-2
 
-Instance-1 security group inbound rules should allow IP address of Instance-2
+Instance-1 security group inbound rules should allow IP address of Instance-2 ( so ila ivvatum valla insta-2 delete cheste taffic anedhi insta-1 ki valldhu) orlese insta-2 ip adress change ayina kuda insta-1 ki allow cheyadhu..
 
+--> so SG team done like these to over come above issue
 Instance-1 has sg attached, instance-2 has sg attached
 
-you should allow sg-id instead of IP address. It means whatever the instane attached with that sg it will be allowed
+you should allow sg-id instead of IP address. It means whatever the instance attached with that sg it will be allowed ( inbound lo ip instead of ip adress seection we need ot give whatever attched sg id we should select ) here it doesn't matter ip adress changes or not
+-->dig like in vpc page 
+Here we have done topics for full security, u can refer  ------> session-39 ----> 30:00min for any doubts
 
-ALB -> Listener -> Rule forwarding to target group -> 
+--> in aws ec2 --> in load balance tab -->target groups --> Create target group -->Target type Instances --> Target group name....go as per shows up to advance tab Timeout ( response from url ) Interval ( means every 30 sec ki health run avvali ) --> now load balancer selected traffic comes from there done ----> 35:00 min
+---> so final review lo 2 insatce done --> frontend target gp done --> indhulo loki 2 instances ni added 
 
-http://ALB-URL:80
+--> now we need to se up load balancer below  ----> 37:00 min for doubts
+Go AWS account-->EC2--> Load Balancers--> Create load -->Load balancer types is Application Load Balancer- --> give any name --->Scheme Internet-facing --> type IPv4-->
 
-frontend-alb.daws86s.fun -> ALB DNS
+-->Network mapping select our robo-shop vpc --> IP pools lo need to select 2 AZ's bcz load has always high az's vudali pub 1a and pub 1b done --> Security groups separate ga vundali so front lb selected --> Listeners and routing  80 done---> Default action Forward to target groups here select frontend tg ki see in dig vpc page ---> done
+
+--> lb create avvadani 2min time will comsume 
+
+
+Application Load Balancer (ALB) -> Listener -> Rule is forwarding to target group -> 
+
+http://ALB-URL:80 
+
+====> upto here load balance done ----> 45:00 min
+
+--> now we need to set up route 53 records  ---------> 46:min
+frontend-alb.daws86s.fun -> here ALB DNS ni hit chestundhi 
+
+---> so finally humans ki doesn't matter backend lo enni servers vunnai ani, so they were always hitting LB URL only 
+--> 1 server vunna gani we need to set up lb, to over come future issues if not like that we will face so many consequence. 
+
+--> mainly  thing is sg like where it should be come and where it should be going out 
+
+--> lb,sg and tg is one time infra creation but inside server will be changing 
+
+30-sg-rules folder created for rules and --> copied provider.tf from sg folder changed the key value
+
+--> 10-sg folder run
+--> database creation ki ansible depends vundhi 
+
+--> 50-backend-alb folder done inside that main.tf variables.tf,data.tf.... done 
+ --> main.tf lo code rastunam  1:03:00 min 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 a accepting from b -> ingress rule of a should allow sg id attached to b
 
