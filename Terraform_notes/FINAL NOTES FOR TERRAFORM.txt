@@ -1,7 +1,7 @@
 cd /c/Users/srika/devsecops/shellscript/Notes/Terraform_notes/
 git add . ; git commit -m "terraform_start" ; git push origin main
  git log to know errors
-
+cd /D/Terraform/terraform-repos/
 
 							FINAL NOTES FOR TERRAFORM
 							==========================
