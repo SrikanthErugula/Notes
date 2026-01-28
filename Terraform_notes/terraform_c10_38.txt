@@ -1,68 +1,124 @@
 
 --> for custum process purpose --> custum-aws-sg folder created --> in that main.tf,varible.tf,output.tf ...etc done
 
+--> first 00-vpc ni run cheyali 
+--> next 10 -sg ni run cheyali
+
 --> ingress anedhi sg lo big process and we need to get approval higher magnt 
 --> egress is same for all and it was open no restrictions 
 
---then 
+--then sg grp individual ga create cheyali like frontend, backend,db lo vunna component like cata,mysql,cart,user ....etc so ala 10 more sg lu create cheyali 
+--> count use chesi loop cheyatame inka
+--> first 00-vpc ni run cheyali 
+--> next 10 -sg ni run cheyali 
+--> upto here variable.tf lo 
+variable "sg_names" {
+    default = [] all sg grps created 
+===========================================
+--> Generally we have 2 tyoes of infra 
+
+1. Project Infra -> One time infra creation (EX state or central govt, companies ki land or availability handover chestundhi sothen company vallu akkada build chestar)
+
+2. Application Infra -> frequent changes will have, then we need to changes the infra
+--> first we need to set project infra like load balancer or vpc then after app infra like ec2 instance depends upon traffic 
+--> sg grp if it has been done, there is no re create groups, changes will have inside infra like rules 
+
+BASTION ( JUMP SERVER) 
+==========
+--> pub subnet lo ec2 server vunte dhani connect easy ga connect avvachu bcz there is no restictions
+--> like pvt subnet lo ec2 server vundi anuko dhani connect avvalante we need BASTION hOST process
+--> pvt lo vunde sg or chages chudalante we need to connect BASTION .... see in dig in VPC page 
+
+--> so we need to maintain that server --> 20-bastion folder created in robo-dev-infra
+
+--> bastion create avvalante is depends on sg id
+--> bastion sg id ni refer cheyalante sg anedhi ssm parameter lo pettali dhani tisukoni bastion create avuthundhi 
+
+---> main.tf,variable.tf locals.tf .......etc done
+-->  tuple or list both are same.... 
+
+StringList == Separate strings using commas(,).
+
+Srikanth, Reddy, Erugula, E --> for humans understand list
+
+["siva","kumar","reddy","m"] ---> for computer understand list
+
+convert list to string in terraform we have 2 functions like as below 
+join function and split function
+
+join -> join the elements in list as single string with separator by using comma(,)
+
+value = join("," , module.vpc.public_subnet_ids) --> so here 2 Az's select chesam so we got 2 subnets ids like as below
+
+subnet-0b74d14411866ada1,subnet-01c3ab188edc1bb04 --> this is output for above cmd 
+--> this is string but seperator is comma
+
+public_subnet_id = split("," , data.aws_ssm_parameter.public_subnet_ids.value)[0]  --> 
+o/p is
+subnet-0b74d14411866ada1,
+subnet-01c3ab188edc1bb04 
 
 
+=======================
+--> until now 1 server ni call cheyadaniki code rasam adhe if we have big billion days when that time many requests will come.. for all requesters ki same link iste like http://dsoaws.fun ani adhi work avvadhu
 
+EX:
+====
+Client ->Business Analyst( BA )---> Enable WhatsApp banking this one feature in banking system 
 
+Delivery Manager(DM) -> TCS side delivery manager ( HDFC bank ki tcs side support vunde dhani resposibilty)
+under delivery head below teams are there
 
-1. Project Infra -> One time infra
-2. Application Infra -> frequent changes
-
-Client -> BA -> Enable whatsapp banking
-
-Delivery Manager -> TCS side delivery manager
 Teams -> frontend, backend, database, L1, L2, reports, monitoring, qa etc
 Team manager -> frontend manager, backend manager, etc.
 Team Lead
 Team
 Team members
 
-if frontend work -> frontend team manager -> frontend team lead -> team members
+if we have frontend work then forward to -> frontend team manager then forward to-> frontend team lead then forward to-> team members 
+--> so ila work anedhi distribute avuthu oka person dhggariki vastudhi 
+--> dig in doc vpc page 
 
-team == target group == a group of members == a group of instances
-member == ec2 instance
+--> cart.dsoaws.fun ante oka team ni address chesinattu like as below adhulo vunde requests lu team ki share avuthai  
+teams == target group == a group of members == a group of instances (frontend team , backend team , database, L1, L2, reports, monitoring, qa)
+members ( team member 1 and 2 ala )  == ec2 instance
 availability check == health check
-every 5 sec once check this URL, if getting response it means available
-for example continous 3 health checks failure, then NA
+--> here manam time set chesukovachu like as below
+every 5 sec once check this health check URL, if getting response or not, here we know this URL is available or not
 
-http://catalogue.daws86s.fun:8080/health
+for example continuous 3 health checks failure, then it won't work URL 
+
+http://catalogue.daws86s.fun:8080/health ( if we haven't get any response it won't work that measn url is not working) 
 
 delivery manager/team manager/lead == load balancer
 
-if catalogue component work forward to catalogue team/target group
+--> like as below laga load balance chestaru 
+if catalogue component work means work forward to catalogue team/target group
+
+--> like as below laga rule set chesi move cheyali direct grp ki 
 
 rules -> catalogue.daws86s.fun -> forward to catalogue target group
 	  -> shipping.daws86s.fun -> forward to shipping target group
 	  
+--> so 1 request will come load balancer check the status
 load balancer
 rules
 target group
 health check
 instance
 listener -> frontend load balancer(public) 80/443, backend load balancer(private) 8080
+--> here EX DM is follows or listening BA conditions so ala load balancer rules lister follow avvuthundhi.
+--> so here BA ki expose or visible ayyedhi DM only not team lead or team member so alane pub port is visible to user/humans ...--> pvt port is visible to pub port kionly 
 
-http://daws86s.fun -> port no 80
+http://daws86s.fun -> port no 80 --> ila url vunte adhi port 80 ani means
 
-http://daws86s.fun:90
+http://daws86s.fun:90 ila public ivvakudadhu vallali aradhm kadhu 
 
-https://daws86s.fun -> port no 443
+https://daws86s.fun -> port no 443 --> ila url vunte adhi port 443 ani means
 
-StringList == Separate strings using commas.
+--> now we need to se up load balancer below
+Go AWS account-->EC2--> Load Balancers--> Create load -->Load balancer types is Application Load Balancer- --> give any name --->Scheme Internet-facing --> type IPv4-->
 
-siva, kumar, reddy, m
+Network mapping select our robo-shop vpc --> IP pools lo need to select 2 AZ's bcz load has always high az's vudali pub 1a and pub 1b done --> Security groups separate ga vundali so 
 
-["siva","kumar","reddy","m"]
-convert list to string in terraform
-
-join and split
-
-join -> join the elements in list as single string with seperator
-
-subnet-0b74d14411866ada1,subnet-01c3ab188edc1bb04
-
-siva kumar reddy m
+Continues next session 39

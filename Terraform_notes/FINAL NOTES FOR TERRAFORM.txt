@@ -708,10 +708,60 @@ SSM parameter store
 
 --> ingress anedhi sg lo big process and we need to get approval higher magnt 
 --> egress is same for all and it was open no restrictions 
+--> Generally we have 2 tyoes of infra 
+1. Project Infra -> One time infra creation (EX state or central govt, companies ki land or availability handover chestundhi sothen company vallu akkada build chestar)
+2. Application Infra -> frequent changes will have, then we need to changes the infra
+--> first we need to set project infra like load balancer or vpc then after app infra like ec2 instance depends upon traffic 
+--> sg grp if it has been done, there is no re create groups, changes will have inside infra like rules 
 
+BASTION ( JUMP SERVER) 
+==========
+--> pvt lo vunde sg or chages chudalante we need to connect BASTION .... see in dig in VPC page 
+--> Bastion is nothing but like as ec2 server, it used to jump into pvt server or subnets to find which have inside data in that 
+--> bastion create avvalante is depends on sg id
+--> bastion sg id ni refer cheyalante sg anedhi ssm parameter lo pettali dhani tisukoni bastion create avuthundhi 
+StringList == Separate strings using commas(,).
 
+Srikanth, Reddy, Erugula, E --> for humans understand list
 
+["siva","kumar","reddy","m"] ---> for computer understand list
 
+convert list to string in terraform we have 2 functions like as below 
+join function and split function
+
+join -> join the elements in list as single string with separator by using comma(,)
+
+value = join("," , module.vpc.public_subnet_ids) --> so here 2 Az's select chesam so we got 2 subnets ids like as below
+
+subnet-0b74d14411866ada1,subnet-01c3ab188edc1bb04 --> this is output for above cmd 
+--> this is string but seperator is comma
+
+LOAD Balancer
+=============
+--> so 1 request will come load balancer check the status
+load balancer
+rules
+target group
+health check
+instance
+listener -> frontend load balancer(public) 80/443, backend load balancer(private) 8080
+
+EX:
+Rule -> if frontend work is there then, assign to frontend team or else if backend work is there then assign to backend team 
+Target group -> Team
+Health check -> availability check
+Instance -> Team member
+
+OVER VIEW
+=================
+SSM parameter lo VPC ID , Subnets IDS presented, other modules like sg or bastion and more ... those are all used inside ssm parameter data
+--> create chesetappudu ssm parameters and use purpose data sources 
+--> Bastion is nothing but like as ec2 server, it used to jump into pvt server or subnets to find which have inside data in that 
+
+Load Balancer == Manager/Lead/DM
+
+Listener = Whom we are listening to. Delivery Manager ane vadu BA vadu emi chepte adhi vinali . normal Manager ane vadu -> DM emi chepte adi  Lead ane vadu Manager emi chepte adhi vinali  
+---> so finally structure is BA --> DM --> Manager -->Lead --> team member needs to do
 
 
 
