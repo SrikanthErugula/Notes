@@ -76,8 +76,9 @@ frontend-alb.daws86s.fun -> here ALB DNS ni hit chestundhi
 --> 50-backend-alb folder done inside that main.tf variables.tf,data.tf.... done 
  --> main.tf lo code rastunam  1:03:00 min 
 
+enable_deletion_protection = false  --> even we can't able to delete with terraform, if u want delete u have to edit go with manula 
 
-
+load_balancer_arn = aws_lb.backend_alb.arn  --> this listener is creating for backend alb ( arn means amazon resource name) 
 
 
 
