@@ -1,7 +1,8 @@
 cd /c/Users/srika/devsecops/shellscript/Notes/Terraform_notes/
 git add . ; git commit -m "terraform_start" ; git push origin main
  git log to know errors
-cd /D/Terraform/terraform-repos/
+cd /D/Terraform/terraform-repos/r
+terraform init -upgrade
 
 							FINAL NOTES FOR TERRAFORM
 							==========================
@@ -251,7 +252,7 @@ e = f
 
 
 
-state
+state file in local
 =========
 Terraform responsibility is whatever we give in .tf files, it should create those resources ->is called declarative way of creating infra( so here manam cheptunam naaku idhi kavali ani nuvvu ichina syntx follow avvuthu rasi istunam) 
 
@@ -273,7 +274,7 @@ terraform state is used to match the desired infra with actual infra, when creat
 		=====================================================================
 							  SES-32-c4
 						   *****************
-Remote state
+Remote state in aws account 
 ==============
 --> We should secure state file from accidental changes.  --> it means unfortunately keys press avavtum and delete avvatum with our interruption  .  
 ---> what is the solution while multiple persons are work chestunte ----> simple solu is centralised state or block or room

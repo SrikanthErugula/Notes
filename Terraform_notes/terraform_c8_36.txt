@@ -1,7 +1,7 @@
 
 
 
---> AWS-VPC module folder created->name manaistum so vpc.tf file done
+--> AWS-VPC module folder created->name mana istum so vpc.tf file done
 
 in this folder we need to create VPC resources EX more : https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc
 see in VSCODE
@@ -9,6 +9,7 @@ see in VSCODE
 --> VPC-module test folder-->name mana istum main.tf rasa-->provoder.tf and gitigonore file copied..
 
 -->project name-environment-<resource_name> --> idhi manam pettukuntunna condistion or rule vere company ki velte valla rules manam chudali.... 
+
 --> so now we need to create varialbels for project name and environ see in variable.tf file
 -->local.tf create chestam bcz no can override, so here every project ki use chestam ----------see in VSCODE
 
