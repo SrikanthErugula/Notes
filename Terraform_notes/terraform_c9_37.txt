@@ -3,9 +3,10 @@
 --> ekkada problem vachhina adhi net work lone so we need to troubleshoot in that only 
 
 -> ec2 lo sg created under robo-dev vpc lo selected inbound and outbound all traffic 
+
 --> instance done under robo-dev-vpc lo selected 
 --> another default instances done under default vpc lo 
---> peer-robo lo default pub ip tho connect avvachu
+--> peer-robo lo default pub ip tho connect avvachu ( ssh ec2@another pub ip) 
 
 
 10.0.0.0/16 -> local VPC CIDR for roboshop-peer  ->  ec2 
@@ -25,6 +26,7 @@ requester is robo-dev VPC ID (Requester) vpc-0821ce8a7258c4910 (roboshop-dev)
 --> same region then u can accept --> peering set upto here 
 
 --> then mainly here route connections--> roboshop velli default ni connect avuthundhi so default dhi cidr anedhi ivvali destination 
+
 --> next same default vpc copy chesukoni rt loki velli paste chesi andhulo routes open chesi --> edit --> roboshop-dev valla cidr kuda ivvali destination 
 --> first rt create chesinapdu there main ani okati create avuthundhi for local kosam
 --> endhuku ante internet by default manam oka sub nuchi inko sub ki connect avvachu
@@ -35,7 +37,7 @@ requester is robo-dev VPC ID (Requester) vpc-0821ce8a7258c4910 (roboshop-dev)
 
 --> basically peer anedhi option not a mandatory,
 
-var.is_peering_required ? 1 : 0 ( ila condition set chesi user ki ivvali valla istum) 
+var.is_peering_required ? 1 : 0 ( ila condition set chesi user ki ivvali valla istum) ( varibl.tf file lo ichham )
 data.aws_vpc.default.id ( every aws lo default vpc vunttadhi dhani manam fetch chestunam) 
 
 auto_accept ( it used to accept after creating peer connection ) 
@@ -50,8 +52,8 @@ is_peering_required = false ( so user peering no anukunte false iste done) endhu
 
 source = "git::https://github.com/SrikanthErugula/terraform-AWS-VPC-module.git?ref=main" ( so ila specific ga main branch ivvachu, module vere brach lo vunde brach name  change chesukovachu ) 
 
---> module lo chages cheste if u want latest module then u give cmd is 
-terraform init upgrade 
+--> module lo changes cheste if u want latest module then u give cmd is 
+terraform init -upgrade 
 
 --> for every projects we need VPC 
 
@@ -64,19 +66,19 @@ for our understand purpose
 --> for creation process like top to bottom
 --> for destroy process like bottom to top
 
---> robo-dev-folder done --> 00-vpc folder done-->copied files from vpc-aws-module-test folder like main.tf,provider.tf,output.tf...etc
+--> robo-dev-folder done --> 00-vpc folder done-->copied files from vpc-module-test folder like main.tf,provider.tf,output.tf...etc
 --> robo-dev-folder done --> 10-sg folder done-->copied provider.tf file from above file lo numchi 
 
 Basically modules are 3 types
 =============================== 
 1. Customised modules -> we develop, maintain. full control --> top MNC will go this way
-2. Open source modules -> 3rd party developed use doc and community links tho--> no need to develop, directly use it. we don't have full control --> form internet or google modules  ---> small companies will go this way 
+2. Open source modules -> 3rd party developed use doc and community links tho--> no need to develop, directly use it. we don't have full control --> form internet or google modules  ---> small companies will go this way ( https://registry.terraform.io/modules/terraform-aws-modules/security-group/aws/latest )
 
 3. direct resource creation for small cases
 
----> interview lo memu both use chese valla once upon time lo past years ago then we will get some error client not satisfied with that so but now we are build inhouse modules 
+---> interview lo memu both use chese valla once upon time lo past years ago then we will get some error client not satisfied with that so but now we are build inhouse modules develop chesi migrate chestunam 
 
---> ippati varaku chesina codes lo same eg use chesam but real time frontend ki pvt ki db ki vere vunttadhi, now we are go that way below are the naming conversion 
+--> ippati varaku chesina codes lo same s g use chesam but real time frontend ki pvt ki db ki vere vunttadhi, now we are go that way below are the naming conversion 
 roboshop-dev-catalogue  --> ila mana istum project wise we can 
 roboshop-dev-mongodb
 
@@ -91,7 +93,9 @@ dig in google doc lo for SSM parameter process
 --> so in aws system manager-- parameter store --> name :/roboshop/dev/vpc_id --> Type: String --> value ivvali 
 --> parameters create chese vallu doc lo mention chestaru like alanti parameter use chestunaru ani 
 
---> 00-vpc lo para.tf lo vunna parameter key anedhi 10-sg loki access cheyali 
+--> 00-vpc lo para.tf lo vunna parameter key anedhi 10-sg loki access cheyali so sg lo data.tf done
+
+ ---> up to here fine for me
 
 
 

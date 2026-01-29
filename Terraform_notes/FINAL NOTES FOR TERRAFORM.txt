@@ -660,7 +660,7 @@ vilage-2 kuda village-1 ni connect avvali so village-2 rotes lo destination icch
 
 --> ekkada problem vachhina adhi rt network lone so we need to troubleshoot in that only 
 → By default there is no connection in b/w 2 VPC’s, bcz those are isolated 
--->manual process there in session 37 refer that notes 
+-->manual process there in session 36 refer that notes 
 
 --> basically peer anedhi option not a mandatory,
 var.is_peering_required ? 1 : 0 ( ila condition set chesi user ki ivvali valla istum) 
