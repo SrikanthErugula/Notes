@@ -6,6 +6,8 @@
 
 --> ingress anedhi sg lo big process and we need to get approval higher magnt 
 --> egress is same for all and it was open no restrictions 
+--> out.tf lo sg id vastundhi,then we will use when ever it is required..
+--> for testing purpose we can go in robo-dev folder sg lo main.tf lo git url icham
 
 --then sg grp individual ga create cheyali like frontend, backend,db lo vunna component like cata,mysql,cart,user ....etc so ala 10 more sg lu create cheyali 
 --> count use chesi loop cheyatame inka
