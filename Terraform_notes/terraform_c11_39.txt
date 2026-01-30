@@ -38,8 +38,14 @@ Instance-1 security group inbound rules should allow IP address of Instance-2 ( 
 Instance-1 has sg attached, instance-2 has sg attached
 
 you should allow sg-id instead of IP address. It means whatever the instance attached with that sg it will be allowed ( inbound lo ip instead of ip adress seection we need ot give whatever attched sg id we should select ) here it doesn't matter ip adress changes or not
+
+-->EX instance-1 inbound rule lo another instance ip adrss lu istam in case ip lu change ayithe traffic won't be allow to inside to over come this we need to give SG ids
+
 -->dig like in vpc page 
 Here we have done topics for full security, u can refer  ------> session-39 ----> 30:00min for any doubts
+
+--> sg lo main.tf lo frnt resorces done 
+
 
 --> in aws ec2 --> in load balance tab -->target groups --> Create target group -->Target type Instances --> Target group name....go as per shows up to advance tab Timeout ( response from url ) Interval ( means every 30 sec ki health run avvali ) --> now load balancer selected traffic comes from there done ----> 35:00 min
 ---> so final review lo 2 insatce done --> frontend target gp done --> indhulo loki 2 instances ni added 
@@ -69,6 +75,7 @@ frontend-alb.daws86s.fun -> here ALB DNS ni hit chestundhi
 --> lb,sg and tg is one time infra creation but inside server will be changing 
 
 30-sg-rules folder created for rules and --> copied provider.tf from sg folder changed the key value
+-->data.tf main.tf folders done
 
 --> 10-sg folder run
 --> database creation ki ansible depends vundhi 
@@ -76,10 +83,11 @@ frontend-alb.daws86s.fun -> here ALB DNS ni hit chestundhi
 --> 50-backend-alb folder done inside that main.tf variables.tf,data.tf.... done 
  --> main.tf lo code rastunam  1:03:00 min 
 
-enable_deletion_protection = false  --> even we can't able to delete with terraform, if u want delete u have to edit go with manula 
+enable_deletion_protection = false  --> even we can't able to delete with terraform, if u want delete u have to edit go with manula go to load balancer --> edit load balcer attribute --> uncheck the deletion protection 
 
 load_balancer_arn = aws_lb.backend_alb.arn  --> this listener is creating for backend alb ( arn means amazon resource name) 
 
+--> load balancer ip address lu ivvadhu for r53 records ki DNS name will come from load balancer
 
 
 

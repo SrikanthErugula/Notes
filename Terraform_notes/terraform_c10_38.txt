@@ -131,4 +131,4 @@ Go AWS account-->EC2--> Load Balancers--> Create load -->Load balancer types is 
 
 Network mapping select our robo-shop vpc --> IP pools lo need to select 2 AZ's bcz load has always high az's vudali pub 1a and pub 1b done --> Security groups separate ga vundali so 
 
-Continues next session 39
+Continues next session 39  ------------> upto here everything is fine for me--------> 
