@@ -11,6 +11,19 @@ Disaster recovery -> --> vundali dowm avvakunda--> Multi Region --> entire regio
 
 session 8 for ip
 
+curl http://localhost:27017/health
+
+# telnet srimongo.dsoaws.fun 27017     # telnet 172.31.26.202 22
+
+# ps -ef | grep nodejs
+# netstat -lntp
+
+
+
+
+
+
+
 
 1. vpc creation has been done like select cidr range and submit vpc name is sri
 after VPC creation VPC, dhaniki network ravali so dhani kosam IG ni create cheyali ---> just name and submit
