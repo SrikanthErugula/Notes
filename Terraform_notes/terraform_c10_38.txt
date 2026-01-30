@@ -8,6 +8,7 @@
 --> egress is same for all and it was open no restrictions 
 --> out.tf lo sg id vastundhi,then we will use when ever it is required..
 --> for testing purpose we can go in robo-dev folder sg lo main.tf lo git url icham
+--> mandatory ga ivvvalinavi ivvali in main.tf lo 
 
 --then sg grp individual ga create cheyali like frontend, backend,db lo vunna component like cata,mysql,cart,user ....etc so ala 10 more sg lu create cheyali 
 --> count use chesi loop cheyatame inka
@@ -23,17 +24,20 @@ variable "sg_names" {
 
 2. Application Infra -> frequent changes will have, then we need to changes the infra
 --> first we need to set project infra like load balancer or vpc then after app infra like ec2 instance depends upon traffic 
---> sg grp if it has been done, there is no re create groups, changes will have inside infra like rules 
+--> sg grp if it had been done, there is no re create groups, changes will have inside infra like rules ingress or egress
 
 BASTION ( JUMP SERVER) 
 ==========
+
 --> pub subnet lo ec2 server vunte dhani connect easy ga connect avvachu bcz there is no restictions
 --> like pvt subnet lo ec2 server vundi anuko dhani connect avvalante we need BASTION hOST process
+-> nat vuttadhi but adi only used for egress nestwork, we can't enter by using this so we have one option is bastion 
+
 --> pvt lo vunde sg or chages chudalante we need to connect BASTION .... see in dig in VPC page 
 
 --> so we need to maintain that server --> 20-bastion folder created in robo-dev-infra
 
---> bastion create avvalante is depends on sg id
+--> bastion create avvalante is depends on sg id so sg lo varible.tf lo bation istam 
 --> bastion sg id ni refer cheyalante sg anedhi ssm parameter lo pettali dhani tisukoni bastion create avuthundhi 
 
 ---> main.tf,variable.tf locals.tf .......etc done
@@ -57,10 +61,14 @@ subnet-0b74d14411866ada1,subnet-01c3ab188edc1bb04 --> this is output for above c
 
 public_subnet_id = split("," , data.aws_ssm_parameter.public_subnet_ids.value)[0]  --> 
 o/p is
-subnet-0b74d14411866ada1,
-subnet-01c3ab188edc1bb04 
+subnet-0b74d14411866ada1, ( 0 INDEX )
+subnet-01c3ab188edc1bb04  ( 1 INDEX ) 
+
+--? so final ga baston ane ec2 server crate avvalante 00-vpc run ayyi adhulo nuchi subnets ids tisukini and next 1-sg run cheste andhulo numchi bastion sg ni tisukoni server create avuthundhi, -----> network lo chuste we will have path deatils
 
 
+
+---> for deletion lo first bastion, sg , vpc ila back numchi vastundi ---> for creation lo vpc , sg , bastion 
 =======================
 --> until now 1 server ni call cheyadaniki code rasam adhe if we have big billion days when that time many requests will come.. for all requesters ki same link iste like http://dsoaws.fun ani adhi work avvadhu
 
