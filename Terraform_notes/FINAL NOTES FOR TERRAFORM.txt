@@ -765,7 +765,128 @@ Listener = Whom we are listening to. Delivery Manager ane vadu BA vadu emi chept
 ---> so finally structure is BA --> DM --> Manager -->Lead --> team member needs to do
 
 
+Rule -> if frontend work is there then, assign to frontend team or else if backend work is there then assign to backend team 
+Target group -> Team
+Health check -> availability check
+Instance -> Team member
+=====================================================================
+							  SES-39-c11
+						   *****************
+In generally
+============
+Instance-1 should accept traffic from Instance-2
+Instance-1 security group inbound rules should allow IP address of Instance-2 ( so ila ivvatum valla insta-2 delete cheste taffic anedhi insta-1 ki valldhu) orlese insta-2 ip adress change ayina kuda insta-1 ki allow cheyadhu..
 
+--> so SG team done like these to over come above issue
+Instance-1 has sg attached, instance-2 has sg attached
+
+you should allow sg-id instead of IP address. It means whatever the instance attached with that sg it will be allowed ( inbound lo ip instead of ip adress seection we need ot give whatever attched sg id we should select ) here it doesn't matter ip adress changes or not
+
+-->EX instance-1 inbound rule lo another instance ip adrss lu istam in case ip lu change ayithe traffic won't be allow to inside to over come this we need to give SG ids
+
+Target Group Created
+Load Balancer created
+
+Application Load Balancer (ALB) -> Listener -> Rule is forwarding to target group -> 
+
+---> so finally humans ki doesn't matter backend lo enni servers vunnai ani, so they were always hitting LB URL only 
+
+
+enable_deletion_protection = false  --> even we can't able to delete with terraform, if u want delete u have to edit go with manula go to load balancer --> edit load balcer attribute --> uncheck the deletion protection 
+
+load_balancer_arn = aws_lb.backend_alb.arn  --> this listener is creating for backend alb ( arn means amazon resource name) 
+
+--> load balancer ip address lu ivvadhu for r53 records ki DNS name will come from load balancer
+
+=====================================================================
+							  SES-40-c12
+						   *****************
+
+
+
+
+
+
+
+
+=====================================================================
+							  SES-41-c13
+						   *****************
+
+
+
+
+
+
+
+
+
+=====================================================================
+							  SES-42-c14
+						   *****************
+
+
+
+
+
+
+
+
+
+
+
+
+
+=====================================================================
+							  SES-43-c15
+						   *****************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=====================================================================
+							  SES-44-c16
+						   *****************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=====================================================================
+							  SES-45-c17
+						   *****************
 
 
 
