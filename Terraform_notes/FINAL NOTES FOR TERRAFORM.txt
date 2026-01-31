@@ -801,6 +801,24 @@ load_balancer_arn = aws_lb.backend_alb.arn  --> this listener is creating for ba
 =====================================================================
 							  SES-40-c12
 						   *****************
+Frontend Load balancer is listening on port number 443 for public ki 443 and  --> private ki 80
+https://daws86s-dev.fun -> frontend ALB  --> dev means development env lo chestunam ani meaning
+here lister is 443 port number 
+
+Rule -> traffic coming to ALB it goes to frontend target group or( Group of servers)
+
+--> frnt end lo cata ni hit chestunapudu cata ki below laga set cheyali backen loki vachhi next rules cata ki url rule ni set cheste adhi cata target gp ki pass avuthundi
+backend-alb-dev.daws86s.fun -> backend ALB
+
+catalogue.backend-alb-dev.daws86s.fun ila rules lo set cheyali then it will goes to catalogue target group
+--> frnt lo emi hit chestunam ane dhani meedha depend ayyi rules lo URL set avuthundi 
+
+--> DB ki kuda LB vunttadhi so in devops team doesn't handle DB configuration, they have separate team will have 
+
+--> pvt and db lo vunde subnets ki doesn't have ip address, we only one option that is Bastion 
+
+
+
 
 
 

@@ -1,0 +1,105 @@
+Frontend Load balancer is listening on port number 443 for public ki 443 and  --> private ki 80
+https://daws86s-dev.fun -> frontend ALB  --> dev means development env lo chestunam ani meaning
+here lister is 443 port number 
+
+Rule -> traffic coming to ALB it goes to frontend target group or( Group of servers)
+
+=========== dig we have in vpc page 
+
+--> frnt end lo cata ni hit chestunapudu cata ki below laga set cheyali backen loki vachhi next rules cata ki url rule ni set cheste adhi cata target gp ki pass avuthundi
+backend-alb-dev.daws86s.fun -> backend ALB
+
+catalogue.backend-alb-dev.daws86s.fun ila rules lo set cheyali then it will goes to catalogue target group
+--> frnt lo emi hit chestunam ane dhani meedha depend ayyi rules lo URL set avuthundi 
+
+--> DB ki kuda LB vunttadhi so in devops team doesn't handle DB configuration, they have separate team will have 
+
+--> pvt and db lo vunde subnets ki doesn't have ip address, we only one option that is Bastion 
+==> in Pvt and DB lo vunde changes or for testing and connection issues ki we need to Bastion 
+
+--> 50-bakedn lo main.tf lo backend _alb and listener both are done
+
+--> backend alb accepting connection from bastion on port number 80 
+
+--> after infra will done we need to do server configuration so for that we have to implement ansible configuration 
+
+--> for mongodb connection like as below
+1. create mongodb ec2 instance
+2. connect to it
+3. run ansible playbook
+--> so then mana loptop pvt kabbati we can't use directly we have one option is bastion 
+--> from bastion we can connect mongodb. then we need to run terraform code or cmds in bastion
+
+bastion -> mongodb remote-exec provisioner( it means server loki velli through ssh tho terraform cmds will run there )
+
+--> now we need to created instances in main.tf like mongodb redis .... etc 
+--> here 40-db folder created provider copied and key name changed and main.tf file done
+
+What is null resources in Terraform
+===============================   ======for more == https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource============
+
+--> null_resource in terraform will not create any resource. but it is used to configure the instance using provisioner. it follows terraform lifecycle(means create,plan)
+
+triggers 
+==========
+---> Instances change( means new server created)  ayyinapudu it will use in that we have triggers option 
+
+
+null_resource is deprecated( something is outdated and discouraged from use),or name changes like this now it is used as terraform_data
+
+--> now bastion connect ayyi akkada numchi we will connect to mongodb server 
+--> mobatx lo bastion pub ip tho logged in install terraform with  sudo yum install -y yum-utils 
+
+$ terraform -help
+terraform plan -help
+--> clone cheyli after install terraform
+
+mongodb connects bastion see below
+--> sg create chayali in sg rules folder lo for connect 22 port after done all mongodb set up then run apply -auto-approve
+
+terraform init, before that run aws configure for connecting s3
+--> ekkada ithe terraform code ni push chestaroo akkada terraform init run cheyali 
+after done all terraform plan, terraform apply -auto-approve
+ --> u can check in aws mongodb server created inbound lo bastion sg id tho configure ayyi vunttadhi
+
+
+--> ansible push ane dhani meedha work avuthadhi
+
+--> refer dig in vpc page 
+
+
+
+
+
+
+
+
+
+terraform taint
+===============
+taint is like paint, if you paint someone it is polluted. need to create again
+
+when a resource is corrupted we can mark it as taint, so that terraform will recreate it next time
+
+IAM Roles
+=========
+authentication and authorisation
+
+authentication -> are you belongs to organisation or not
+authorisation -> prove yourself that you have access or not
+
+User
+Group
+Permissions
+Role -> Trainee, SE, ASE, Consultant, TL, TM, DM, MD, ED, CEO
+
+Role has permissions
+
+Permissions are attached to role, role is attached to user
+
+Roles are created for AWS services
+
+rm -rf .git
+git init
+git branch -M main
+git remote add origin <your-url>
