@@ -67,8 +67,13 @@ after done all terraform plan, terraform apply -auto-approve
 
 --> refer dig in vpc page 
 
+--> so ansible ekkada ithe install avuthundho dhani ansible server or control machine antam
+--> EX mongodb server create ayin tharuvatha server configuration kosam extra ansible server create chesukoni node ki connect avvali.. it is vary extra and time consumer so ansible will introduce PUSH ways architect....
+--> so mongodb server lone ansible ni install chestam then adi behaviour as ansible server,....then ansible is pulling the git repository and targeting the local host (mongdb)and then configure itself ( dhaniki anthata adhe configuration chesukunttahdi) --> idi antha asible pull tho done 
 
+-> search in google like ansible pull examples 
 
+--> bootstrap.sh lo code rasam 
 
 
 
